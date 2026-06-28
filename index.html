@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brandscale — Sichtbar werden, ohne selbst zum Creator zu werden</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+      colors: { ink:'#08080A', panel:'#0E0E12', accent:'#8B5CF6', accent2:'#22D3EE' },
+    }},
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#08080A; }
+  .grad-text { background:linear-gradient(100deg,#A78BFA,#22D3EE); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#6D5EF6); }
+  .glow { box-shadow:0 0 90px -25px rgba(139,92,246,.6); }
+  .card { background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012)); border:1px solid rgba(255,255,255,.08); }
+  .card:hover { border-color:rgba(139,92,246,.4); }
+  .ph { outline:1px dashed rgba(139,92,246,.5); outline-offset:2px; }
+  .badge-ph { background:rgba(139,92,246,.14); color:#c4b5fd; border:1px solid rgba(139,92,246,.34); }
+  .eyebrow { letter-spacing:.18em; }
+  .dotgrid { background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px); background-size:24px 24px; }
+  .faq-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq.open .faq-body { max-height:260px; }
+  .faq.open .faq-icon { transform:rotate(45deg); }
+  details::-webkit-details-marker{display:none;}
+  .fade-edge { mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+</style>
+</head>
+<body class="text-white font-sans antialiased selection:bg-accent/30">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/75 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-extrabold text-lg tracking-tight">
+      <span class="inline-block w-7 h-7 rounded-lg grad-btn glow"></span>Brand<span class="grad-text">scale</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-white/65">
+      <a href="#problem" class="hover:text-white transition">Problem</a>
+      <a href="#system" class="hover:text-white transition">So arbeiten wir</a>
+      <a href="#angebot" class="hover:text-white transition">Angebot</a>
+      <a href="#ablauf" class="hover:text-white transition">Ablauf</a>
+      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    </nav>
+    <a href="#kontakt" class="grad-btn text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition">Diagnose-Gespräch</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-32 pb-20 overflow-hidden dotgrid">
+  <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[760px] h-[760px] rounded-full bg-accent/20 blur-[150px]"></div>
+  <div class="relative max-w-5xl mx-auto px-5 text-center">
+    <span class="inline-flex items-center gap-2 text-xs font-medium text-white/70 border border-white/10 rounded-full px-3 py-1 mb-7">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent2"></span> Beweis-First Marketing · DACH
+    </span>
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.04]">
+      Sichtbar werden,<br>ohne selbst zum<br><span class="grad-text">Creator zu werden.</span>
+    </h1>
+    <p class="mt-7 text-lg text-white/65 max-w-2xl mx-auto">
+      Wir bauen aus deinen <span class="text-white">bestehenden Inhalten</span> ein Marketing-System, das Reichweite,
+      Vertrauen und Umsatz aufbaut. Beweisbar — ohne Content-Stress und ohne der nächsten Agentur auf den Leim zu gehen.
+    </p>
+    <p class="mt-4 text-sm text-white/45">Für Coaches, Berater und Experten, die genug haben von leeren Versprechen.</p>
+
+    <!-- VSL -->
+    <div class="mt-12 max-w-3xl mx-auto">
+      <div class="ph card rounded-2xl aspect-video flex flex-col items-center justify-center relative glow">
+        <span class="badge-ph absolute top-3 left-3 text-[11px] font-semibold px-2 py-1 rounded-md">VSL · Platzhalter</span>
+        <button class="w-20 h-20 rounded-full grad-btn flex items-center justify-center hover:scale-105 transition">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <p class="mt-4 text-sm text-white/50">Hier dein VSL einbetten (YouTube / Vimeo / Wistia / MP4)</p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#kontakt" class="grad-btn font-semibold px-7 py-3.5 rounded-xl hover:opacity-90 transition">Diagnose-Gespräch anfragen</a>
+      <a href="#system" class="font-semibold px-7 py-3.5 rounded-xl border border-white/15 hover:bg-white/5 transition">So arbeiten wir</a>
+    </div>
+    <p class="mt-4 text-xs text-white/40">Ehrliche Einschätzung, kein Verkaufs-Pitch.</p>
+  </div>
+</section>
+
+<!-- PROOF SLOTS (ehrlich) -->
+<section class="border-y border-white/5 py-12">
+  <div class="max-w-5xl mx-auto px-5 text-center">
+    <p class="text-sm text-white/55 max-w-xl mx-auto">Hier kommen unsere <span class="text-white">Signature-Cases</span>. Wir zeigen echte Beweise, sobald sie da sind — keine geliehenen Zahlen.</p>
+    <div class="grid sm:grid-cols-3 gap-5 mt-8">
+      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">— Mio.+</div><div class="mt-2 text-white/55 text-sm">generierte Views</div></div>
+      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">— k+</div><div class="mt-2 text-white/55 text-sm">aufgebaute Follower</div></div>
+      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">€ —+</div><div class="mt-2 text-white/55 text-sm">Umsatz für Kunden</div></div>
+    </div>
+    <span class="badge-ph inline-block mt-6 text-[11px] font-semibold px-2 py-1 rounded-md">Platzhalter · mit echten Zahlen ersetzen</span>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <p class="eyebrow text-xs font-semibold text-accent2 text-center uppercase">Das Problem</p>
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-center mt-3">Warum du noch nicht sichtbar bist.</h2>
+    <p class="text-center text-white/55 mt-4 max-w-2xl mx-auto">Du kennst das Ergebnis bereits — egal welchen Weg du bisher probiert hast.</p>
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
+      <div class="card rounded-2xl p-8 transition">
+        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 1 · Selbst machen</span>
+        <h3 class="text-xl font-bold mt-2">Du hast keine Zeit</h3>
+        <p class="text-white/60 mt-3 text-sm">Zwischen Kunden und Business bleibt kein Raum für täglichen Content. Du fängst an, verlierst die Konstanz, und nichts wächst.</p>
+      </div>
+      <div class="card rounded-2xl p-8 transition glow">
+        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 2 · Nächste Agentur</span>
+        <h3 class="text-xl font-bold mt-2">Du wurdest verbrannt</h3>
+        <p class="text-white/60 mt-3 text-sm">Bunte Präsentationen, Buzzwords, lange Verträge — und am Ende kaum belastbare Zahlen. Einmal reicht, um misstrauisch zu werden.</p>
+      </div>
+      <div class="card rounded-2xl p-8 transition">
+        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 3 · Abwarten</span>
+        <h3 class="text-xl font-bold mt-2">Du bleibst unsichtbar</h3>
+        <p class="text-white/60 mt-3 text-sm">Während du zögerst, besetzen andere in deiner Nische die Aufmerksamkeit — und werden zur ersten Wahl, obwohl du besser bist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM / MECHANISMUS -->
+<section id="system" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center">
+      <p class="eyebrow text-xs font-semibold text-accent2 uppercase">So arbeiten wir</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-3">Beweis vor Versprechen.</h2>
+      <p class="text-white/60 mt-4 max-w-2xl mx-auto">Bevor wir dir irgendwas versprechen, zeigen wir dir, was bei dir schon trägt. Erst Daten, dann Skalierung.</p>
+    </div>
+    <div class="grid md:grid-cols-4 gap-5 mt-14">
+      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">01</div><h3 class="font-bold mt-2">Diagnose</h3><p class="text-white/55 text-sm mt-2">Wir prüfen Ist-Zustand, Inhalte und Funnel. Ehrlich, ohne Schönfärberei.</p></div>
+      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">02</div><h3 class="font-bold mt-2">Repurposing</h3><p class="text-white/55 text-sm mt-2">Aus deinem bestehenden Material machen wir Short-Form-Content — du drehst nicht ständig neu.</p></div>
+      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">03</div><h3 class="font-bold mt-2">Paid & Funnel</h3><p class="text-white/55 text-sm mt-2">Meta-Ads + sauberer Funnel bringen die Reichweite zu echten Anfragen.</p></div>
+      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">04</div><h3 class="font-bold mt-2">Skalieren oder Stop</h3><p class="text-white/55 text-sm mt-2">Wir entscheiden gemeinsam nach Zahlen, was hochgefahren wird — und was nicht.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH -->
+<section class="py-24 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-5">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Klassische Agentur vs. Brandscale</h2>
+    <div class="grid md:grid-cols-2 gap-6 mt-12">
+      <div class="card rounded-2xl p-8">
+        <p class="text-white/50 text-sm font-semibold uppercase eyebrow">So lief es bisher</p>
+        <ul class="mt-5 space-y-3 text-sm text-white/65">
+          <li class="flex gap-3"><span class="text-red-400">✕</span> Großes Team, hohe Fixkosten, langsame Umsetzung</li>
+          <li class="flex gap-3"><span class="text-red-400">✕</span> Lange Verträge, Lock-in, du gibst Kontrolle ab</li>
+          <li class="flex gap-3"><span class="text-red-400">✕</span> Reporting auf Vanity-Metriken statt Umsatz</li>
+          <li class="flex gap-3"><span class="text-red-400">✕</span> Du sollst selbst ständig Content drehen</li>
+        </ul>
+      </div>
+      <div class="card rounded-2xl p-8 glow">
+        <p class="grad-text text-sm font-semibold uppercase eyebrow">Mit Brandscale</p>
+        <ul class="mt-5 space-y-3 text-sm text-white/85">
+          <li class="flex gap-3"><span class="text-accent2">✓</span> Schlankes System, aus deinem bestehenden Material</li>
+          <li class="flex gap-3"><span class="text-accent2">✓</span> Transparent & fair — dir gehören Accounts, Daten, Content</li>
+          <li class="flex gap-3"><span class="text-accent2">✓</span> Gemessen an Reichweite, Vertrauen und echtem Umsatz</li>
+          <li class="flex gap-3"><span class="text-accent2">✓</span> Sichtbar, ohne selbst zum Vollzeit-Creator zu werden</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANGEBOT -->
+<section id="angebot" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center">
+      <p class="eyebrow text-xs font-semibold text-accent2 uppercase">Dein Weg mit uns</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-3">Zwei Wege, sichtbar zu werden</h2>
+      <p class="text-white/60 mt-4 max-w-2xl mx-auto">Du behältst die Kontrolle — wir bringen System, Reichweite und Beweis.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 mt-14">
+      <div class="card rounded-2xl p-8">
+        <span class="text-xs font-semibold text-accent2 eyebrow uppercase">Done With You</span>
+        <h3 class="text-2xl font-bold mt-2">Social-Media-Consulting</h3>
+        <p class="text-white/60 mt-3 text-sm">Wir bauen mit dir Strategie, Content-System und Funnel auf — scoped nach Ziel und Laufzeit. Du setzt um, wir steuern als Sparring-Partner.</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-white/80">
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Positionierung & Content-Strategie</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Hook-, Pillar- & Skript-System</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Funnel- & Tracking-Aufbau</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Direktes Sparring statt Ticket-Chaos</li>
+        </ul>
+        <a href="#kontakt" class="mt-7 inline-block w-full text-center font-semibold px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 transition">Passt das zu mir?</a>
+      </div>
+      <div class="card rounded-2xl p-8 glow relative">
+        <span class="badge-ph absolute top-5 right-5 text-[11px] font-semibold px-2 py-1 rounded-md">Beliebt</span>
+        <span class="text-xs font-semibold text-accent eyebrow uppercase">Done For You</span>
+        <h3 class="text-2xl font-bold mt-2">Personal Branding & Paid Ads</h3>
+        <p class="text-white/60 mt-3 text-sm">Wir produzieren deinen Personal-Brand-Content aus bestehenden Inhalten und betreiben deine Meta-Ads. Du wirst sichtbar, ohne selbst zum Creator zu werden.</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-white/80">
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Content-Repurposing aus deinem Bestand</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Meta-Ads: Aufbau, Betrieb, Optimierung</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Reporting auf Pipeline, nicht Vanity</li>
+          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Du behältst Accounts, Daten und Creatives</li>
+        </ul>
+        <a href="#kontakt" class="mt-7 inline-block w-full text-center grad-btn font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition">Diagnose-Gespräch anfragen</a>
+      </div>
+    </div>
+    <p class="text-center text-xs text-white/40 mt-6">Kein Fixpreis von der Stange — Scope und Investment richten sich nach Ziel und Laufzeit. <span class="badge-ph px-1.5 py-0.5 rounded">Pricing folgt</span></p>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <span class="badge-ph text-[11px] font-semibold px-2 py-1 rounded-md">Case-Studies · Platzhalter</span>
+    </div>
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Ergebnisse, die man sehen kann</h2>
+    <p class="text-center text-white/55 mt-4 max-w-xl mx-auto">Sobald die ersten Cases dokumentiert sind, stehen sie hier — mit Vorher, Strategie und echtem Ergebnis.</p>
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
+      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
+      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ / EINWÄNDE -->
+<section id="faq" class="py-24 border-t border-white/5">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
+    <div class="mt-12 space-y-3">
+      <div class="faq card rounded-xl">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+          <span class="font-semibold">„Schon wieder eine Agentur, die viel verspricht."</span>
+          <span class="faq-icon text-accent2 text-xl transition">+</span>
+        </button>
+        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p></div>
+      </div>
+      <div class="faq card rounded-xl">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+          <span class="font-semibold">„Ich wurde schon mal verbrannt — lange Verträge, Intransparenz."</span>
+          <span class="faq-icon text-accent2 text-xl transition">+</span>
+        </button>
+        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Dir gehören Accounts, Daten und Content — auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Zusammenarbeit fair und überschaubar gehalten, kein Lock-in.</p></div>
+      </div>
+      <div class="faq card rounded-xl">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+          <span class="font-semibold">„Ich habe keine Zeit, ständig Content zu drehen."</span>
+          <span class="faq-icon text-accent2 text-xl transition">+</span>
+        </button>
+        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
+      </div>
+      <div class="faq card rounded-xl">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+          <span class="font-semibold">„Funktioniert das auch in meiner Nische?"</span>
+          <span class="faq-icon text-accent2 text-xl transition">+</span>
+        </button>
+        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Das klären wir vorab im Diagnose-Gespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK REVERSAL -->
+<section class="py-20 border-t border-white/5">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="card rounded-2xl p-10 text-center glow">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Dein Risiko halten wir klein</h2>
+      <div class="grid sm:grid-cols-3 gap-6 mt-8 text-sm">
+        <div><p class="grad-text font-bold text-base">Diagnose zuerst</p><p class="text-white/55 mt-2">Wir starten mit einer ehrlichen Analyse — keine Zusammenarbeit ohne Fit.</p></div>
+        <div><p class="grad-text font-bold text-base">Volle Transparenz</p><p class="text-white/55 mt-2">Jeder Schritt dokumentiert. Du siehst Setup, Hypothesen und Zahlen.</p></div>
+        <div><p class="grad-text font-bold text-base">Dir gehört alles</p><p class="text-white/55 mt-2">Accounts, Daten, Creatives — auch ohne uns weiter nutzbar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf" class="py-24 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-5">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">In 3 Schritten sichtbar</h2>
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
+      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">01</div><h3 class="font-bold text-xl mt-2">Diagnose-Gespräch</h3><p class="text-white/60 text-sm mt-3">Wir verstehen dein Business, deine Zielgruppe und Zahlen — und prüfen ehrlich, ob es passt.</p></div>
+      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">02</div><h3 class="font-bold text-xl mt-2">System-Aufbau</h3><p class="text-white/60 text-sm mt-3">Positionierung, Content-System und Funnel — aufgebaut aus deinem bestehenden Material.</p></div>
+      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">03</div><h3 class="font-bold text-xl mt-2">Umsetzung & Skalierung</h3><p class="text-white/60 text-sm mt-3">Laufende Produktion, Paid-Betrieb und Optimierung — gemessen an echtem Umsatz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="about" class="py-20 border-t border-white/5">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <h2 class="text-3xl font-extrabold tracking-tight">Wer hinter Brandscale steht</h2>
+    <div class="mt-10 card rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6 text-left">
+      <div class="ph w-28 h-28 rounded-2xl bg-white/5 flex-shrink-0 flex items-center justify-center text-white/40 text-xs">Foto</div>
+      <div>
+        <h3 class="text-xl font-bold">[ Dein Name ]</h3>
+        <p class="text-accent2 text-sm">Founder · Content-Strategie & Wachstum</p>
+        <p class="text-white/60 text-sm mt-3">[ Kurze, ehrliche Founder-Story — warum Brandscale, dein Ansatz, warum Beweis statt Versprechen. Platzhalter. ]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="kontakt" class="py-28 border-t border-white/5 relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[420px] bg-accent/20 blur-[150px]"></div>
+  <div class="relative max-w-3xl mx-auto px-5 text-center">
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Lass uns ehrlich draufschauen.</h2>
+    <p class="text-white/65 mt-5 max-w-xl mx-auto">45 Minuten, in denen wir dein Marketing ehrlich einschätzen. Wenn der Fit nicht stimmt, sagen wir es dir klar — kein Pitch.</p>
+    <div class="mt-9">
+      <a href="#" class="grad-btn font-semibold px-8 py-4 rounded-xl inline-block hover:opacity-90 transition glow">Diagnose-Gespräch anfragen <span class="badge-ph ml-2 text-[11px] px-2 py-0.5 rounded">Calendly-Link einsetzen</span></a>
+    </div>
+    <p class="mt-4 text-xs text-white/40">Deine Daten nutzen wir ausschließlich zur Terminkoordination. Kein Newsletter, kein Spam.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/5 py-10">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/50">
+    <div class="flex items-center gap-2 font-extrabold text-white"><span class="inline-block w-5 h-5 rounded grad-btn"></span>Brand<span class="grad-text">scale</span></div>
+    <p>© 2026 Brandscale. Alle Rechte vorbehalten.</p>
+    <div class="flex gap-5"><a href="#" class="hover:text-white">Impressum</a><a href="#" class="hover:text-white">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){ btn.closest('.faq').classList.toggle('open'); });
+  });
+</script>
+</body>
+</html>
