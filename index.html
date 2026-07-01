@@ -7,11 +7,11 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','ui-monospace','monospace'] },
+      fontFamily: { sans: ['Geist','ui-sans-serif','system-ui','sans-serif'], mono: ['Geist Mono','ui-monospace','monospace'] },
       colors: {
         ink:'#0A0C10', navy:'#1E1B4B',
         accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
@@ -23,7 +23,7 @@
 <style>
   html { scroll-behavior:smooth; }
   body { background:#EAECF1; color:#0A0C10; }
-  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  .mono { font-family:'Geist Mono',ui-monospace,monospace; letter-spacing:.12em; }
   .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .grad-btn:hover { filter:brightness(1.05); }
@@ -55,7 +55,7 @@
 <!-- ============ NAV ============ -->
 <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 border-b border-line">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2.5 font-extrabold text-lg tracking-tight">
+    <a href="#top" class="flex items-center gap-2.5 font-semibold text-lg tracking-tight">
       <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
       </span>
@@ -82,7 +82,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
       Von unsichtbar zu unübersehbar
     </span>
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+    <h1 class="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
       Wir bauen KI-gestützte<br class="hidden sm:block">
       Marketing-Systeme, die <span class="grad-text">Reichweite,<br class="hidden sm:block">Vertrauen und Umsatz</span> skalieren.
     </h1>
@@ -148,14 +148,14 @@
     <span class="inline-grid place-items-center w-14 h-14 rounded-xl grad-btn glow-blue mx-auto">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
     </span>
-    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-snug mt-8">
+    <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight leading-snug mt-8">
       Dein externes Marketing-Team mit dem Anspruch,
       <span class="text-mute">deine Marke im deutschsprachigen Raum sichtbar und beweisbar aufzubauen.</span>
     </h2>
     <div class="grid sm:grid-cols-3 gap-px bg-line mt-14 rounded-2xl overflow-hidden border border-line">
-      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">— Mio.+</div><div class="mono text-[11px] uppercase text-mute mt-3">generierte Views</div></div>
-      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">— k+</div><div class="mono text-[11px] uppercase text-mute mt-3">aufgebaute Follower</div></div>
-      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">€ —+</div><div class="mono text-[11px] uppercase text-mute mt-3">Kundenumsatz</div></div>
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-semibold grad-text">— Mio.+</div><div class="mono text-[11px] uppercase text-mute mt-3">generierte Views</div></div>
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-semibold grad-text">— k+</div><div class="mono text-[11px] uppercase text-mute mt-3">aufgebaute Follower</div></div>
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-semibold grad-text">€ —+</div><div class="mono text-[11px] uppercase text-mute mt-3">Kundenumsatz</div></div>
     </div>
     <span class="badge-ph inline-block mt-5 mono text-[10px] font-semibold px-2.5 py-1 rounded-md uppercase">Platzhalter · mit echten Zahlen ersetzen</span>
   </div>
@@ -201,7 +201,7 @@
   <div class="max-w-6xl mx-auto px-5">
     <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
       <span class="mono text-accent2 text-sm">01</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Echte Ergebnisse, ehrlich erzählt.</h2>
+      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Echte Ergebnisse, ehrlich erzählt.</h2>
     </div>
 
     <!-- Case Row 1 (Video links) -->
@@ -222,9 +222,9 @@
         </ul>
         <p class="mono text-[11px] uppercase text-mute mt-6">Ergebnis</p>
         <div class="grid grid-cols-3 gap-3 mt-3">
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Zahlende Kunden</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Zahlende Kunden</div></div>
         </div>
         <blockquote class="mt-6 text-sm text-ink/70 italic border-l-2 border-accent pl-4">„[ Echtes Kundenzitat einsetzen — keine geliehenen Aussagen. ]"</blockquote>
         <p class="mono text-[11px] uppercase text-ink mt-3">[ Name ] <span class="text-mute normal-case">· [ Rolle / Firma ]</span></p>
@@ -249,9 +249,9 @@
         </ul>
         <p class="mono text-[11px] uppercase text-mute mt-6">Ergebnis</p>
         <div class="grid grid-cols-3 gap-3 mt-3">
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
-          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Landingpage-Klicks</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-semibold">—+</div><div class="text-[11px] text-mute mt-1">Landingpage-Klicks</div></div>
         </div>
         <blockquote class="mt-6 text-sm text-ink/70 italic border-l-2 border-accent pl-4">„[ Echtes Kundenzitat einsetzen. ]"</blockquote>
         <p class="mono text-[11px] uppercase text-ink mt-3">[ Name ] <span class="text-mute normal-case">· [ Rolle / Firma ]</span></p>
@@ -303,21 +303,21 @@
   <div class="max-w-6xl mx-auto px-5">
     <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
       <span class="mono text-accent2 text-sm">03</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Warum dein Marketing nicht skaliert — und wie wir es lösen.</h2>
+      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Warum dein Marketing nicht skaliert — und wie wir es lösen.</h2>
     </div>
 
-    <p class="text-2xl sm:text-4xl font-extrabold tracking-tight text-center max-w-3xl mx-auto mt-16 leading-snug">
+    <p class="text-2xl sm:text-4xl font-semibold tracking-tight text-center max-w-3xl mx-auto mt-16 leading-snug">
       Du investierst Zeit, Geld und Energie in dein Marketing, und trotzdem
       <span class="text-mute">bewegt sich dein Umsatz kaum. Damit bist du nicht allein — so sieht der Markt 2026 aus.</span>
     </p>
 
-    <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege,<br>alle drei führen in die gleiche Sackgasse.</h3>
+    <h3 class="text-3xl sm:text-4xl font-semibold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege,<br>alle drei führen in die gleiche Sackgasse.</h3>
     <div class="grid md:grid-cols-3 gap-6 mt-14">
       <div class="card card-hover rounded-2xl p-8 text-center">
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </div>
-        <h4 class="text-2xl font-extrabold tracking-tight">Du hast <span class="grad-text">keine Zeit</span></h4>
+        <h4 class="text-2xl font-semibold tracking-tight">Du hast <span class="grad-text">keine Zeit</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 1 · Selbst machen</p>
         <p class="text-sm text-mute mt-4">Zwischen Kunden und Business bleibt kein Raum für täglichen Content. Du fängst an, verlierst die Konstanz, und nichts wächst.</p>
       </div>
@@ -325,7 +325,7 @@
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 8h5M19.5 5.5v5"/></svg>
         </div>
-        <h4 class="text-2xl font-extrabold tracking-tight">Du findest <span class="grad-text">niemanden</span></h4>
+        <h4 class="text-2xl font-semibold tracking-tight">Du findest <span class="grad-text">niemanden</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 2 · Team aufbauen</p>
         <p class="text-sm text-mute mt-4">A-Player sind teuer und rar. Bis ein eigenes Team steht und liefert, vergehen Monate — und die Fixkosten laufen sofort.</p>
       </div>
@@ -333,7 +333,7 @@
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <h4 class="text-2xl font-extrabold tracking-tight">Du zahlst <span class="grad-text">zu viel</span></h4>
+        <h4 class="text-2xl font-semibold tracking-tight">Du zahlst <span class="grad-text">zu viel</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 3 · Agentur beauftragen</p>
         <p class="text-sm text-mute mt-4">Bunte Präsentationen, Buzzwords, lange Verträge — und am Ende kaum belastbare Zahlen. Einmal reicht, um misstrauisch zu werden.</p>
       </div>
@@ -341,7 +341,7 @@
 
     <!-- Endlich eine Lösung -->
     <div class="text-center max-w-2xl mx-auto mt-24">
-      <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-snug">Endlich eine Marketing-Lösung, die wirklich funktioniert.</h3>
+      <h3 class="text-3xl sm:text-4xl font-semibold tracking-tight leading-snug">Endlich eine Marketing-Lösung, die wirklich funktioniert.</h3>
       <p class="text-mute mt-5">Wir verbinden echte Marken-Erfahrung mit den neuesten KI-Tools und einem Prozess, der auf Beweis statt Versprechen läuft. Das Ergebnis ist keine weitere Agentur, sondern die Marketing-Infrastruktur, die du brauchst, um nachhaltig und ohne aufgeblähtes Team zu skalieren.</p>
     </div>
     <p class="mono text-[11px] uppercase text-accentDeep text-center mt-12">Unser Stack · immer auf dem neuesten Stand</p>
@@ -357,7 +357,7 @@
 <!-- ============ VERGLEICH ============ -->
 <section class="py-20">
   <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Klassische Agentur vs. Brand-Scale.de</h2>
+    <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-center">Klassische Agentur vs. Brand-Scale.de</h2>
     <div class="grid md:grid-cols-2 gap-6 mt-12">
       <!-- klassisch -->
       <div class="card rounded-2xl p-8">
@@ -405,7 +405,7 @@
   <div class="max-w-6xl mx-auto px-5">
     <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
       <span class="mono text-accent2 text-sm">05</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Lass uns deine Marketing-Infrastruktur bauen.</h2>
+      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Lass uns deine Marketing-Infrastruktur bauen.</h2>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mt-14">
       <!-- DWY -->
@@ -450,7 +450,7 @@
   <div class="max-w-6xl mx-auto px-5">
     <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
       <span class="mono text-accent2 text-sm">07</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Wie jedes Projekt startet.</h2>
+      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Wie jedes Projekt startet.</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6 mt-14">
       <div class="card rounded-2xl p-8">
@@ -498,7 +498,7 @@
   <div class="max-w-5xl mx-auto px-5">
     <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
       <span class="mono text-accent2 text-sm">09</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Der Gründer.</h2>
+      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Der Gründer.</h2>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mt-14">
       <div class="card rounded-2xl overflow-hidden">
@@ -524,7 +524,7 @@
 <!-- ============ FAQ ============ -->
 <section id="faq" class="py-20">
   <div class="max-w-3xl mx-auto px-5">
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
+    <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
     <div class="mt-12 space-y-3">
       <div class="faq card rounded-xl">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
@@ -565,7 +565,7 @@
       <!-- primär -->
       <div class="rounded-2xl p-10 banner hex glow-blue text-white relative overflow-hidden">
         <span class="mono text-[11px] uppercase text-accent2">Signature Case starten</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-4 leading-tight">Lass uns prüfen, ob deine Marke der nächste Signature Case wird.</h2>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Lass uns prüfen, ob deine Marke der nächste Signature Case wird.</h2>
         <p class="text-white/65 mt-5 text-sm max-w-md">45-Minuten-Erstgespräch direkt mit dem Gründer. Ehrliche Einschätzung statt Standard-Pitch. Wenn der Fit nicht stimmt, sagen wir es klar.</p>
         <ul class="mt-6 space-y-2.5 text-sm text-white/85">
           <li class="flex gap-2.5"><span class="text-accent2">•</span> Direkter Kontakt mit dem Gründer</li>
@@ -582,7 +582,7 @@
       <!-- sekundär -->
       <div class="card rounded-2xl p-10">
         <span class="mono text-[11px] uppercase text-accentDeep">Andere Wege</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-4 leading-tight">Noch nicht bereit für die volle Infrastruktur?</h2>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Noch nicht bereit für die volle Infrastruktur?</h2>
         <p class="text-mute mt-5 text-sm">Zwei kleinere Wege, mit uns zu starten.</p>
         <a href="#angebot" class="mt-6 flex items-center justify-between card card-hover rounded-xl p-5">
           <div><p class="font-semibold">Done With You</p><p class="text-mute text-xs mt-1">Strategie-Sparring mit dem Gründer</p></div>
@@ -601,7 +601,7 @@
 <footer class="border-t border-line py-14 bg-white">
   <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-4 gap-10">
     <div>
-      <div class="flex items-center gap-2.5 font-extrabold text-lg">
+      <div class="flex items-center gap-2.5 font-semibold text-lg">
         <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></span>
         Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span>
       </div>
