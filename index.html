@@ -3,327 +3,624 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Brandscale — Sichtbar werden, ohne selbst zum Creator zu werden</title>
+<title>Brand-Scale.de — KI-gestützte Marketing-Systeme für Reichweite, Vertrauen und Umsatz</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
-      colors: { ink:'#08080A', panel:'#0E0E12', accent:'#8B5CF6', accent2:'#22D3EE' },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','ui-monospace','monospace'] },
+      colors: {
+        ink:'#0A0C10', navy:'#1E1B4B',
+        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
+        paper:'#FBFCFE', line:'#E8ECF2', mute:'#5A6472',
+      },
     }},
   }
 </script>
 <style>
-  html { scroll-behavior: smooth; }
-  body { background:#08080A; }
-  .grad-text { background:linear-gradient(100deg,#A78BFA,#22D3EE); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#6D5EF6); }
-  .glow { box-shadow:0 0 90px -25px rgba(139,92,246,.6); }
-  .card { background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012)); border:1px solid rgba(255,255,255,.08); }
-  .card:hover { border-color:rgba(139,92,246,.4); }
-  .ph { outline:1px dashed rgba(139,92,246,.5); outline-offset:2px; }
-  .badge-ph { background:rgba(139,92,246,.14); color:#c4b5fd; border:1px solid rgba(139,92,246,.34); }
-  .eyebrow { letter-spacing:.18em; }
-  .dotgrid { background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px); background-size:24px 24px; }
+  html { scroll-behavior:smooth; }
+  body { background:#FBFCFE; color:#0A0C10; }
+  .mono { font-family:'JetBrains Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
+  .grad-btn:hover { filter:brightness(1.05); }
+  .glow-blue { box-shadow:0 0 80px -20px rgba(139,92,246,.5); }
+  .card { background:#fff; border:1px solid #E8ECF2; box-shadow:0 1px 2px rgba(10,12,16,.04); }
+  .card-hover { transition:.2s; }
+  .card-hover:hover { border-color:#DDD6FE; box-shadow:0 10px 40px -18px rgba(139,92,246,.3); }
+  /* numbered dark banners */
+  .banner { background:radial-gradient(120% 180% at 15% 0%,#4C1D95 0%,#1E1B4B 45%,#12102E 100%); }
+  .hex { background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A78BFA' stroke-opacity='0.12'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"); }
+  /* combined: hex mesh layered over dark gradient (fixes .hex overriding .banner) */
+  .banner.hex { background-color:#1E1B4B; background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A78BFA' stroke-opacity='0.12'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(120% 180% at 15% 0%,#4C1D95 0%,#1E1B4B 45%,#12102E 100%); }
+  .hex-light { background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238B5CF6' stroke-opacity='0.06'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"); }
+  .ph { outline:1px dashed rgba(139,92,246,.55); outline-offset:2px; }
+  .badge-ph { background:rgba(139,92,246,.10); color:#5B21B6; border:1px solid rgba(139,92,246,.30); }
+  .eyebrow { letter-spacing:.22em; }
   .faq-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
-  .faq.open .faq-body { max-height:260px; }
+  .faq.open .faq-body { max-height:280px; }
   .faq.open .faq-icon { transform:rotate(45deg); }
-  details::-webkit-details-marker{display:none;}
-  .fade-edge { mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 34s linear infinite; }
+  .marquee-slow { animation-duration:48s; }
+  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .fade-x { -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+  .hscroll { scrollbar-width:none; } .hscroll::-webkit-scrollbar{display:none;}
 </style>
 </head>
-<body class="text-white font-sans antialiased selection:bg-accent/30">
+<body class="font-sans antialiased selection:bg-accent/20">
 
-<!-- NAV -->
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/75 border-b border-white/5">
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 border-b border-line">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2 font-extrabold text-lg tracking-tight">
-      <span class="inline-block w-7 h-7 rounded-lg grad-btn glow"></span>Brand<span class="grad-text">scale</span>
+    <a href="#top" class="flex items-center gap-2.5 font-extrabold text-lg tracking-tight">
+      <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+      </span>
+      <span class="tracking-[.02em]">Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span></span>
     </a>
-    <nav class="hidden md:flex items-center gap-8 text-sm text-white/65">
-      <a href="#problem" class="hover:text-white transition">Problem</a>
-      <a href="#system" class="hover:text-white transition">So arbeiten wir</a>
-      <a href="#angebot" class="hover:text-white transition">Angebot</a>
-      <a href="#ablauf" class="hover:text-white transition">Ablauf</a>
-      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-mute">
+      <a href="#resultate" class="hover:text-ink transition">Resultate</a>
+      <a href="#problem" class="hover:text-ink transition">Was wir tun</a>
+      <a href="#angebot" class="hover:text-ink transition">Leistungen</a>
+      <a href="#gruender" class="hover:text-ink transition">Gründer</a>
     </nav>
-    <a href="#kontakt" class="grad-btn text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition">Diagnose-Gespräch</a>
+    <a href="#kontakt" class="grad-btn text-sm font-semibold pl-4 pr-1.5 py-1.5 rounded-full inline-flex items-center gap-2 transition">
+      Termin anfragen
+      <span class="grid place-items-center w-6 h-6 rounded-full bg-white/20"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="top" class="relative pt-32 pb-20 overflow-hidden dotgrid">
-  <div class="absolute -top-48 left-1/2 -translate-x-1/2 w-[760px] h-[760px] rounded-full bg-accent/20 blur-[150px]"></div>
+<!-- ============ HERO ============ -->
+<section id="top" class="relative pt-36 pb-24 overflow-hidden hex-light">
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[820px] h-[520px] rounded-full bg-accent2/20 blur-[150px]"></div>
   <div class="relative max-w-5xl mx-auto px-5 text-center">
-    <span class="inline-flex items-center gap-2 text-xs font-medium text-white/70 border border-white/10 rounded-full px-3 py-1 mb-7">
-      <span class="w-1.5 h-1.5 rounded-full bg-accent2"></span> Beweis-First Marketing · DACH
+    <span class="inline-flex items-center gap-2 mono text-[11px] font-medium text-accentDeep border border-accent/30 bg-accent/5 rounded-full px-3.5 py-1.5 mb-8 uppercase">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      Von unsichtbar zu unübersehbar
     </span>
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.04]">
-      Sichtbar werden,<br>ohne selbst zum<br><span class="grad-text">Creator zu werden.</span>
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+      Wir bauen KI-gestützte<br class="hidden sm:block">
+      Marketing-Systeme, die <span class="grad-text">Reichweite,<br class="hidden sm:block">Vertrauen und Umsatz</span> skalieren.
     </h1>
-    <p class="mt-7 text-lg text-white/65 max-w-2xl mx-auto">
-      Wir bauen aus deinen <span class="text-white">bestehenden Inhalten</span> ein Marketing-System, das Reichweite,
-      Vertrauen und Umsatz aufbaut. Beweisbar — ohne Content-Stress und ohne der nächsten Agentur auf den Leim zu gehen.
+    <p class="mt-7 text-lg text-mute max-w-2xl mx-auto">
+      Für Coaches, Berater und Unternehmer, die sichtbar werden wollen — ohne selbst zum
+      Vollzeit-Creator zu werden, ohne Content-Stress und ohne der nächsten Agentur auf den Leim zu gehen.
     </p>
-    <p class="mt-4 text-sm text-white/45">Für Coaches, Berater und Experten, die genug haben von leeren Versprechen.</p>
-
-    <!-- VSL -->
-    <div class="mt-12 max-w-3xl mx-auto">
-      <div class="ph card rounded-2xl aspect-video flex flex-col items-center justify-center relative glow">
-        <span class="badge-ph absolute top-3 left-3 text-[11px] font-semibold px-2 py-1 rounded-md">VSL · Platzhalter</span>
-        <button class="w-20 h-20 rounded-full grad-btn flex items-center justify-center hover:scale-105 transition">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <p class="mt-4 text-sm text-white/50">Hier dein VSL einbetten (YouTube / Vimeo / Wistia / MP4)</p>
-      </div>
-    </div>
-
     <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#kontakt" class="grad-btn font-semibold px-7 py-3.5 rounded-xl hover:opacity-90 transition">Diagnose-Gespräch anfragen</a>
-      <a href="#system" class="font-semibold px-7 py-3.5 rounded-xl border border-white/15 hover:bg-white/5 transition">So arbeiten wir</a>
+      <a href="#kontakt" class="grad-btn font-semibold pl-7 pr-2 py-2 rounded-full inline-flex items-center gap-3 justify-center transition">
+        Termin anfragen
+        <span class="grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="#angebot" class="font-semibold px-7 py-3.5 rounded-full border border-line bg-white hover:border-accent/40 transition inline-flex items-center gap-2 justify-center">
+        Was wir liefern
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
     </div>
-    <p class="mt-4 text-xs text-white/40">Ehrliche Einschätzung, kein Verkaufs-Pitch.</p>
   </div>
 </section>
 
-<!-- PROOF SLOTS (ehrlich) -->
-<section class="border-y border-white/5 py-12">
-  <div class="max-w-5xl mx-auto px-5 text-center">
-    <p class="text-sm text-white/55 max-w-xl mx-auto">Hier kommen unsere <span class="text-white">Signature-Cases</span>. Wir zeigen echte Beweise, sobald sie da sind — keine geliehenen Zahlen.</p>
-    <div class="grid sm:grid-cols-3 gap-5 mt-8">
-      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">— Mio.+</div><div class="mt-2 text-white/55 text-sm">generierte Views</div></div>
-      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">— k+</div><div class="mt-2 text-white/55 text-sm">aufgebaute Follower</div></div>
-      <div class="ph card rounded-xl p-7"><div class="text-3xl font-extrabold grad-text">€ —+</div><div class="mt-2 text-white/55 text-sm">Umsatz für Kunden</div></div>
+<!-- ============ CLIENT LOGO MARQUEE ============ -->
+<section class="border-y border-line py-8 bg-white overflow-hidden">
+  <div class="fade-x">
+    <div class="marquee items-center opacity-70">
+      <!-- Platzhalter-Logos · mit echten Kundenlogos ersetzen -->
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
+      <span class="mono text-sm text-mute whitespace-nowrap">[ Kundenlogo ]</span>
     </div>
-    <span class="badge-ph inline-block mt-6 text-[11px] font-semibold px-2 py-1 rounded-md">Platzhalter · mit echten Zahlen ersetzen</span>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section id="problem" class="py-24">
+<!-- ============ BIG STATEMENT + STATS ============ -->
+<section class="py-24 hex-light">
+  <div class="max-w-4xl mx-auto px-5 text-center">
+    <span class="inline-grid place-items-center w-14 h-14 rounded-xl grad-btn glow-blue mx-auto">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+    </span>
+    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-snug mt-8">
+      Dein externes Marketing-Team mit dem Anspruch,
+      <span class="text-mute">deine Marke im deutschsprachigen Raum sichtbar und beweisbar aufzubauen.</span>
+    </h2>
+    <div class="grid sm:grid-cols-3 gap-px bg-line mt-14 rounded-2xl overflow-hidden border border-line">
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">— Mio.+</div><div class="mono text-[11px] uppercase text-mute mt-3">generierte Views</div></div>
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">— k+</div><div class="mono text-[11px] uppercase text-mute mt-3">aufgebaute Follower</div></div>
+      <div class="bg-white py-10 ph"><div class="text-4xl sm:text-5xl font-extrabold grad-text">€ —+</div><div class="mono text-[11px] uppercase text-mute mt-3">Kundenumsatz</div></div>
+    </div>
+    <span class="badge-ph inline-block mt-5 mono text-[10px] font-semibold px-2.5 py-1 rounded-md uppercase">Platzhalter · mit echten Zahlen ersetzen</span>
+  </div>
+</section>
+
+<!-- ============ SERVICE PILLS MARQUEE ============ -->
+<section class="border-y border-line py-7 bg-white overflow-hidden">
+  <div class="flex items-center justify-center gap-6 mb-6 text-mute">
+    <span class="mono text-[11px] uppercase">Für</span>
+    <div class="flex gap-5">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3v3.5a5.5 5.5 0 0 0 4 5.2v3.1a8.6 8.6 0 0 1-4-1.2V16a6 6 0 1 1-6-6v3.1A2.9 2.9 0 1 0 13 16V3h3z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3s-2.3 1.57-2.3 3.2V21H9z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.1 8.1L23 22h-6.6l-5.2-6.8L5.3 22H2l7.6-8.7L1.5 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 4H5.5l12.2 16z"/></svg>
+    </div>
+  </div>
+  <div class="fade-x">
+    <div class="marquee marquee-slow items-center mono text-xs uppercase text-mute">
+      <span class="whitespace-nowrap">◆ Content-Repurposing</span>
+      <span class="whitespace-nowrap">◆ Short-Form Produktion</span>
+      <span class="whitespace-nowrap">◆ Meta &amp; Paid Ads</span>
+      <span class="whitespace-nowrap">◆ Strategie &amp; Positionierung</span>
+      <span class="whitespace-nowrap">◆ Brand &amp; Voice</span>
+      <span class="whitespace-nowrap">◆ Funnel &amp; Tracking</span>
+      <span class="whitespace-nowrap">◆ Long-Form Content</span>
+      <span class="whitespace-nowrap">◆ E-Mail Marketing</span>
+      <!-- dup for seamless loop -->
+      <span class="whitespace-nowrap">◆ Content-Repurposing</span>
+      <span class="whitespace-nowrap">◆ Short-Form Produktion</span>
+      <span class="whitespace-nowrap">◆ Meta &amp; Paid Ads</span>
+      <span class="whitespace-nowrap">◆ Strategie &amp; Positionierung</span>
+      <span class="whitespace-nowrap">◆ Brand &amp; Voice</span>
+      <span class="whitespace-nowrap">◆ Funnel &amp; Tracking</span>
+      <span class="whitespace-nowrap">◆ Long-Form Content</span>
+      <span class="whitespace-nowrap">◆ E-Mail Marketing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · RESULTATE ============ -->
+<section id="resultate" class="py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <p class="eyebrow text-xs font-semibold text-accent2 text-center uppercase">Das Problem</p>
-    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-center mt-3">Warum du noch nicht sichtbar bist.</h2>
-    <p class="text-center text-white/55 mt-4 max-w-2xl mx-auto">Du kennst das Ergebnis bereits — egal welchen Weg du bisher probiert hast.</p>
+    <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
+      <span class="mono text-accent2 text-sm">01</span>
+      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Echte Ergebnisse, ehrlich erzählt.</h2>
+    </div>
+
+    <!-- Case Row 1 (Video links) -->
+    <div class="grid md:grid-cols-2 gap-10 items-center mt-14">
+      <div class="card rounded-2xl overflow-hidden ph">
+        <div class="aspect-video bg-gradient-to-br from-navy to-ink grid place-items-center relative">
+          <span class="badge-ph absolute top-3 left-3 mono text-[10px] px-2 py-1 rounded uppercase" style="background:rgba(167,139,250,.16);color:#ede9fe;border-color:rgba(167,139,250,.4)">Kunden-Interview</span>
+          <button class="w-16 h-16 rounded-full grad-btn grid place-items-center hover:scale-105 transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold tracking-tight">[ Ergebnis in Zahlen ] für [ Kunde ] <span class="text-mute font-medium">(Kunden-Interview)</span></h3>
+        <p class="mono text-[11px] uppercase text-mute mt-6">Vor der Zusammenarbeit</p>
+        <ul class="mt-3 space-y-2.5 text-sm text-ink/80">
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Expertise da, aber Aufmerksamkeit nicht auf gleichem Level ]</li>
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Kein Hebel mit der Personal Brand fürs Unternehmen ]</li>
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Stagnierendes Content-Volumen ]</li>
+        </ul>
+        <p class="mono text-[11px] uppercase text-mute mt-6">Ergebnis</p>
+        <div class="grid grid-cols-3 gap-3 mt-3">
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Zahlende Kunden</div></div>
+        </div>
+        <blockquote class="mt-6 text-sm text-ink/70 italic border-l-2 border-accent pl-4">„[ Echtes Kundenzitat einsetzen — keine geliehenen Aussagen. ]"</blockquote>
+        <p class="mono text-[11px] uppercase text-ink mt-3">[ Name ] <span class="text-mute normal-case">· [ Rolle / Firma ]</span></p>
+      </div>
+    </div>
+
+    <!-- Case Row 2 (Video rechts) -->
+    <div class="grid md:grid-cols-2 gap-10 items-center mt-16">
+      <div class="md:order-2 card rounded-2xl overflow-hidden ph">
+        <div class="aspect-video bg-gradient-to-br from-navy to-ink grid place-items-center relative">
+          <span class="badge-ph absolute top-3 left-3 mono text-[10px] px-2 py-1 rounded uppercase" style="background:rgba(167,139,250,.16);color:#ede9fe;border-color:rgba(167,139,250,.4)">Kunden-Interview</span>
+          <button class="w-16 h-16 rounded-full grad-btn grid place-items-center hover:scale-105 transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+      </div>
+      <div class="md:order-1">
+        <h3 class="text-2xl font-bold tracking-tight">[ Ergebnis in Zahlen ] für [ Kunde ] <span class="text-mute font-medium">(Kunden-Interview)</span></h3>
+        <p class="mono text-[11px] uppercase text-mute mt-6">Vor der Zusammenarbeit</p>
+        <ul class="mt-3 space-y-2.5 text-sm text-ink/80">
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Fehlendes System, Content im Freestyle-Modus ]</li>
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Kapazitätsengpässe bei hochwertigem Content ]</li>
+          <li class="flex gap-2.5"><span class="text-accent">✓</span> [ Fehlender Partner für Wachstum und Conversion ]</li>
+        </ul>
+        <p class="mono text-[11px] uppercase text-mute mt-6">Ergebnis</p>
+        <div class="grid grid-cols-3 gap-3 mt-3">
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Follower gewonnen</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Views generiert</div></div>
+          <div class="card rounded-xl p-4 ph"><div class="text-xl font-extrabold">—+</div><div class="text-[11px] text-mute mt-1">Landingpage-Klicks</div></div>
+        </div>
+        <blockquote class="mt-6 text-sm text-ink/70 italic border-l-2 border-accent pl-4">„[ Echtes Kundenzitat einsetzen. ]"</blockquote>
+        <p class="mono text-[11px] uppercase text-ink mt-3">[ Name ] <span class="text-mute normal-case">· [ Rolle / Firma ]</span></p>
+      </div>
+    </div>
+
+    <div class="text-center mt-14">
+      <button class="mono text-xs uppercase inline-flex items-center gap-2 border border-line rounded-full px-5 py-2.5 hover:border-accent/40 transition text-mute">
+        Weitere Stimmen anzeigen <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- Signature Cases carousel -->
+    <div class="mt-16 fade-x">
+      <div class="flex gap-5 overflow-x-auto hscroll pb-2 snap-x">
+        <div class="min-w-[240px] snap-start card rounded-2xl overflow-hidden ph">
+          <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+          </div>
+        </div>
+        <div class="min-w-[240px] snap-start card rounded-2xl overflow-hidden ph">
+          <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+          </div>
+        </div>
+        <div class="min-w-[240px] snap-start card rounded-2xl overflow-hidden ph">
+          <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+          </div>
+        </div>
+        <div class="min-w-[240px] snap-start card rounded-2xl overflow-hidden ph">
+          <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+          </div>
+        </div>
+        <div class="min-w-[240px] snap-start card rounded-2xl overflow-hidden ph">
+          <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mono text-[11px] uppercase text-mute text-center mt-5">Vollständige Library auf <span class="text-accentDeep">YouTube</span> · <span class="badge-ph px-1.5 py-0.5 rounded normal-case">Handle einsetzen</span></p>
+  </div>
+</section>
+
+<!-- ============ 03 · PROBLEM ============ -->
+<section id="problem" class="py-20 hex-light">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
+      <span class="mono text-accent2 text-sm">03</span>
+      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Warum dein Marketing nicht skaliert — und wie wir es lösen.</h2>
+    </div>
+
+    <p class="text-2xl sm:text-4xl font-extrabold tracking-tight text-center max-w-3xl mx-auto mt-16 leading-snug">
+      Du investierst Zeit, Geld und Energie in dein Marketing, und trotzdem
+      <span class="text-mute">bewegt sich dein Umsatz kaum. Damit bist du nicht allein — so sieht der Markt 2026 aus.</span>
+    </p>
+
+    <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege,<br>alle drei führen in die gleiche Sackgasse.</h3>
     <div class="grid md:grid-cols-3 gap-6 mt-14">
-      <div class="card rounded-2xl p-8 transition">
-        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 1 · Selbst machen</span>
-        <h3 class="text-xl font-bold mt-2">Du hast keine Zeit</h3>
-        <p class="text-white/60 mt-3 text-sm">Zwischen Kunden und Business bleibt kein Raum für täglichen Content. Du fängst an, verlierst die Konstanz, und nichts wächst.</p>
+      <div class="card card-hover rounded-2xl p-8 text-center">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h4 class="text-2xl font-extrabold tracking-tight">Du hast <span class="grad-text">keine Zeit</span></h4>
+        <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 1 · Selbst machen</p>
+        <p class="text-sm text-mute mt-4">Zwischen Kunden und Business bleibt kein Raum für täglichen Content. Du fängst an, verlierst die Konstanz, und nichts wächst.</p>
       </div>
-      <div class="card rounded-2xl p-8 transition glow">
-        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 2 · Nächste Agentur</span>
-        <h3 class="text-xl font-bold mt-2">Du wurdest verbrannt</h3>
-        <p class="text-white/60 mt-3 text-sm">Bunte Präsentationen, Buzzwords, lange Verträge — und am Ende kaum belastbare Zahlen. Einmal reicht, um misstrauisch zu werden.</p>
+      <div class="card card-hover rounded-2xl p-8 text-center">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 8h5M19.5 5.5v5"/></svg>
+        </div>
+        <h4 class="text-2xl font-extrabold tracking-tight">Du findest <span class="grad-text">niemanden</span></h4>
+        <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 2 · Team aufbauen</p>
+        <p class="text-sm text-mute mt-4">A-Player sind teuer und rar. Bis ein eigenes Team steht und liefert, vergehen Monate — und die Fixkosten laufen sofort.</p>
       </div>
-      <div class="card rounded-2xl p-8 transition">
-        <span class="eyebrow text-[11px] font-semibold text-white/40 uppercase">Weg 3 · Abwarten</span>
-        <h3 class="text-xl font-bold mt-2">Du bleibst unsichtbar</h3>
-        <p class="text-white/60 mt-3 text-sm">Während du zögerst, besetzen andere in deiner Nische die Aufmerksamkeit — und werden zur ersten Wahl, obwohl du besser bist.</p>
+      <div class="card card-hover rounded-2xl p-8 text-center">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4 class="text-2xl font-extrabold tracking-tight">Du zahlst <span class="grad-text">zu viel</span></h4>
+        <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 3 · Agentur beauftragen</p>
+        <p class="text-sm text-mute mt-4">Bunte Präsentationen, Buzzwords, lange Verträge — und am Ende kaum belastbare Zahlen. Einmal reicht, um misstrauisch zu werden.</p>
+      </div>
+    </div>
+
+    <!-- Endlich eine Lösung -->
+    <div class="text-center max-w-2xl mx-auto mt-24">
+      <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-snug">Endlich eine Marketing-Lösung, die wirklich funktioniert.</h3>
+      <p class="text-mute mt-5">Wir verbinden echte Marken-Erfahrung mit den neuesten KI-Tools und einem Prozess, der auf Beweis statt Versprechen läuft. Das Ergebnis ist keine weitere Agentur, sondern die Marketing-Infrastruktur, die du brauchst, um nachhaltig und ohne aufgeblähtes Team zu skalieren.</p>
+    </div>
+    <p class="mono text-[11px] uppercase text-accentDeep text-center mt-12">Unser Stack · immer auf dem neuesten Stand</p>
+    <div class="fade-x mt-6">
+      <div class="marquee items-center mono text-sm text-mute">
+        <span class="whitespace-nowrap">Meta Ads</span><span class="whitespace-nowrap">Google Ads</span><span class="whitespace-nowrap">TikTok Ads</span><span class="whitespace-nowrap">HeyGen</span><span class="whitespace-nowrap">ElevenLabs</span><span class="whitespace-nowrap">n8n</span><span class="whitespace-nowrap">Claude</span><span class="whitespace-nowrap">CapCut</span><span class="whitespace-nowrap">Notion</span>
+        <span class="whitespace-nowrap">Meta Ads</span><span class="whitespace-nowrap">Google Ads</span><span class="whitespace-nowrap">TikTok Ads</span><span class="whitespace-nowrap">HeyGen</span><span class="whitespace-nowrap">ElevenLabs</span><span class="whitespace-nowrap">n8n</span><span class="whitespace-nowrap">Claude</span><span class="whitespace-nowrap">CapCut</span><span class="whitespace-nowrap">Notion</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SYSTEM / MECHANISMUS -->
-<section id="system" class="py-24 border-t border-white/5">
-  <div class="max-w-6xl mx-auto px-5">
-    <div class="text-center">
-      <p class="eyebrow text-xs font-semibold text-accent2 uppercase">So arbeiten wir</p>
-      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-3">Beweis vor Versprechen.</h2>
-      <p class="text-white/60 mt-4 max-w-2xl mx-auto">Bevor wir dir irgendwas versprechen, zeigen wir dir, was bei dir schon trägt. Erst Daten, dann Skalierung.</p>
-    </div>
-    <div class="grid md:grid-cols-4 gap-5 mt-14">
-      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">01</div><h3 class="font-bold mt-2">Diagnose</h3><p class="text-white/55 text-sm mt-2">Wir prüfen Ist-Zustand, Inhalte und Funnel. Ehrlich, ohne Schönfärberei.</p></div>
-      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">02</div><h3 class="font-bold mt-2">Repurposing</h3><p class="text-white/55 text-sm mt-2">Aus deinem bestehenden Material machen wir Short-Form-Content — du drehst nicht ständig neu.</p></div>
-      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">03</div><h3 class="font-bold mt-2">Paid & Funnel</h3><p class="text-white/55 text-sm mt-2">Meta-Ads + sauberer Funnel bringen die Reichweite zu echten Anfragen.</p></div>
-      <div class="card rounded-2xl p-7"><div class="text-accent text-sm font-bold">04</div><h3 class="font-bold mt-2">Skalieren oder Stop</h3><p class="text-white/55 text-sm mt-2">Wir entscheiden gemeinsam nach Zahlen, was hochgefahren wird — und was nicht.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- VERGLEICH -->
-<section class="py-24 border-t border-white/5">
+<!-- ============ VERGLEICH ============ -->
+<section class="py-20">
   <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Klassische Agentur vs. Brandscale</h2>
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Klassische Agentur vs. Brand-Scale.de</h2>
     <div class="grid md:grid-cols-2 gap-6 mt-12">
+      <!-- klassisch -->
       <div class="card rounded-2xl p-8">
-        <p class="text-white/50 text-sm font-semibold uppercase eyebrow">So lief es bisher</p>
-        <ul class="mt-5 space-y-3 text-sm text-white/65">
-          <li class="flex gap-3"><span class="text-red-400">✕</span> Großes Team, hohe Fixkosten, langsame Umsetzung</li>
-          <li class="flex gap-3"><span class="text-red-400">✕</span> Lange Verträge, Lock-in, du gibst Kontrolle ab</li>
-          <li class="flex gap-3"><span class="text-red-400">✕</span> Reporting auf Vanity-Metriken statt Umsatz</li>
-          <li class="flex gap-3"><span class="text-red-400">✕</span> Du sollst selbst ständig Content drehen</li>
-        </ul>
+        <p class="mono text-[11px] uppercase text-mute">Klassische Agentur</p>
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Creative Director</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Account Director</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Strategy Lead</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Senior Copy</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Art Director</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Videograf</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Editor</span>
+          <span class="text-xs border border-line rounded-md px-2.5 py-1 text-mute">Data Analyst</span>
+          <span class="text-xs border border-red-200 text-red-500 rounded-md px-2.5 py-1">+ 6 weitere</span>
+        </div>
+        <div class="mt-7 divide-y divide-line text-sm">
+          <div class="flex justify-between py-3"><span class="text-mute">Teamgröße</span><span class="font-semibold">18–25 Personen</span></div>
+          <div class="flex justify-between py-3"><span class="text-mute">Onboarding</span><span class="font-semibold">3–6 Monate</span></div>
+          <div class="flex justify-between py-3"><span class="text-mute">Output-Geschwindigkeit</span><span class="font-semibold">Wochen pro Asset</span></div>
+          <div class="flex justify-between py-3"><span class="text-mute">Kosten</span><span class="font-semibold text-red-500">Zu viel</span></div>
+        </div>
       </div>
-      <div class="card rounded-2xl p-8 glow">
-        <p class="grad-text text-sm font-semibold uppercase eyebrow">Mit Brandscale</p>
-        <ul class="mt-5 space-y-3 text-sm text-white/85">
-          <li class="flex gap-3"><span class="text-accent2">✓</span> Schlankes System, aus deinem bestehenden Material</li>
-          <li class="flex gap-3"><span class="text-accent2">✓</span> Transparent & fair — dir gehören Accounts, Daten, Content</li>
-          <li class="flex gap-3"><span class="text-accent2">✓</span> Gemessen an Reichweite, Vertrauen und echtem Umsatz</li>
-          <li class="flex gap-3"><span class="text-accent2">✓</span> Sichtbar, ohne selbst zum Vollzeit-Creator zu werden</li>
-        </ul>
+      <!-- brandscale -->
+      <div class="rounded-2xl p-8 banner hex glow-blue text-white relative">
+        <p class="mono text-[11px] uppercase text-accent2">Mit Brand-Scale.de</p>
+        <div class="grid grid-cols-4 gap-3 mt-5">
+          <div class="rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span class="text-[9px] mt-1.5 text-white/70">Content&nbsp;AI</span></div>
+          <div class="rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg><span class="text-[9px] mt-1.5 text-white/70">Ads&nbsp;AI</span></div>
+          <div class="rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="#A78BFA"/></svg><span class="text-[9px] mt-1.5 text-white/70">Video&nbsp;AI</span></div>
+          <div class="rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg><span class="text-[9px] mt-1.5 text-white/70">Growth&nbsp;AI</span></div>
+        </div>
+        <div class="mt-7 divide-y divide-white/10 text-sm">
+          <div class="flex justify-between py-3"><span class="text-white/55">Kern-Team</span><span class="font-semibold">Schlank + KI</span></div>
+          <div class="flex justify-between py-3"><span class="text-white/55">Setup</span><span class="font-semibold">Wochen statt Monate</span></div>
+          <div class="flex justify-between py-3"><span class="text-white/55">Output-Geschwindigkeit</span><span class="font-semibold text-accent2">Stunden bis Tage</span></div>
+          <div class="flex justify-between py-3"><span class="text-white/55">Kosten</span><span class="font-semibold text-accent2">Bruchteil</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ANGEBOT -->
-<section id="angebot" class="py-24 border-t border-white/5">
+<!-- ============ 05 · ANGEBOT ============ -->
+<section id="angebot" class="py-20 hex-light">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="text-center">
-      <p class="eyebrow text-xs font-semibold text-accent2 uppercase">Dein Weg mit uns</p>
-      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mt-3">Zwei Wege, sichtbar zu werden</h2>
-      <p class="text-white/60 mt-4 max-w-2xl mx-auto">Du behältst die Kontrolle — wir bringen System, Reichweite und Beweis.</p>
+    <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
+      <span class="mono text-accent2 text-sm">05</span>
+      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Lass uns deine Marketing-Infrastruktur bauen.</h2>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mt-14">
+      <!-- DWY -->
       <div class="card rounded-2xl p-8">
-        <span class="text-xs font-semibold text-accent2 eyebrow uppercase">Done With You</span>
-        <h3 class="text-2xl font-bold mt-2">Social-Media-Consulting</h3>
-        <p class="text-white/60 mt-3 text-sm">Wir bauen mit dir Strategie, Content-System und Funnel auf — scoped nach Ziel und Laufzeit. Du setzt um, wir steuern als Sparring-Partner.</p>
-        <ul class="mt-6 space-y-2.5 text-sm text-white/80">
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Positionierung & Content-Strategie</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Hook-, Pillar- & Skript-System</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Funnel- & Tracking-Aufbau</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Direktes Sparring statt Ticket-Chaos</li>
+        <span class="mono text-[11px] uppercase text-accentDeep">Done With You</span>
+        <h3 class="text-2xl font-bold mt-3">Social-Media-Consulting</h3>
+        <p class="text-mute mt-3 text-sm">Wir gehen mit dir in einen Deep-Dive deiner Marke, entwickeln gemeinsam die Strategie und bauen das System für dich oder dein Team auf. Du setzt um, wir steuern als Sparring-Partner.</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-ink/85">
+          <li class="flex gap-2.5"><span class="text-accent">•</span> Deep-Dive zu Marke, Vision, idealem Kunden</li>
+          <li class="flex gap-2.5"><span class="text-accent">•</span> Custom-Strategie gemeinsam entwickelt</li>
+          <li class="flex gap-2.5"><span class="text-accent">•</span> Hook-, Pillar- &amp; Skript-System übergeben</li>
+          <li class="flex gap-2.5"><span class="text-accent">•</span> Sparring direkt mit dem Gründer</li>
         </ul>
-        <a href="#kontakt" class="mt-7 inline-block w-full text-center font-semibold px-6 py-3 rounded-xl border border-white/15 hover:bg-white/5 transition">Passt das zu mir?</a>
+        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full font-semibold px-6 py-3.5 rounded-full border border-line hover:border-accent/40 transition">
+          Termin anfragen <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-      <div class="card rounded-2xl p-8 glow relative">
-        <span class="badge-ph absolute top-5 right-5 text-[11px] font-semibold px-2 py-1 rounded-md">Beliebt</span>
-        <span class="text-xs font-semibold text-accent eyebrow uppercase">Done For You</span>
-        <h3 class="text-2xl font-bold mt-2">Personal Branding & Paid Ads</h3>
-        <p class="text-white/60 mt-3 text-sm">Wir produzieren deinen Personal-Brand-Content aus bestehenden Inhalten und betreiben deine Meta-Ads. Du wirst sichtbar, ohne selbst zum Creator zu werden.</p>
-        <ul class="mt-6 space-y-2.5 text-sm text-white/80">
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Content-Repurposing aus deinem Bestand</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Meta-Ads: Aufbau, Betrieb, Optimierung</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Reporting auf Pipeline, nicht Vanity</li>
-          <li class="flex gap-2.5"><span class="text-accent2">✓</span> Du behältst Accounts, Daten und Creatives</li>
+      <!-- DFY -->
+      <div class="rounded-2xl p-8 banner hex glow-blue text-white relative">
+        <span class="badge-ph absolute top-6 right-6 mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border-color:rgba(167,139,250,.4)">Beliebt</span>
+        <span class="mono text-[11px] uppercase text-accent2">Done For You</span>
+        <h3 class="text-2xl font-bold mt-3">Personal Branding &amp; Paid Ads</h3>
+        <p class="text-white/65 mt-3 text-sm">Du willst eine vollwertige Marketing-Operation, ohne selbst zum Creator zu werden. Wir produzieren deinen Content aus bestehenden Inhalten und betreiben die Paid-Infrastruktur — Reichweite, Vertrauen und Umsatz, ohne deine Zeit zu verbrennen.</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-white/90">
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Content-Repurposing aus deinem Bestand</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Meta-Ads: Setup, Optimierung, Reporting</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Sparring direkt mit dem Gründer</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Reporting auf Pipeline, nicht Vanity</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Dir gehören Accounts, Daten und Creatives</li>
         </ul>
-        <a href="#kontakt" class="mt-7 inline-block w-full text-center grad-btn font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition">Diagnose-Gespräch anfragen</a>
+        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full grad-btn font-semibold px-6 py-3.5 rounded-full transition">
+          Termin anfragen <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
-    <p class="text-center text-xs text-white/40 mt-6">Kein Fixpreis von der Stange — Scope und Investment richten sich nach Ziel und Laufzeit. <span class="badge-ph px-1.5 py-0.5 rounded">Pricing folgt</span></p>
+    <p class="text-center text-xs text-mute mt-6">Kein Fixpreis von der Stange — Scope und Investment richten sich nach Ziel und Laufzeit. <span class="badge-ph px-1.5 py-0.5 rounded">Pricing folgt</span></p>
   </div>
 </section>
 
-<!-- CASES -->
-<section id="cases" class="py-24 border-t border-white/5">
+<!-- ============ 07 · ABLAUF ============ -->
+<section id="ablauf" class="py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="flex items-center justify-center gap-2 mb-3">
-      <span class="badge-ph text-[11px] font-semibold px-2 py-1 rounded-md">Case-Studies · Platzhalter</span>
+    <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
+      <span class="mono text-accent2 text-sm">07</span>
+      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Wie jedes Projekt startet.</h2>
     </div>
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Ergebnisse, die man sehen kann</h2>
-    <p class="text-center text-white/55 mt-4 max-w-xl mx-auto">Sobald die ersten Cases dokumentiert sind, stehen sie hier — mit Vorher, Strategie und echtem Ergebnis.</p>
-    <div class="grid md:grid-cols-3 gap-6 mt-12">
-      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
-      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
-      <div class="card rounded-2xl overflow-hidden ph"><div class="aspect-video bg-white/5 flex items-center justify-center text-white/40 text-sm">Video / Thumbnail</div><div class="p-6"><h3 class="font-bold">[ Kunde / Marke ]</h3><p class="text-white/55 text-sm mt-2">[ Vorher → Strategie → Ergebnis in Zahlen ]</p></div></div>
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
+      <div class="card rounded-2xl p-8">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold">Erstgespräch &amp; Diligence</h3>
+        <p class="text-sm text-mute mt-3">45 Minuten direkt mit dem Gründer. Wir verstehen dein Unternehmen, deine Zielgruppe, deine Zahlen und prüfen, ob der Fit für beide Seiten passt.</p>
+        <ul class="mt-5 space-y-2 text-sm text-ink/80">
+          <li class="flex gap-2"><span class="text-accent">✓</span> Ziele und Zahlen-Status klären</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> Realistische Erwartungssetzung</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> Erst-Empfehlung Scope</li>
+        </ul>
+      </div>
+      <div class="card rounded-2xl p-8">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <h3 class="text-xl font-bold">Brand-Foundation &amp; Setup</h3>
+        <p class="text-sm text-mute mt-3">Wir gehen mit dir in einen Deep-Dive deiner Marke. Vision, Look, idealer Kunde. Klarheit zuerst. Dann entwickeln wir gemeinsam die Strategie und richten das System ein.</p>
+        <ul class="mt-5 space-y-2 text-sm text-ink/80">
+          <li class="flex gap-2"><span class="text-accent">✓</span> Brand-Vision, Voice &amp; idealer Kunde definiert</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> Strategie gemeinsam mit dir entwickelt</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> System auf deine Marke aufgesetzt</li>
+        </ul>
+      </div>
+      <div class="card rounded-2xl p-8">
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>
+        </div>
+        <h3 class="text-xl font-bold">Execution</h3>
+        <p class="text-sm text-mute mt-3">Die Marketing-Operation läuft. Wöchentlicher Output auf allen relevanten Plattformen, Paid-Skalierung, kontinuierliche Optimierung. Du wirst zur ersten Wahl in deinem Markt.</p>
+        <ul class="mt-5 space-y-2 text-sm text-ink/80">
+          <li class="flex gap-2"><span class="text-accent">✓</span> Wöchentlicher Output, alle Plattformen</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> Paid-Skalierung und Reporting</li>
+          <li class="flex gap-2"><span class="text-accent">✓</span> Quartalsweise strategische Review</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ / EINWÄNDE -->
-<section id="faq" class="py-24 border-t border-white/5">
+<!-- ============ 09 · GRÜNDER ============ -->
+<section id="gruender" class="py-20 hex-light">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
+      <span class="mono text-accent2 text-sm">09</span>
+      <h2 class="text-white text-2xl sm:text-3xl font-extrabold tracking-tight">Der Gründer.</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 mt-14">
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="ph aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 grid place-items-center text-mute mono text-xs uppercase">Foto</div>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">[ Dein Name ]</h3>
+          <p class="mono text-[11px] uppercase text-accentDeep mt-1">Founder · Strategie &amp; Wachstum</p>
+          <p class="text-sm text-mute mt-4">Bei Brand-Scale.de verantwortet er Strategie, Brand-Architektur und den organischen Aufbau von Reichweite, die nicht nur skaliert, sondern Vertrauen mitnimmt. <span class="badge-ph px-1.5 py-0.5 rounded">Founder-Story einsetzen</span></p>
+        </div>
+      </div>
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="ph aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 grid place-items-center text-mute mono text-xs uppercase">Foto</div>
+        <div class="p-7">
+          <h3 class="text-xl font-bold">[ Co-Founder / Partner ]</h3>
+          <p class="mono text-[11px] uppercase text-accentDeep mt-1">Paid &amp; Conversion</p>
+          <p class="text-sm text-mute mt-4">Verantwortet die gesamte Paid-Operation, das Reporting und die Conversion-Architektur. Wachstum ist hier keine Hoffnung, sondern Mathematik. <span class="badge-ph px-1.5 py-0.5 rounded">optional · entfernen falls Solo</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-20">
   <div class="max-w-3xl mx-auto px-5">
     <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
     <div class="mt-12 space-y-3">
       <div class="faq card rounded-xl">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
           <span class="font-semibold">„Schon wieder eine Agentur, die viel verspricht."</span>
-          <span class="faq-icon text-accent2 text-xl transition">+</span>
+          <span class="faq-icon text-accent text-xl transition">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p></div>
+        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p></div>
       </div>
       <div class="faq card rounded-xl">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
           <span class="font-semibold">„Ich wurde schon mal verbrannt — lange Verträge, Intransparenz."</span>
-          <span class="faq-icon text-accent2 text-xl transition">+</span>
+          <span class="faq-icon text-accent text-xl transition">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Dir gehören Accounts, Daten und Content — auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Zusammenarbeit fair und überschaubar gehalten, kein Lock-in.</p></div>
+        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Dir gehören Accounts, Daten und Content — auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Zusammenarbeit fair und überschaubar, kein Lock-in.</p></div>
       </div>
       <div class="faq card rounded-xl">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
           <span class="font-semibold">„Ich habe keine Zeit, ständig Content zu drehen."</span>
-          <span class="faq-icon text-accent2 text-xl transition">+</span>
+          <span class="faq-icon text-accent text-xl transition">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
+        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
       </div>
       <div class="faq card rounded-xl">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
           <span class="font-semibold">„Funktioniert das auch in meiner Nische?"</span>
-          <span class="faq-icon text-accent2 text-xl transition">+</span>
+          <span class="faq-icon text-accent text-xl transition">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-white/60 text-sm">Das klären wir vorab im Diagnose-Gespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
+        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Das klären wir vorab im Erstgespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RISK REVERSAL -->
-<section class="py-20 border-t border-white/5">
-  <div class="max-w-4xl mx-auto px-5">
-    <div class="card rounded-2xl p-10 text-center glow">
-      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Dein Risiko halten wir klein</h2>
-      <div class="grid sm:grid-cols-3 gap-6 mt-8 text-sm">
-        <div><p class="grad-text font-bold text-base">Diagnose zuerst</p><p class="text-white/55 mt-2">Wir starten mit einer ehrlichen Analyse — keine Zusammenarbeit ohne Fit.</p></div>
-        <div><p class="grad-text font-bold text-base">Volle Transparenz</p><p class="text-white/55 mt-2">Jeder Schritt dokumentiert. Du siehst Setup, Hypothesen und Zahlen.</p></div>
-        <div><p class="grad-text font-bold text-base">Dir gehört alles</p><p class="text-white/55 mt-2">Accounts, Daten, Creatives — auch ohne uns weiter nutzbar.</p></div>
+<!-- ============ FINAL CTA (Split) ============ -->
+<section id="kontakt" class="py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- primär -->
+      <div class="rounded-2xl p-10 banner hex glow-blue text-white relative overflow-hidden">
+        <span class="mono text-[11px] uppercase text-accent2">Signature Case starten</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-4 leading-tight">Lass uns prüfen, ob deine Marke der nächste Signature Case wird.</h2>
+        <p class="text-white/65 mt-5 text-sm max-w-md">45-Minuten-Erstgespräch direkt mit dem Gründer. Ehrliche Einschätzung statt Standard-Pitch. Wenn der Fit nicht stimmt, sagen wir es klar.</p>
+        <ul class="mt-6 space-y-2.5 text-sm text-white/85">
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Direkter Kontakt mit dem Gründer</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Diligence auf beiden Seiten</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Erstes Angebot innerhalb 72 Stunden</li>
+          <li class="flex gap-2.5"><span class="text-accent2">•</span> Keine Sales-Funnel, keine Setter</li>
+        </ul>
+        <a href="#" class="mt-8 inline-flex items-center gap-3 grad-btn font-semibold pl-7 pr-2 py-2 rounded-full transition">
+          Termin anfragen
+          <span class="grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <p class="mt-4 mono text-[10px] uppercase text-white/45">Calendly-Link einsetzen · Daten nur zur Terminkoordination</p>
+      </div>
+      <!-- sekundär -->
+      <div class="card rounded-2xl p-10">
+        <span class="mono text-[11px] uppercase text-accentDeep">Andere Wege</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-4 leading-tight">Noch nicht bereit für die volle Infrastruktur?</h2>
+        <p class="text-mute mt-5 text-sm">Zwei kleinere Wege, mit uns zu starten.</p>
+        <a href="#angebot" class="mt-6 flex items-center justify-between card card-hover rounded-xl p-5">
+          <div><p class="font-semibold">Done With You</p><p class="text-mute text-xs mt-1">Strategie-Sparring mit dem Gründer</p></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#kontakt" class="mt-4 flex items-center justify-between card card-hover rounded-xl p-5">
+          <div><p class="font-semibold">Content-Audit</p><p class="text-mute text-xs mt-1">Ehrliche Analyse deiner bestehenden Inhalte</p></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABLAUF -->
-<section id="ablauf" class="py-24 border-t border-white/5">
-  <div class="max-w-5xl mx-auto px-5">
-    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">In 3 Schritten sichtbar</h2>
-    <div class="grid md:grid-cols-3 gap-6 mt-14">
-      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">01</div><h3 class="font-bold text-xl mt-2">Diagnose-Gespräch</h3><p class="text-white/60 text-sm mt-3">Wir verstehen dein Business, deine Zielgruppe und Zahlen — und prüfen ehrlich, ob es passt.</p></div>
-      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">02</div><h3 class="font-bold text-xl mt-2">System-Aufbau</h3><p class="text-white/60 text-sm mt-3">Positionierung, Content-System und Funnel — aufgebaut aus deinem bestehenden Material.</p></div>
-      <div class="card rounded-2xl p-8"><div class="text-accent font-bold">03</div><h3 class="font-bold text-xl mt-2">Umsetzung & Skalierung</h3><p class="text-white/60 text-sm mt-3">Laufende Produktion, Paid-Betrieb und Optimierung — gemessen an echtem Umsatz.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section id="about" class="py-20 border-t border-white/5">
-  <div class="max-w-4xl mx-auto px-5 text-center">
-    <h2 class="text-3xl font-extrabold tracking-tight">Wer hinter Brandscale steht</h2>
-    <div class="mt-10 card rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6 text-left">
-      <div class="ph w-28 h-28 rounded-2xl bg-white/5 flex-shrink-0 flex items-center justify-center text-white/40 text-xs">Foto</div>
-      <div>
-        <h3 class="text-xl font-bold">[ Dein Name ]</h3>
-        <p class="text-accent2 text-sm">Founder · Content-Strategie & Wachstum</p>
-        <p class="text-white/60 text-sm mt-3">[ Kurze, ehrliche Founder-Story — warum Brandscale, dein Ansatz, warum Beweis statt Versprechen. Platzhalter. ]</p>
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line py-14 bg-white">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5 font-extrabold text-lg">
+        <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></span>
+        Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span>
+      </div>
+      <p class="text-sm text-mute mt-4 max-w-xs">Von unsichtbar zu unübersehbar. Beweis-First Marketing für Coaches, Berater und Unternehmer im DACH-Raum.</p>
+      <div class="mt-6">
+        <p class="mono text-[11px] uppercase text-mute">Kontakt</p>
+        <p class="text-sm mt-2"><span class="badge-ph px-1.5 py-0.5 rounded">hallo@brand-scale.de einsetzen</span></p>
+        <div class="flex gap-4 mt-3 text-sm text-mute"><a href="#" class="hover:text-ink">Instagram</a><a href="#" class="hover:text-ink">LinkedIn</a></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section id="kontakt" class="py-28 border-t border-white/5 relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[420px] bg-accent/20 blur-[150px]"></div>
-  <div class="relative max-w-3xl mx-auto px-5 text-center">
-    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Lass uns ehrlich draufschauen.</h2>
-    <p class="text-white/65 mt-5 max-w-xl mx-auto">45 Minuten, in denen wir dein Marketing ehrlich einschätzen. Wenn der Fit nicht stimmt, sagen wir es dir klar — kein Pitch.</p>
-    <div class="mt-9">
-      <a href="#" class="grad-btn font-semibold px-8 py-4 rounded-xl inline-block hover:opacity-90 transition glow">Diagnose-Gespräch anfragen <span class="badge-ph ml-2 text-[11px] px-2 py-0.5 rounded">Calendly-Link einsetzen</span></a>
+    <div>
+      <p class="mono text-[11px] uppercase text-mute">Brand-Scale.de</p>
+      <ul class="mt-4 space-y-2.5 text-sm text-mute">
+        <li><a href="#resultate" class="hover:text-ink">Resultate</a></li>
+        <li><a href="#problem" class="hover:text-ink">Methode</a></li>
+        <li><a href="#angebot" class="hover:text-ink">Leistungen</a></li>
+        <li><a href="#ablauf" class="hover:text-ink">Ablauf</a></li>
+      </ul>
     </div>
-    <p class="mt-4 text-xs text-white/40">Deine Daten nutzen wir ausschließlich zur Terminkoordination. Kein Newsletter, kein Spam.</p>
+    <div>
+      <p class="mono text-[11px] uppercase text-mute">Andere Wege</p>
+      <ul class="mt-4 space-y-2.5 text-sm text-mute">
+        <li><a href="#angebot" class="hover:text-ink">Done With You</a></li>
+        <li><a href="#kontakt" class="hover:text-ink">Content-Audit</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="mono text-[11px] uppercase text-mute">Rechtliches</p>
+      <ul class="mt-4 space-y-2.5 text-sm text-mute">
+        <li><a href="#" class="hover:text-ink">Impressum</a></li>
+        <li><a href="#" class="hover:text-ink">Datenschutz</a></li>
+      </ul>
+    </div>
   </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="border-t border-white/5 py-10">
-  <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/50">
-    <div class="flex items-center gap-2 font-extrabold text-white"><span class="inline-block w-5 h-5 rounded grad-btn"></span>Brand<span class="grad-text">scale</span></div>
-    <p>© 2026 Brandscale. Alle Rechte vorbehalten.</p>
-    <div class="flex gap-5"><a href="#" class="hover:text-white">Impressum</a><a href="#" class="hover:text-white">Datenschutz</a></div>
+  <div class="max-w-6xl mx-auto px-5 mt-12 pt-6 border-t border-line flex flex-col sm:flex-row justify-between gap-3 mono text-[11px] uppercase text-mute">
+    <span>© 2026 Brand-Scale.de · Alle Rechte vorbehalten</span>
+    <span class="flex gap-5"><a href="#" class="hover:text-ink">Impressum</a><a href="#" class="hover:text-ink">Datenschutz</a></span>
   </div>
 </footer>
 
