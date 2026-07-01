@@ -15,20 +15,20 @@
       colors: {
         ink:'#0A0C10', navy:'#1E1B4B',
         accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
-        paper:'#FBFCFE', line:'#E8ECF2', mute:'#5A6472',
+        paper:'#EAECF1', line:'#E8ECF2', mute:'#5A6472',
       },
     }},
   }
 </script>
 <style>
   html { scroll-behavior:smooth; }
-  body { background:#FBFCFE; color:#0A0C10; }
+  body { background:#EAECF1; color:#0A0C10; }
   .mono { font-family:'JetBrains Mono',ui-monospace,monospace; letter-spacing:.12em; }
   .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .grad-btn:hover { filter:brightness(1.05); }
   .glow-blue { box-shadow:0 0 80px -20px rgba(139,92,246,.5); }
-  .card { background:#fff; border:1px solid #E8ECF2; box-shadow:0 1px 2px rgba(10,12,16,.04); }
+  .card { background:#fff; border:1px solid #E8ECF2; box-shadow:0 6px 24px -12px rgba(20,22,40,.14),0 1px 2px rgba(10,12,16,.04); }
   .card-hover { transition:.2s; }
   .card-hover:hover { border-color:#DDD6FE; box-shadow:0 10px 40px -18px rgba(139,92,246,.3); }
   /* numbered dark banners */
@@ -100,6 +100,24 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ============ VSL HEADER ============ -->
+<section class="pb-16 -mt-4">
+  <div class="max-w-4xl mx-auto px-5">
+    <div class="relative">
+      <div class="absolute -inset-4 bg-gradient-to-tr from-accent/25 to-accent2/25 blur-2xl rounded-[2rem]"></div>
+      <div class="ph card rounded-3xl aspect-video flex flex-col items-center justify-center relative overflow-hidden glow-blue">
+        <div class="absolute inset-0 hex-light opacity-60"></div>
+        <span class="badge-ph absolute top-4 left-4 mono text-[10px] font-semibold px-2.5 py-1 rounded-md uppercase z-10">VSL · Platzhalter</span>
+        <button class="relative z-10 w-20 h-20 rounded-full grad-btn grid place-items-center hover:scale-105 transition glow-blue">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <p class="relative z-10 mt-5 text-sm text-mute">Hier dein VSL einbetten — YouTube / Vimeo / Wistia / MP4</p>
+      </div>
+    </div>
+    <p class="text-center mono text-[11px] uppercase text-mute mt-5">▶ 2–3 Min · warum Brand-Scale.de anders arbeitet</p>
   </div>
 </section>
 
