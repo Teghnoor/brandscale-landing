@@ -28,6 +28,8 @@
   .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .card { background:#fff; border:1px solid #E8ECF2; }
+  .legal-num { color:#8B5CF6; font-family:'Geist Mono',ui-monospace,monospace; font-size:.8rem; letter-spacing:.12em; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
 </style>
 </head>
 <body class="font-sans antialiased selection:bg-accent/20">
@@ -53,47 +55,65 @@
   <div class="max-w-3xl mx-auto px-5">
     <span class="mono text-[11px] uppercase text-accentDeep">Rechtliches</span>
     <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mt-3">Impressum</h1>
+    <p class="text-mute mt-4 text-sm">Stand: Juli 2026</p>
 
-    <div class="card rounded-2xl p-8 mt-10">
-      <h2 class="mono text-[11px] uppercase text-mute">Angaben zum Betreiber</h2>
-      <p class="mt-4 text-[15px] leading-relaxed">
-        <strong>Apex Enterprises LLC</strong><br>
-        (operating as &bdquo;Apex Consult&ldquo;)<br>
-        1309 Coffeen Avenue STE 1200<br>
-        Sheridan, Wyoming 82801<br>
-        United States of America
-      </p>
+    <div class="mt-12 space-y-12">
+
+      <section>
+        <p class="legal-num">01</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Angaben zum Betreiber</h2>
+        <div class="card rounded-2xl p-7 mt-4 text-[15px] leading-relaxed">
+          <strong>Apex Enterprises LLC</strong><br>
+          <span class="text-mute">(operating as &bdquo;Apex Consult&ldquo;)</span><br><br>
+          1309 Coffeen Avenue STE 1200<br>
+          Sheridan, Wyoming 82801<br>
+          United States of America
+        </div>
+      </section>
+
+      <section>
+        <p class="legal-num">02</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Kontakt</h2>
+        <div class="card rounded-2xl p-7 mt-4 text-[15px] leading-relaxed">
+          E-Mail: <a href="mailto:hallo@brand-scale.de" class="text-accentDeep hover:underline">hallo@brand-scale.de</a><br>
+          Website: <a href="index.html" class="text-accentDeep hover:underline">brand-scale.de</a>
+        </div>
+      </section>
+
+      <section>
+        <p class="legal-num">03</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Verantwortlich für den Inhalt</h2>
+        <div class="card rounded-2xl p-7 mt-4 text-[15px] leading-relaxed">
+          Apex Enterprises LLC<br>
+          1309 Coffeen Avenue STE 1200<br>
+          Sheridan, Wyoming 82801, USA
+        </div>
+      </section>
+
+      <section>
+        <p class="legal-num">04</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Rechtliche Hinweise</h2>
+        <div class="space-y-6 mt-4 text-sm text-mute leading-relaxed">
+          <div>
+            <h3 class="text-ink font-semibold">Haftung für Inhalte</h3>
+            <p class="mt-2">Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+          </div>
+          <div>
+            <h3 class="text-ink font-semibold">Haftung für Links</h3>
+            <p class="mt-2">Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+          </div>
+          <div>
+            <h3 class="text-ink font-semibold">Urheberrecht</h3>
+            <p class="mt-2">Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+          </div>
+        </div>
+      </section>
+
     </div>
 
-    <div class="card rounded-2xl p-8 mt-5">
-      <h2 class="mono text-[11px] uppercase text-mute">Kontakt</h2>
-      <p class="mt-4 text-[15px] leading-relaxed">
-        E-Mail: <a href="mailto:hallo@brand-scale.de" class="text-accentDeep hover:underline">hallo@brand-scale.de</a>
-      </p>
-    </div>
-
-    <div class="card rounded-2xl p-8 mt-5">
-      <h2 class="mono text-[11px] uppercase text-mute">Verantwortlich für den Inhalt</h2>
-      <p class="mt-4 text-[15px] leading-relaxed">
-        Apex Enterprises LLC<br>
-        1309 Coffeen Avenue STE 1200<br>
-        Sheridan, Wyoming 82801, USA
-      </p>
-    </div>
-
-    <div class="mt-12 space-y-8 text-sm text-mute leading-relaxed">
-      <div>
-        <h2 class="text-ink font-semibold text-base">Haftung für Inhalte</h2>
-        <p class="mt-2">Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
-      </div>
-      <div>
-        <h2 class="text-ink font-semibold text-base">Haftung für Links</h2>
-        <p class="mt-2">Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
-      </div>
-      <div>
-        <h2 class="text-ink font-semibold text-base">Urheberrecht</h2>
-        <p class="mt-2">Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
-      </div>
+    <div class="card rounded-2xl p-6 mt-14 flex items-center justify-between gap-4">
+      <p class="text-sm text-mute">Wie wir mit deinen Daten umgehen, liest du in unserer Datenschutzerklärung.</p>
+      <a href="datenschutz.html" class="shrink-0 text-sm font-semibold text-accentDeep hover:underline inline-flex items-center gap-1.5">Zur Datenschutzerklärung <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </main>
@@ -102,7 +122,7 @@
 <footer class="border-t border-line py-10 bg-white">
   <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row justify-between gap-3 mono text-[11px] uppercase text-mute">
     <span>© 2026 Brand-Scale.de · Alle Rechte vorbehalten</span>
-    <span class="flex gap-5"><a href="impressum.html" class="hover:text-ink">Impressum</a><a href="#" class="hover:text-ink">Datenschutz</a></span>
+    <span class="flex gap-5"><a href="impressum.html" class="hover:text-ink">Impressum</a><a href="datenschutz.html" class="hover:text-ink">Datenschutz</a></span>
   </div>
 </footer>
 

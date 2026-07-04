@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Datenschutzerklärung — Brand-Scale.de</title>
+<meta name="robots" content="noindex, follow" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Geist','ui-sans-serif','system-ui','sans-serif'], mono: ['Geist Mono','ui-monospace','monospace'] },
+      colors: {
+        ink:'#0A0C10', navy:'#1E1B4B',
+        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
+        paper:'#EAECF1', line:'#E8ECF2', mute:'#5A6472',
+      },
+    }},
+  }
+</script>
+<style>
+  html { scroll-behavior:smooth; }
+  body { background:#EAECF1; color:#0A0C10; }
+  .mono { font-family:'Geist Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
+  .card { background:#fff; border:1px solid #E8ECF2; }
+  .legal-section { scroll-margin-top:6rem; }
+  .legal-num { color:#8B5CF6; font-family:'Geist Mono',ui-monospace,monospace; font-size:.8rem; letter-spacing:.12em; }
+  .toc-chip { transition:border-color .25s, color .25s, background-color .25s; }
+  .toc-chip:hover { border-color:rgba(139,92,246,.45); color:#0A0C10; background:#FAF8FF; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+</style>
+</head>
+<body class="font-sans antialiased selection:bg-accent/20">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 font-semibold text-lg tracking-tight">
+      <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+      </span>
+      <span class="tracking-[.02em]">Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span></span>
+    </a>
+    <a href="index.html" class="text-sm text-mute hover:text-ink transition inline-flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      Zurück zur Startseite
+    </a>
+  </div>
+</header>
+
+<!-- ============ DATENSCHUTZ ============ -->
+<main class="pt-32 pb-24">
+  <div class="max-w-3xl mx-auto px-5">
+    <span class="mono text-[11px] uppercase text-accentDeep">Rechtliches</span>
+    <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mt-3">Datenschutzerklärung</h1>
+    <p class="text-mute mt-4 text-sm">Stand: Juli 2026 · Wir behandeln deine Daten so, wie wir Marketing betreiben: transparent und ohne Kleingedrucktes-Tricks.</p>
+
+    <!-- Inhaltsverzeichnis -->
+    <nav class="card rounded-2xl p-6 mt-10" aria-label="Inhaltsverzeichnis">
+      <p class="mono text-[11px] uppercase text-mute">Inhalt</p>
+      <div class="flex flex-wrap gap-2 mt-4">
+        <a href="#verantwortlicher" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">01 Verantwortlicher</a>
+        <a href="#allgemeines" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">02 Allgemeines</a>
+        <a href="#daten" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">03 Verarbeitete Daten</a>
+        <a href="#zwecke" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">04 Zwecke</a>
+        <a href="#rechtsgrundlagen" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">05 Rechtsgrundlagen</a>
+        <a href="#dienstleister" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">06 Dienstleister</a>
+        <a href="#drittland" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">07 Drittland</a>
+        <a href="#speicherdauer" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">08 Speicherdauer</a>
+        <a href="#cookies" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">09 Cookies</a>
+        <a href="#rechte" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">10 Deine Rechte</a>
+        <a href="#aktualitaet" class="toc-chip mono text-[11px] uppercase text-mute border border-line rounded-full px-3.5 py-1.5">11 Aktualität</a>
+      </div>
+    </nav>
+
+    <div class="mt-12 space-y-12">
+
+      <section id="verantwortlicher" class="legal-section">
+        <p class="legal-num">01</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Verantwortlicher</h2>
+        <div class="card rounded-2xl p-7 mt-4 text-[15px] leading-relaxed">
+          <strong>Apex Enterprises LLC</strong> (operating as &bdquo;Apex Consult&ldquo;)<br>
+          1309 Coffeen Avenue STE 1200<br>
+          Sheridan, Wyoming 82801<br>
+          United States of America<br><br>
+          E-Mail: <a href="mailto:hallo@brand-scale.de" class="text-accentDeep hover:underline">hallo@brand-scale.de</a>
+        </div>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist die oben genannte Gesellschaft. Bei Fragen zum Datenschutz erreichst du uns jederzeit unter der angegebenen E-Mail-Adresse.</p>
+      </section>
+
+      <section id="allgemeines" class="legal-section">
+        <p class="legal-num">02</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Allgemeines zur Datenverarbeitung</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Wir verarbeiten personenbezogene Daten grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt regelmäßig nur nach deiner Einwilligung oder wenn die Verarbeitung durch gesetzliche Vorschriften gestattet ist. Diese Website verzichtet bewusst auf unnötiges Tracking — wir sammeln nicht mehr, als wir brauchen.</p>
+      </section>
+
+      <section id="daten" class="legal-section">
+        <p class="legal-num">03</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Welche Daten wir verarbeiten</h2>
+        <div class="space-y-4 mt-4 text-sm text-mute leading-relaxed">
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Server-Logdaten</p>
+            <p class="mt-1.5">Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen erfasst: IP-Adresse (gekürzt bzw. anonymisiert, soweit technisch möglich), Datum und Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser und Betriebssystem. Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und der Sicherheit der Systeme.</p>
+          </div>
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Kontakt- und Anfragedaten</p>
+            <p class="mt-1.5">Wenn du uns per E-Mail kontaktierst oder über unser Buchungstool ein Erstgespräch vereinbarst, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail-Adresse, ggf. Telefonnummer und Angaben zu deinem Unternehmen) zur Bearbeitung deiner Anfrage.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="zwecke" class="legal-section">
+        <p class="legal-num">04</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Zwecke der Verarbeitung</h2>
+        <ul class="mt-4 space-y-2.5 text-sm text-mute leading-relaxed">
+          <li class="flex gap-2.5"><span class="text-accent">◆</span> Bereitstellung und sicherer Betrieb dieser Website</li>
+          <li class="flex gap-2.5"><span class="text-accent">◆</span> Bearbeitung deiner Anfragen und Terminvereinbarungen</li>
+          <li class="flex gap-2.5"><span class="text-accent">◆</span> Vorbereitung und Durchführung von Erstgesprächen und Angeboten</li>
+          <li class="flex gap-2.5"><span class="text-accent">◆</span> Erfüllung gesetzlicher Aufbewahrungs- und Nachweispflichten</li>
+        </ul>
+      </section>
+
+      <section id="rechtsgrundlagen" class="legal-section">
+        <p class="legal-num">05</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Rechtsgrundlagen</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 DSGVO — je nach Fall: lit. a (Einwilligung, z. B. bei Terminbuchung), lit. b (Vertragsanbahnung und -durchführung, z. B. Erstgespräch und Angebot), lit. f (berechtigtes Interesse, z. B. sicherer und stabiler Betrieb der Website). Wo wir uns auf berechtigtes Interesse stützen, wiegen wir dieses stets gegen deine Interessen und Grundrechte ab.</p>
+      </section>
+
+      <section id="dienstleister" class="legal-section">
+        <p class="legal-num">06</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Eingesetzte Dienstleister</h2>
+        <div class="space-y-4 mt-4 text-sm text-mute leading-relaxed">
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Hosting</p>
+            <p class="mt-1.5">Diese Website wird bei einem externen Hosting-Anbieter betrieben. Der Anbieter verarbeitet Server-Logdaten (siehe Abschnitt 03) in unserem Auftrag auf Grundlage eines Auftragsverarbeitungsvertrags gem. Art. 28 DSGVO.</p>
+          </div>
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Google Fonts (Google Ireland Ltd.)</p>
+            <p class="mt-1.5">Zur einheitlichen Darstellung von Schriftarten nutzt diese Website Schriften von Google Fonts. Beim Aufruf der Seite lädt dein Browser die benötigten Fonts von Google-Servern; dabei wird deine IP-Adresse an Google übertragen. Weitere Informationen: <a href="https://policies.google.com/privacy" class="text-accentDeep hover:underline" rel="noopener" target="_blank">policies.google.com/privacy</a></p>
+          </div>
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Terminbuchung</p>
+            <p class="mt-1.5">Für die Vereinbarung von Erstgesprächen nutzen wir ein externes Terminbuchungs-Tool. Die dort von dir eingegebenen Daten (Name, E-Mail, gewählter Termin) werden vom Anbieter des Tools in unserem Auftrag verarbeitet. Details zum eingesetzten Anbieter teilen wir dir im Buchungsprozess mit.</p>
+          </div>
+          <div class="card rounded-xl p-5">
+            <p class="font-semibold text-ink">Social-Media-Verlinkungen</p>
+            <p class="mt-1.5">Diese Website verlinkt auf unsere Profile bei Instagram und LinkedIn. Es handelt sich um einfache Links — beim bloßen Besuch dieser Website werden keine Daten an diese Plattformen übertragen. Erst wenn du einem Link folgst, gelten die Datenschutzbestimmungen der jeweiligen Plattform.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="drittland" class="legal-section">
+        <p class="legal-num">07</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Datenübermittlung in Drittländer</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Da der Verantwortliche seinen Sitz in den USA hat, werden personenbezogene Daten, die du uns übermittelst, in den USA verarbeitet. Die USA gelten datenschutzrechtlich als Drittland. Wir sichern die Übermittlung durch geeignete Garantien ab, insbesondere durch EU-Standardvertragsklauseln bzw. — soweit anwendbar — durch eine Zertifizierung unter dem EU-U.S. Data Privacy Framework. Auf Anfrage stellen wir dir Informationen zu den konkreten Garantien zur Verfügung.</p>
+      </section>
+
+      <section id="speicherdauer" class="legal-section">
+        <p class="legal-num">08</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Speicherdauer</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Wir speichern personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Anfragedaten löschen wir spätestens, wenn feststeht, dass keine Zusammenarbeit zustande kommt und keine Aufbewahrungspflichten entgegenstehen. Server-Logdaten werden vom Hosting-Anbieter regelmäßig automatisch gelöscht.</p>
+      </section>
+
+      <section id="cookies" class="legal-section">
+        <p class="legal-num">09</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Cookies</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Diese Website setzt aktuell <strong class="text-ink">keine Tracking- oder Marketing-Cookies</strong> ein. Es werden keine Analyse-Tools (wie Google Analytics) und keine Werbe-Pixel (wie der Meta-Pixel) geladen. Sollten wir künftig solche Dienste einsetzen, werden wir dich vorab über ein Consent-Banner um deine Einwilligung bitten und diese Erklärung aktualisieren.</p>
+      </section>
+
+      <section id="rechte" class="legal-section">
+        <p class="legal-num">10</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Deine Rechte</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Dir stehen nach der DSGVO folgende Rechte zu:</p>
+        <div class="grid sm:grid-cols-2 gap-3 mt-4 text-sm">
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Auskunft</p><p class="text-mute mt-1 text-[13px]">Art. 15 DSGVO — welche Daten wir über dich verarbeiten</p></div>
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Berichtigung</p><p class="text-mute mt-1 text-[13px]">Art. 16 DSGVO — Korrektur unrichtiger Daten</p></div>
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Löschung</p><p class="text-mute mt-1 text-[13px]">Art. 17 DSGVO — Löschung deiner Daten</p></div>
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Einschränkung</p><p class="text-mute mt-1 text-[13px]">Art. 18 DSGVO — Einschränkung der Verarbeitung</p></div>
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Datenübertragbarkeit</p><p class="text-mute mt-1 text-[13px]">Art. 20 DSGVO — Herausgabe in maschinenlesbarem Format</p></div>
+          <div class="card rounded-xl p-4"><p class="font-semibold text-ink">Widerspruch</p><p class="text-mute mt-1 text-[13px]">Art. 21 DSGVO — Widerspruch gegen die Verarbeitung</p></div>
+        </div>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Erteilte Einwilligungen kannst du jederzeit mit Wirkung für die Zukunft widerrufen. Außerdem hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zur Ausübung deiner Rechte genügt eine formlose E-Mail an <a href="mailto:hallo@brand-scale.de" class="text-accentDeep hover:underline">hallo@brand-scale.de</a>.</p>
+      </section>
+
+      <section id="aktualitaet" class="legal-section">
+        <p class="legal-num">11</p>
+        <h2 class="text-xl font-semibold tracking-tight mt-1">Aktualität dieser Erklärung</h2>
+        <p class="text-sm text-mute mt-4 leading-relaxed">Diese Datenschutzerklärung hat den Stand Juli 2026. Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig werden, sie anzupassen. Die jeweils aktuelle Fassung findest du stets auf dieser Seite.</p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line py-10 bg-white">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row justify-between gap-3 mono text-[11px] uppercase text-mute">
+    <span>© 2026 Brand-Scale.de · Alle Rechte vorbehalten</span>
+    <span class="flex gap-5"><a href="impressum.html" class="hover:text-ink">Impressum</a><a href="datenschutz.html" class="hover:text-ink">Datenschutz</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
