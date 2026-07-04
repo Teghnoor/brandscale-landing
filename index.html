@@ -22,7 +22,9 @@
 </script>
 <style>
   html { scroll-behavior:smooth; }
-  body { background:#EAECF1; color:#0A0C10; overflow-x:hidden; }
+  /* overflow-x:clip statt hidden — hidden macht body zum Scroll-Container und friert das Fenster-Scrolling ein */
+  html, body { overflow-x:clip; }
+  body { background:#EAECF1; color:#0A0C10; }
   .mono { font-family:'Geist Mono',ui-monospace,monospace; letter-spacing:.12em; }
   .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
@@ -111,7 +113,8 @@
   /* ============ MARQUEES: pausierbar (Hover + offscreen) ============ */
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 34s linear infinite; }
   .marquee-slow { animation-duration:48s; }
-  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  /* -50% minus halber gap (3.5rem/2), sonst springt der Loop am Übergang */
+  @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(calc(-50% - 1.75rem))} }
   .marquee-wrap:hover .marquee, .marquee-wrap.is-paused .marquee { animation-play-state:paused; }
   .fade-x { -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
   .hscroll { scrollbar-width:none; } .hscroll::-webkit-scrollbar{display:none;}
