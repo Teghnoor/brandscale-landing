@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impressum — Brand-Scale.de</title>
+<meta name="robots" content="noindex, follow" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: { sans: ['Geist','ui-sans-serif','system-ui','sans-serif'], mono: ['Geist Mono','ui-monospace','monospace'] },
+      colors: {
+        ink:'#0A0C10', navy:'#1E1B4B',
+        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
+        paper:'#EAECF1', line:'#E8ECF2', mute:'#5A6472',
+      },
+    }},
+  }
+</script>
+<style>
+  html { scroll-behavior:smooth; }
+  body { background:#EAECF1; color:#0A0C10; }
+  .mono { font-family:'Geist Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
+  .card { background:#fff; border:1px solid #E8ECF2; }
+</style>
+</head>
+<body class="font-sans antialiased selection:bg-accent/20">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 border-b border-line">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 font-semibold text-lg tracking-tight">
+      <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+      </span>
+      <span class="tracking-[.02em]">Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span></span>
+    </a>
+    <a href="index.html" class="text-sm text-mute hover:text-ink transition inline-flex items-center gap-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      Zurück zur Startseite
+    </a>
+  </div>
+</header>
+
+<!-- ============ IMPRESSUM ============ -->
+<main class="pt-32 pb-24">
+  <div class="max-w-3xl mx-auto px-5">
+    <span class="mono text-[11px] uppercase text-accentDeep">Rechtliches</span>
+    <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mt-3">Impressum</h1>
+
+    <div class="card rounded-2xl p-8 mt-10">
+      <h2 class="mono text-[11px] uppercase text-mute">Angaben zum Betreiber</h2>
+      <p class="mt-4 text-[15px] leading-relaxed">
+        <strong>Apex Enterprises LLC</strong><br>
+        (operating as &bdquo;Apex Consult&ldquo;)<br>
+        1309 Coffeen Avenue STE 1200<br>
+        Sheridan, Wyoming 82801<br>
+        United States of America
+      </p>
+    </div>
+
+    <div class="card rounded-2xl p-8 mt-5">
+      <h2 class="mono text-[11px] uppercase text-mute">Kontakt</h2>
+      <p class="mt-4 text-[15px] leading-relaxed">
+        E-Mail: <a href="mailto:hallo@brand-scale.de" class="text-accentDeep hover:underline">hallo@brand-scale.de</a>
+      </p>
+    </div>
+
+    <div class="card rounded-2xl p-8 mt-5">
+      <h2 class="mono text-[11px] uppercase text-mute">Verantwortlich für den Inhalt</h2>
+      <p class="mt-4 text-[15px] leading-relaxed">
+        Apex Enterprises LLC<br>
+        1309 Coffeen Avenue STE 1200<br>
+        Sheridan, Wyoming 82801, USA
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-8 text-sm text-mute leading-relaxed">
+      <div>
+        <h2 class="text-ink font-semibold text-base">Haftung für Inhalte</h2>
+        <p class="mt-2">Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+      </div>
+      <div>
+        <h2 class="text-ink font-semibold text-base">Haftung für Links</h2>
+        <p class="mt-2">Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      </div>
+      <div>
+        <h2 class="text-ink font-semibold text-base">Urheberrecht</h2>
+        <p class="mt-2">Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line py-10 bg-white">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row justify-between gap-3 mono text-[11px] uppercase text-mute">
+    <span>© 2026 Brand-Scale.de · Alle Rechte vorbehalten</span>
+    <span class="flex gap-5"><a href="impressum.html" class="hover:text-ink">Impressum</a><a href="#" class="hover:text-ink">Datenschutz</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
