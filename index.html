@@ -7,15 +7,15 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
-      fontFamily: { sans: ['Geist','ui-sans-serif','system-ui','sans-serif'], mono: ['Geist Mono','ui-monospace','monospace'] },
+      fontFamily: { sans: ['Instrument Sans','ui-sans-serif','system-ui','sans-serif'], mono: ['IBM Plex Mono','ui-monospace','monospace'], display: ['Bricolage Grotesque','ui-sans-serif','system-ui','sans-serif'] },
       colors: {
         ink:'#0A0C10', navy:'#1E1B4B',
         accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
-        paper:'#EAECF1', line:'#E8ECF2', mute:'#5A6472',
+        paper:'#EFEDE6', line:'#E5E2D8', mute:'#5F5F58',
       },
     }},
   }
@@ -24,8 +24,16 @@
   html { scroll-behavior:smooth; }
   /* overflow-x:clip statt hidden — hidden macht body zum Scroll-Container und friert das Fenster-Scrolling ein */
   html, body { overflow-x:clip; }
-  body { background:#EAECF1; color:#0A0C10; }
-  .mono { font-family:'Geist Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  body { background:#EFEDE6; color:#0A0C10; }
+  /* Eigenes Typo-System: Bricolage für Headlines, Instrument Sans für Body, Plex Mono für Eyebrows */
+  h1, h2, h3, h4 { font-family:'Bricolage Grotesque','Instrument Sans',ui-sans-serif,sans-serif; }
+  .mono { font-family:'IBM Plex Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  /* Editorial-Akzent: Serif kursiv + violett durchgestrichen (Anti-Versprechen-Marker) */
+  .strike-acc { font-family:'Playfair Display',Georgia,serif; font-style:italic; text-decoration:line-through; text-decoration-color:rgba(139,92,246,.65); text-decoration-thickness:3px; }
+  /* Sektions-Header: große Ghost-Outline-Nummer statt dunkler Banner-Box */
+  .sec-index { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(3.6rem,7vw,5.2rem); line-height:.82;
+    color:transparent; -webkit-text-stroke:1.5px rgba(139,92,246,.55); paint-order:stroke; }
+  @supports not (-webkit-text-stroke:1px black) { .sec-index { color:rgba(139,92,246,.3); } }
   .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .grad-btn:hover { filter:brightness(1.05); }
@@ -104,11 +112,11 @@
   .wordmark { color:#7C8694; opacity:.85; white-space:nowrap; transition:color .3s; }
   .logo-item:hover .wordmark { color:#0A0C10; }
   .wm-serif { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:22px; letter-spacing:.02em; }
-  .wm-caps { font-family:'Geist',sans-serif; font-weight:700; font-size:15px; letter-spacing:.28em; text-transform:uppercase; }
-  .wm-mono { font-family:'Geist Mono',monospace; font-weight:600; font-size:15px; letter-spacing:.18em; text-transform:uppercase; }
-  .wm-bold { font-family:'Geist',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.01em; }
+  .wm-caps { font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:15px; letter-spacing:.28em; text-transform:uppercase; }
+  .wm-mono { font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px; letter-spacing:.18em; text-transform:uppercase; }
+  .wm-bold { font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:19px; letter-spacing:-.01em; }
   .wm-script { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:600; font-size:20px; }
-  .wm-light { font-family:'Geist',sans-serif; font-weight:400; font-size:18px; letter-spacing:.12em; text-transform:uppercase; }
+  .wm-light { font-family:'Instrument Sans',sans-serif; font-weight:400; font-size:18px; letter-spacing:.12em; text-transform:uppercase; }
 
   /* ============ MARQUEES: pausierbar (Hover + offscreen) ============ */
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 34s linear infinite; }
@@ -238,7 +246,7 @@
       <a href="#gruender" class="hover:text-ink transition">Gründer</a>
     </nav>
     <div class="flex items-center gap-3">
-      <a href="#kontakt" class="grad-btn cta-primary text-sm font-semibold pl-4 pr-1.5 py-1.5 rounded-full inline-flex items-center gap-2 transition">
+      <a href="#kontakt" class="grad-btn cta-primary text-sm font-semibold pl-4 pr-1.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition">
         Erstgespräch buchen
         <span class="cta-arrow grid place-items-center w-6 h-6 rounded-full bg-white/20"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -266,22 +274,22 @@
   <div class="relative max-w-5xl mx-auto px-5 text-center">
     <span class="hero-in d1 inline-flex items-center gap-2 mono text-[11px] font-medium text-accentDeep border border-accent/30 bg-accent/5 rounded-full px-3.5 py-1.5 mb-8 uppercase">
       <span class="relative flex w-2 h-2"><span class="ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60"></span><span class="relative inline-flex rounded-full w-2 h-2 grad-btn"></span></span>
-      Von unsichtbar zu unübersehbar
+      Erst beweisen. Dann skalieren.
     </span>
     <h1 class="hero-in d2 text-4xl sm:text-5xl lg:text-[3.9rem] font-semibold tracking-tight leading-[1.08]">
       <span class="grad-text">Planbare Anfragen</span> für Experten,<br class="hidden sm:block">
-      die keine <span class="whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
+      die keine <span class="strike-acc whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
     </h1>
     <p class="hero-in d3 mt-8 text-lg text-mute max-w-2xl mx-auto">
-      Wir bauen das KI-gestützte Marketing-System für <span class="rotator" aria-label="Coaches, Berater, Experten, Unternehmer"><span class="rotator-track" aria-hidden="true"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus einer Hand.
-      Und wir beweisen, dass es funktioniert, bevor wir skalieren.
+      Wir bauen das komplette Anfrage-System für <span class="rotator" aria-label="Coaches, Berater, Experten, Unternehmer"><span class="rotator-track" aria-hidden="true"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus dem, was du schon hast.
+      Erst im Kleinen bewiesen, dann skaliert.
     </p>
     <div class="hero-in d4 mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#kontakt" class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-full inline-flex items-center gap-3 justify-center transition">
+      <a href="#kontakt" class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 justify-center transition">
         Erstgespräch buchen
         <span class="cta-arrow grid place-items-center w-9 h-9 rounded-full bg-white/20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#resultate" class="font-semibold px-7 py-3.5 rounded-full border border-line bg-white hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10 transition inline-flex items-center gap-2 justify-center">
+      <a href="#resultate" class="font-semibold px-7 py-3.5 rounded-xl border border-line bg-white hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10 transition inline-flex items-center gap-2 justify-center">
         Erst Beweise ansehen
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </a>
@@ -365,12 +373,29 @@
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
     </span>
     <h2 class="reveal-flow text-2xl sm:text-4xl font-semibold tracking-tight leading-snug mt-8">
-      Dein externes Marketing-Team mit einem einzigen Auftrag: deine Marke im deutschsprachigen Raum sichtbar und beweisbar aufzubauen.
+      Wir sind die Marketing-Infrastruktur hinter deiner Marke. Ein Auftrag: dich im DACH-Raum sichtbar machen und jeden Schritt mit Zahlen belegen.
     </h2>
-    <div class="rv grid sm:grid-cols-3 gap-px bg-line mt-14 rounded-2xl overflow-hidden border border-line" style="--d:.1s">
-      <div class="stat-tile bg-white py-10"><div class="text-4xl sm:text-5xl font-semibold grad-text" data-count="1.3" data-suffix=" Mrd.+">1,3 Mrd.+</div><div class="mono text-[11px] uppercase text-mute mt-3">generierte Views</div></div>
-      <div class="stat-tile bg-white py-10"><div class="text-4xl sm:text-5xl font-semibold grad-text" data-count="1.4" data-suffix=" Mio.+">1,4 Mio.+</div><div class="mono text-[11px] uppercase text-mute mt-3">aufgebaute Follower</div></div>
-      <div class="stat-tile bg-white py-10"><div class="text-4xl sm:text-5xl font-semibold grad-text" data-prefix="€ " data-count="12" data-suffix=" Mio.+">€ 12 Mio.+</div><div class="mono text-[11px] uppercase text-mute mt-3">Kundenumsatz</div></div>
+    <!-- Beweis-Ledger: Track Record im Audit-Look statt Kachel-Reihe -->
+    <div class="rv card rounded-2xl overflow-hidden mt-14 text-left" style="--d:.1s">
+      <div class="flex flex-wrap items-center justify-between gap-2 px-7 py-4 border-b border-line">
+        <span class="mono text-[11px] uppercase text-mute">Track Record · Stand 2026</span>
+        <span class="mono text-[11px] uppercase text-accentDeep inline-flex items-center gap-2"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Live belegbar</span>
+      </div>
+      <div class="divide-y divide-line">
+        <div class="stat-tile flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-7 py-6">
+          <div class="text-4xl sm:text-5xl font-semibold grad-text" data-count="1.3" data-suffix=" Mrd.+">1,3 Mrd.+</div>
+          <div class="mono text-[11px] uppercase text-mute">generierte Views</div>
+        </div>
+        <div class="stat-tile flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-7 py-6">
+          <div class="text-4xl sm:text-5xl font-semibold grad-text" data-count="1.4" data-suffix=" Mio.+">1,4 Mio.+</div>
+          <div class="mono text-[11px] uppercase text-mute">aufgebaute Follower</div>
+        </div>
+        <div class="stat-tile flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-7 py-6">
+          <div class="text-4xl sm:text-5xl font-semibold grad-text" data-prefix="€ " data-count="12" data-suffix=" Mio.+">€ 12 Mio.+</div>
+          <div class="mono text-[11px] uppercase text-mute">Kundenumsatz</div>
+        </div>
+      </div>
+      <div class="px-7 py-4 border-t border-line bg-accent/[.04] text-xs text-mute">Jede dieser Zahlen zeigen wir dir im Erstgespräch live im Backend — Screen-Sharing statt Screenshot.</div>
     </div>
   </div>
 </section>
@@ -413,9 +438,12 @@
 <!-- ============ 01 · RESULTATE ============ -->
 <section id="resultate" class="py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">01</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Echte Ergebnisse, ehrlich erzählt.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">01</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Beweise</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Zahlen, die du nachprüfen darfst.</h2>
+      </div>
     </div>
     <p class="rv text-mute text-sm max-w-2xl mt-6">Keine anonymisierten Screenshots, keine geliehenen Zahlen. Jeder Case hier ist ein echter Kunde, der selbst erzählt, was passiert ist — vorher, nachher, mit Zahlen.</p>
 
@@ -508,32 +536,32 @@
       </button>
     </div>
 
-    <!-- Signature Cases carousel -->
+    <!-- Beweis-Cases carousel -->
     <div class="rv mt-16 fade-x">
       <div class="flex gap-5 overflow-x-auto hscroll pb-2 snap-x">
         <div class="min-w-[240px] snap-start card card-hover rounded-2xl overflow-hidden ph">
           <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
-            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Beweis-Case</span>
           </div>
         </div>
         <div class="min-w-[240px] snap-start card card-hover rounded-2xl overflow-hidden ph">
           <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
-            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Beweis-Case</span>
           </div>
         </div>
         <div class="min-w-[240px] snap-start card card-hover rounded-2xl overflow-hidden ph">
           <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
-            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Beweis-Case</span>
           </div>
         </div>
         <div class="min-w-[240px] snap-start card card-hover rounded-2xl overflow-hidden ph">
           <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
-            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Beweis-Case</span>
           </div>
         </div>
         <div class="min-w-[240px] snap-start card card-hover rounded-2xl overflow-hidden ph">
           <div class="aspect-[9/12] bg-gradient-to-b from-navy to-ink grid place-items-end p-4">
-            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Signature Case</span>
+            <span class="mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border:1px solid rgba(167,139,250,.4)">Beweis-Case</span>
           </div>
         </div>
       </div>
@@ -545,16 +573,19 @@
 <!-- ============ 02 · PROBLEM: Drei Wege ============ -->
 <section id="problem" class="py-20 hex-light">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">02</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Warum dein Marketing bisher nicht skaliert.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">02</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Diagnose</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Woran es bisher wirklich lag.</h2>
+      </div>
     </div>
 
     <p class="reveal-flow text-2xl sm:text-4xl font-semibold tracking-tight text-center max-w-3xl mx-auto mt-16 leading-snug">
       Du investierst Zeit, Geld und Energie in dein Marketing, und trotzdem bewegt sich dein Umsatz kaum. Das liegt nicht an dir. Es liegt an den drei Wegen, die man dir bisher angeboten hat.
     </p>
 
-    <h3 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege,<br>alle drei führen in die gleiche Sackgasse.</h3>
+    <h3 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege, die du vermutlich<br>schon probiert hast.</h3>
     <div class="grid md:grid-cols-3 gap-6 mt-14">
       <div class="rv card card-hover rounded-2xl p-8 text-center">
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
@@ -661,9 +692,12 @@
 <!-- ============ 03 · ANGEBOT ============ -->
 <section id="angebot" class="py-20 hex-light">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">03</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Zwei Wege, mit uns zu arbeiten.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">03</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Zusammenarbeit</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Zwei Wege, mit uns zu arbeiten.</h2>
+      </div>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mt-14">
       <!-- DWY -->
@@ -677,7 +711,7 @@
           <li class="flex gap-2.5"><span class="text-accent">•</span> Hook-, Pillar- &amp; Skript-System übergeben</li>
           <li class="flex gap-2.5"><span class="text-accent">•</span> Sparring direkt mit dem Gründer</li>
         </ul>
-        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full font-semibold px-6 py-3.5 rounded-full border border-line hover:border-accent/40 transition">
+        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full font-semibold px-6 py-3.5 rounded-xl border border-line hover:border-accent/40 transition">
           Erstgespräch buchen <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -694,7 +728,7 @@
           <li class="flex gap-2.5"><span class="text-accent2">•</span> Reporting auf Anfragen und Umsatz, nicht auf Likes</li>
           <li class="flex gap-2.5"><span class="text-accent2">•</span> Dir gehören Accounts, Daten und Creatives</li>
         </ul>
-        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full grad-btn cta-primary font-semibold px-6 py-3.5 rounded-full transition">
+        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full grad-btn cta-primary font-semibold px-6 py-3.5 rounded-xl transition">
           Erstgespräch buchen <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -706,9 +740,12 @@
 <!-- ============ 04 · ABLAUF (No-Pitch-Reframe) ============ -->
 <section id="ablauf" class="ablauf-section py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">04</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Wie es losgeht — ohne Pitch.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">04</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Ablauf</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Wie es losgeht — ohne Pitch.</h2>
+      </div>
     </div>
     <!-- Fortschrittslinie zeichnet sich beim Scrollen -->
     <div class="hidden md:block relative mt-14 mb-2 h-4">
@@ -741,7 +778,7 @@
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
         </div>
-        <h3 class="text-xl font-bold">Brand-Foundation &amp; Setup</h3>
+        <h3 class="text-xl font-bold">Fundament &amp; System</h3>
         <p class="text-sm text-mute mt-3">Deep-Dive in deine Marke: Vision, Positionierung, idealer Kunde. Erst Klarheit, dann System. Wir bauen die Strategie mit dir und richten alles auf deine Marke ein.</p>
         <ul class="mt-5 space-y-2 text-sm text-ink/80">
           <li class="flex gap-2"><span class="text-accent">✓</span> Brand-Vision, Voice &amp; idealer Kunde definiert</li>
@@ -753,11 +790,11 @@
         <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>
         </div>
-        <h3 class="text-xl font-bold">Execution &amp; Beweis</h3>
-        <p class="text-sm text-mute mt-3">Die Operation läuft: wöchentlicher Output, Paid-Skalierung, kontinuierliche Optimierung. Du siehst jede Zahl. Skaliert wird, was sich bewiesen hat — nicht, was sich gut anhört.</p>
+        <h3 class="text-xl font-bold">Beweis-Sprint, dann Skalierung</h3>
+        <p class="text-sm text-mute mt-3">Wir starten bewusst klein: ein messbares Test-Setup mit klarem Ziel — der Beweis-Sprint. Du siehst jede Zahl. Skaliert wird nur, was sich bewiesen hat — nicht, was sich gut anhört.</p>
         <ul class="mt-5 space-y-2 text-sm text-ink/80">
+          <li class="flex gap-2"><span class="text-accent">✓</span> Beweis-Sprint: klein testen, sauber messen</li>
           <li class="flex gap-2"><span class="text-accent">✓</span> Wöchentlicher Output, alle Plattformen</li>
-          <li class="flex gap-2"><span class="text-accent">✓</span> Test-Setups vor Skalierung</li>
           <li class="flex gap-2"><span class="text-accent">✓</span> Transparentes Reporting auf Anfragen &amp; Umsatz</li>
         </ul>
       </div>
@@ -768,9 +805,12 @@
 <!-- ============ 05 · FÜR WEN / NICHT FÜR WEN ============ -->
 <section id="fuer-wen" class="py-20 hex-light">
   <div class="max-w-5xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">05</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Wir nehmen nicht jeden. Das ist der Punkt.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">05</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Selektion</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Wir nehmen nicht jeden. Das ist der Punkt.</h2>
+      </div>
     </div>
     <p class="rv text-mute text-sm max-w-2xl mt-6">Wir arbeiten mit wenigen Kunden intensiv statt mit vielen oberflächlich. Deshalb prüfen wir den Fit auf beiden Seiten — bevor Geld fließt.</p>
     <div class="grid md:grid-cols-2 gap-6 mt-10">
@@ -799,9 +839,12 @@
 <!-- ============ 06 · GRÜNDER ============ -->
 <section id="gruender" class="py-20">
   <div class="max-w-5xl mx-auto px-5">
-    <div class="rv banner hex rounded-2xl px-8 py-7 flex items-center gap-5">
-      <span class="rv-num mono text-accent2 text-sm">06</span>
-      <h2 class="text-white text-2xl sm:text-3xl font-semibold tracking-tight">Wer dahintersteht.</h2>
+    <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
+      <span class="rv-num sec-index" aria-hidden="true">06</span>
+      <div>
+        <span class="mono text-[11px] uppercase text-accentDeep">Gründer</span>
+        <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Wer dahintersteht.</h2>
+      </div>
     </div>
     <div class="grid md:grid-cols-2 gap-6 mt-14">
       <div class="rv card card-hover rounded-2xl overflow-hidden">
@@ -855,7 +898,7 @@
           <span class="font-semibold">„Woher weiß ich, dass ihr wirklich liefert?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Gar nicht — noch nicht. Genau deshalb starten wir mit kleinen, messbaren Test-Setups statt mit großen Paketen. Du siehst alle Zahlen von Tag eins und skalierst erst, wenn die Belege da sind.</p></div>
+        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Gar nicht — noch nicht. Genau deshalb starten wir mit dem Beweis-Sprint: einem kleinen, messbaren Test-Setup statt einem großen Paket. Du siehst alle Zahlen von Tag eins und skalierst erst, wenn die Belege da sind.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.24s">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
@@ -882,14 +925,14 @@
       <!-- primär -->
       <div class="rv rounded-2xl p-10 banner hex glow-blue text-white relative overflow-hidden">
         <span class="mono text-[11px] uppercase text-accent2">Der nächste Schritt</span>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Lass uns prüfen, ob deine Marke der nächste Signature Case wird.</h2>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Deine Marke könnte unser nächster öffentlicher Beweis sein.</h2>
         <p class="text-white/65 mt-5 text-sm max-w-md">Das passiert nach deiner Anfrage — Schritt für Schritt, ohne Überraschungen:</p>
         <ol class="mt-6 space-y-4 text-sm text-white/85">
           <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">1</span> <span><strong class="text-white">Kurze Anfrage</strong> — dauert keine zwei Minuten.</span></li>
           <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">2</span> <span><strong class="text-white">Erstgespräch, 45 Minuten</strong> — direkt mit dem Gründer. Analyse und Fit-Check, kein Pitch.</span></li>
           <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">3</span> <span><strong class="text-white">Ehrliche Einschätzung + Angebot in 72 h</strong> — und du entscheidest in Ruhe.</span></li>
         </ol>
-        <a href="#" class="mt-8 inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-full transition">
+        <a href="#" class="mt-8 inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl transition">
           Erstgespräch buchen
           <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
@@ -921,7 +964,7 @@
         <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></span>
         Brand-<span class="grad-text">Scale</span><span class="text-mute font-bold">.de</span>
       </div>
-      <p class="text-sm text-mute mt-4 max-w-xs">Von unsichtbar zu unübersehbar. Weniger Versprechen. Mehr Beweise. Marketing für Coaches, Berater und Experten im DACH-Raum.</p>
+      <p class="text-sm text-mute mt-4 max-w-xs">Erst beweisen. Dann skalieren. Marketing für Coaches, Berater und Experten im DACH-Raum.</p>
       <div class="mt-6">
         <p class="mono text-[11px] uppercase text-mute">Kontakt</p>
         <p class="text-sm mt-2"><span class="badge-ph px-1.5 py-0.5 rounded">hallo@brand-scale.de einsetzen</span></p>
