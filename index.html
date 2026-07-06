@@ -24,6 +24,10 @@
   html { scroll-behavior:smooth; }
   /* overflow-x:clip statt hidden — hidden macht body zum Scroll-Container und friert das Fenster-Scrolling ein */
   html, body { overflow-x:clip; }
+  /* Fallback für ältere Safari-Versionen ohne clip-Support (sonst horizontale Riesen-Seite auf iOS) */
+  @supports not (overflow: clip) {
+    html, body { overflow-x:hidden; }
+  }
   body { background:#EFEDE6; color:#0A0C10; }
   /* Eigenes Typo-System: Bricolage für Headlines, Instrument Sans für Body, Plex Mono für Eyebrows */
   h1, h2, h3, h4 { font-family:'Bricolage Grotesque','Instrument Sans',ui-sans-serif,sans-serif; }
@@ -246,9 +250,9 @@
       <a href="#gruender" class="hover:text-ink transition">Gründer</a>
     </nav>
     <div class="flex items-center gap-3">
-      <a href="#kontakt" class="grad-btn cta-primary text-sm font-semibold pl-4 pr-1.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition">
-        Erstgespräch buchen
-        <span class="cta-arrow grid place-items-center w-6 h-6 rounded-full bg-white/20"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <a href="#kontakt" class="grad-btn cta-primary text-sm font-semibold px-4 sm:pl-4 sm:pr-1.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition">
+        <span class="hidden sm:inline">Erstgespräch buchen</span><span class="sm:hidden">Erstgespräch</span>
+        <span class="cta-arrow hidden sm:grid place-items-center w-6 h-6 rounded-full bg-white/20"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <button id="nav-toggle" class="md:hidden grid place-items-center w-9 h-9 rounded-md border border-line bg-white" aria-expanded="false" aria-label="Menü öffnen">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -278,7 +282,7 @@
     </span>
     <h1 class="hero-in d2 text-4xl sm:text-5xl lg:text-[3.9rem] font-semibold tracking-tight leading-[1.08]">
       <span class="grad-text">Planbare Anfragen</span> für Experten,<br class="hidden sm:block">
-      die keine <span class="strike-acc whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
+      die keine <span class="strike-acc sm:whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
     </h1>
     <p class="hero-in d3 mt-8 text-lg text-mute max-w-2xl mx-auto">
       Wir bauen das komplette Anfrage-System für <span class="rotator" aria-label="Coaches, Berater, Experten, Unternehmer"><span class="rotator-track" aria-hidden="true"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus dem, was du schon hast.
@@ -620,7 +624,7 @@
       <p class="text-mute mt-5">Ein schlankes Team mit KI-Systemen, das deine Marke aus deinen bestehenden Inhalten aufbaut und jede Entscheidung mit Zahlen belegt. Keine weitere Agentur. Die Marketing-Infrastruktur, die dir bisher gefehlt hat — ohne dass du sie selbst betreiben musst.</p>
     </div>
     <p class="rv mono text-[11px] uppercase text-accentDeep text-center mt-12">Unser Stack · immer auf dem neuesten Stand</p>
-    <div class="marquee-wrap fade-x mt-6">
+    <div class="marquee-wrap fade-x mt-6 overflow-hidden">
       <div class="marquee items-center mono text-sm text-mute">
         <span class="whitespace-nowrap">Meta Ads</span><span class="whitespace-nowrap">Google Ads</span><span class="whitespace-nowrap">TikTok Ads</span><span class="whitespace-nowrap">HeyGen</span><span class="whitespace-nowrap">ElevenLabs</span><span class="whitespace-nowrap">n8n</span><span class="whitespace-nowrap">Claude</span><span class="whitespace-nowrap">CapCut</span><span class="whitespace-nowrap">Notion</span>
         <span class="whitespace-nowrap">Meta Ads</span><span class="whitespace-nowrap">Google Ads</span><span class="whitespace-nowrap">TikTok Ads</span><span class="whitespace-nowrap">HeyGen</span><span class="whitespace-nowrap">ElevenLabs</span><span class="whitespace-nowrap">n8n</span><span class="whitespace-nowrap">Claude</span><span class="whitespace-nowrap">CapCut</span><span class="whitespace-nowrap">Notion</span>
