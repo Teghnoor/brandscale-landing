@@ -44,10 +44,13 @@
   .card-hover:hover { border-color:#DDD6FE; box-shadow:0 18px 50px -20px rgba(139,92,246,.35); transform:translateY(-4px); }
   /* numbered dark banners */
   .banner { background:radial-gradient(120% 180% at 15% 0%,#4C1D95 0%,#1E1B4B 45%,#12102E 100%); }
-  .hex { background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A78BFA' stroke-opacity='0.12'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"); }
-  /* combined: hex mesh layered over dark gradient (fixes .hex overriding .banner) */
-  .banner.hex { background-color:#1E1B4B; background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23A78BFA' stroke-opacity='0.12'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(120% 180% at 15% 0%,#4C1D95 0%,#1E1B4B 45%,#12102E 100%); }
-  .hex-light { background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%238B5CF6' stroke-opacity='0.06'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5z'/%3E%3Cpath d='M14 0l14 8.08v16.17L14 32.33 0 24.25V8.08L14 0zm0 33.66l14 8.08V49l-14-8.08V33.66z'/%3E%3C/g%3E%3C/svg%3E"); }
+  /* Feines Punkt-Raster statt Hexagon-Waben — dezent, premium */
+  .hex { background-image:radial-gradient(rgba(167,139,250,.10) 1px, transparent 1.6px); background-size:23px 23px; }
+  .banner.hex { background-color:#1E1B4B; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.6px),radial-gradient(130% 190% at 12% -10%,#4C1D95 0%,#241C5C 42%,#12102E 100%); background-size:24px 24px, cover; }
+  .hex-light { background-image:radial-gradient(rgba(139,92,246,.05) 1px, transparent 1.6px); background-size:23px 23px; }
+  /* Feiner Film-Grain über allem — hochwertige Textur */
+  body::after { content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.30; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"); }
   .ph { outline:1px dashed rgba(139,92,246,.55); outline-offset:2px; }
   .badge-ph { background:rgba(139,92,246,.10); color:#5B21B6; border:1px solid rgba(139,92,246,.30); }
   .eyebrow { letter-spacing:.22em; }
@@ -447,6 +450,33 @@
       </div>
     </div>
     <p class="rv text-mute text-[15px] max-w-2xl mt-6 leading-relaxed">Die meisten Agenturen zeigen dir hier fremde Screenshots und geliehene Erfolge. Wir zeigen dir unsere echten Zahlen — live im Backend, nicht als Screenshot. Und genauso transparent bauen wir deine auf: jede Reichweite, jeder Klick, jede Anfrage nachvollziehbar ab Tag eins.</p>
+
+    <!-- Echte, belegbare Zahlen (aggregiert, aus betreuten Accounts) -->
+    <div class="rv card rounded-2xl overflow-hidden mt-10">
+      <div class="flex flex-wrap items-center justify-between gap-2 px-6 py-3.5 border-b border-line">
+        <span class="mono text-[11px] uppercase text-mute">Echte Zahlen · letzte 30 Tage · aus betreuten Accounts</span>
+        <span class="mono text-[11px] uppercase text-accentDeep inline-flex items-center gap-2"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Live belegbar</span>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-line">
+        <div class="stat-tile bg-white px-6 py-7 text-center">
+          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="650" data-suffix=".000+">650.000+</div>
+          <div class="mono text-[11px] uppercase text-mute mt-2">Aufrufe / 30 Tage</div>
+        </div>
+        <div class="stat-tile bg-white px-6 py-7 text-center">
+          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="490" data-suffix=".000+">490.000+</div>
+          <div class="mono text-[11px] uppercase text-mute mt-2">Konten erreicht</div>
+        </div>
+        <div class="stat-tile bg-white px-6 py-7 text-center">
+          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="98" data-suffix=" %">98 %</div>
+          <div class="mono text-[11px] uppercase text-mute mt-2">bei neuen Leuten*</div>
+        </div>
+        <div class="stat-tile bg-white px-6 py-7 text-center">
+          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="80" data-suffix=".000+">80.000+</div>
+          <div class="mono text-[11px] uppercase text-mute mt-2">Likes / Top-Reel</div>
+        </div>
+      </div>
+      <div class="px-6 py-3.5 border-t border-line bg-accent/[.04] text-xs text-mute">*98 % der Reichweite bei Nicht-Followern — echte neue Zielgruppe, kein recyceltes Bestandspublikum. Die Screenshots zeigen wir dir live im Erstgespräch.</div>
+    </div>
 
     <div class="rv grid md:grid-cols-3 gap-5 mt-12">
       <div class="card rounded-2xl p-7">
