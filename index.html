@@ -122,6 +122,36 @@
   .wm-script { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:600; font-size:20px; }
   .wm-light { font-family:'Instrument Sans',sans-serif; font-weight:400; font-size:18px; letter-spacing:.12em; text-transform:uppercase; }
 
+  /* ============ WORK(ED)-WITH LABEL + HOVER-INFO-TOOLTIP ============ */
+  .worked-label { font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#0A0C10; }
+  .worked-label .paren { color:#8B5CF6; }
+  .worked-hint { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#9AA2AE; }
+  .logo-item { outline:none; cursor:default; }
+  .brand-marquee-outer { position:relative; }
+  /* Brand-Marquee: 3 identische Kopien → nahtloser Loop auch auf breiten Screens.
+     to-Wert = eine Set-Breite (33.3333% minus g/3, g=3.5rem → 1.1667rem), sonst mini-Sprung am Übergang.
+     Läuft IMMER durch — kein Hover-Stopp (nur offscreen pausiert für Performance). */
+  .brand-marquee-outer .marquee { animation:bscroll 34s linear infinite; }
+  @keyframes bscroll { from{transform:translateX(0)} to{transform:translateX(calc(-33.3333% - 1.1667rem))} }
+  .brand-marquee-outer .marquee-wrap:hover .marquee { animation-play-state:running; }
+  .brand-marquee-outer .marquee-wrap.is-paused .marquee { animation-play-state:paused; }
+  .brand-tip {
+    position:absolute; width:238px; padding:.72rem .85rem; border-radius:11px;
+    background:#0A0C10; text-align:left; z-index:40;
+    opacity:0; visibility:hidden; pointer-events:none;
+    transform:translateX(-50%) translateY(5px);
+    transition:opacity .2s ease, transform .2s ease;
+    box-shadow:0 14px 34px rgba(10,12,16,.24);
+  }
+  .brand-tip.is-on { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+  .brand-tip::before {
+    content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+    border:6px solid transparent; border-bottom-color:#0A0C10;
+  }
+  .brand-tip .tip-role { display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#8B5CF6; }
+  .brand-tip .tip-text { display:block; margin-top:4px; font-size:12.5px; line-height:1.4; color:#E7E9EE; }
+  @media (prefers-reduced-motion:reduce){ .brand-tip{ transition:none; } }
+
   /* ============ MARQUEES: pausierbar (Hover + offscreen) ============ */
   .marquee { display:flex; gap:3.5rem; width:max-content; animation:scroll 34s linear infinite; }
   .marquee-slow { animation-duration:48s; }
@@ -309,33 +339,59 @@
 </section>
 
 <!-- ============ KUNDEN & MARKEN MARQUEE ============ -->
-<section class="marquee-wrap border-y border-line py-8 bg-white overflow-hidden">
-  <p class="mono text-[11px] uppercase text-mute text-center mb-6">Kunden &amp; Marken, mit denen wir gearbeitet haben</p>
-  <div class="fade-x">
-    <div class="marquee items-center">
-      <!-- Set 1 -->
-      <span class="logo-item"><img src="logos/zdf.svg" alt="ZDF"></span>
-      <span class="logo-item"><span class="wordmark wm-serif">Lindt</span></span>
-      <span class="logo-item"><img src="logos/wienerlinien.svg" alt="Wiener Linien"></span>
-      <span class="logo-item"><img src="logos/sidemen.svg" alt="Sidemen"></span>
-      <span class="logo-item"><span class="wordmark wm-caps">Viral Vision</span></span>
-      <span class="logo-item"><span class="wordmark wm-bold">Niklas Wauch</span></span>
-      <span class="logo-item"><span class="wordmark wm-script">James Connects</span></span>
-      <span class="logo-item"><span class="wordmark wm-mono">Mietix</span></span>
-      <span class="logo-item"><span class="wordmark wm-light">Ali Badbanker</span></span>
-      <span class="logo-item"><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
-      <!-- Set 2 (dup für nahtlosen Loop) -->
-      <span class="logo-item" aria-hidden="true"><img src="logos/zdf.svg" alt=""></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-serif">Lindt</span></span>
-      <span class="logo-item" aria-hidden="true"><img src="logos/wienerlinien.svg" alt=""></span>
-      <span class="logo-item" aria-hidden="true"><img src="logos/sidemen.svg" alt=""></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-caps">Viral Vision</span></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-bold">Niklas Wauch</span></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-script">James Connects</span></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-mono">Mietix</span></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-light">Ali Badbanker</span></span>
-      <span class="logo-item" aria-hidden="true"><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
+<section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-white">
+  <div class="text-center mb-7">
+    <p class="worked-label">work<span class="paren">(ed)</span> with</p>
+    <p class="worked-hint mt-2">Fahr über eine Marke →</p>
+  </div>
+  <div class="marquee-wrap overflow-hidden">
+    <div class="fade-x">
+      <div class="marquee items-center">
+        <!-- Set 1 -->
+        <span class="logo-item" tabindex="0" data-role="TV &amp; Social" data-info="Kurzform-Content &amp; Format-Entwicklung fürs Social-Publikum."><img src="logos/zdf.svg" alt="ZDF"></span>
+        <span class="logo-item" tabindex="0" data-role="Branding" data-info="Creative-Direction &amp; Marken-Content für Social."><span class="wordmark wm-serif">Lindt</span></span>
+        <span class="logo-item" tabindex="0" data-role="Kampagne" data-info="Kampagnen-Content &amp; Reels-Produktion."><img src="logos/wienerlinien.svg" alt="Wiener Linien"></span>
+        <span class="logo-item" tabindex="0" data-role="Short-Form" data-info="Short-Form-Editing &amp; Distribution."><img src="logos/sidemen.svg" alt="Sidemen"></span>
+        <span class="logo-item" tabindex="0" data-role="Content-System" data-info="Content-System &amp; Skalierung der Reichweite."><span class="wordmark wm-caps">Viral Vision</span></span>
+        <span class="logo-item" tabindex="0" data-role="Personal Brand" data-info="Personal Brand &amp; Short-Form-Aufbau."><span class="wordmark wm-bold">Niklas Wauch</span></span>
+        <span class="logo-item" tabindex="0" data-role="Personal Brand · Podcast" data-info="Short-Form-System, Personal Brand &amp; Mindshift Podcast — von Skript bis Millionen-Reichweite."><span class="wordmark wm-script">Assad</span></span>
+        <span class="logo-item" tabindex="0" data-role="Podcast" data-info="Mindshift Podcast — Positionierung, Episoden-Strategie &amp; Distribution."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
+        <span class="logo-item" tabindex="0" data-role="Funnel" data-info="Positionierung &amp; Funnel-Aufbau."><span class="wordmark wm-mono">James Connects</span></span>
+        <span class="logo-item" tabindex="0" data-role="Reichweite" data-info="Personal Brand &amp; Reichweiten-Aufbau."><span class="wordmark wm-light">Ali Badbanker</span></span>
+        <span class="logo-item" tabindex="0" data-role="Strategie" data-info="Content-Strategie &amp; Ghostwriting."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
+        <span class="logo-item" tabindex="0" data-role="Performance" data-info="Performance-Ads &amp; Landingpage."><span class="wordmark wm-mono">Mietix</span></span>
+        <!-- Set 2 (dup für nahtlosen Loop) -->
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="TV &amp; Social" data-info="Kurzform-Content &amp; Format-Entwicklung fürs Social-Publikum."><img src="logos/zdf.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Branding" data-info="Creative-Direction &amp; Marken-Content für Social."><span class="wordmark wm-serif">Lindt</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Kampagne" data-info="Kampagnen-Content &amp; Reels-Produktion."><img src="logos/wienerlinien.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Short-Form" data-info="Short-Form-Editing &amp; Distribution."><img src="logos/sidemen.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Content-System" data-info="Content-System &amp; Skalierung der Reichweite."><span class="wordmark wm-caps">Viral Vision</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Personal Brand" data-info="Personal Brand &amp; Short-Form-Aufbau."><span class="wordmark wm-bold">Niklas Wauch</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Personal Brand · Podcast" data-info="Short-Form-System, Personal Brand &amp; Mindshift Podcast — von Skript bis Millionen-Reichweite."><span class="wordmark wm-script">Assad</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Podcast" data-info="Mindshift Podcast — Positionierung, Episoden-Strategie &amp; Distribution."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Funnel" data-info="Positionierung &amp; Funnel-Aufbau."><span class="wordmark wm-mono">James Connects</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Reichweite" data-info="Personal Brand &amp; Reichweiten-Aufbau."><span class="wordmark wm-light">Ali Badbanker</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Strategie" data-info="Content-Strategie &amp; Ghostwriting."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Performance" data-info="Performance-Ads &amp; Landingpage."><span class="wordmark wm-mono">Mietix</span></span>
+        <!-- Set 3 (dup für nahtlosen Loop auf breiten Screens) -->
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="TV &amp; Social" data-info="Kurzform-Content &amp; Format-Entwicklung fürs Social-Publikum."><img src="logos/zdf.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Branding" data-info="Creative-Direction &amp; Marken-Content für Social."><span class="wordmark wm-serif">Lindt</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Kampagne" data-info="Kampagnen-Content &amp; Reels-Produktion."><img src="logos/wienerlinien.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Short-Form" data-info="Short-Form-Editing &amp; Distribution."><img src="logos/sidemen.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Content-System" data-info="Content-System &amp; Skalierung der Reichweite."><span class="wordmark wm-caps">Viral Vision</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Personal Brand" data-info="Personal Brand &amp; Short-Form-Aufbau."><span class="wordmark wm-bold">Niklas Wauch</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Personal Brand · Podcast" data-info="Short-Form-System, Personal Brand &amp; Mindshift Podcast — von Skript bis Millionen-Reichweite."><span class="wordmark wm-script">Assad</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Podcast" data-info="Mindshift Podcast — Positionierung, Episoden-Strategie &amp; Distribution."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Funnel" data-info="Positionierung &amp; Funnel-Aufbau."><span class="wordmark wm-mono">James Connects</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Reichweite" data-info="Personal Brand &amp; Reichweiten-Aufbau."><span class="wordmark wm-light">Ali Badbanker</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Strategie" data-info="Content-Strategie &amp; Ghostwriting."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-role="Performance" data-info="Performance-Ads &amp; Landingpage."><span class="wordmark wm-mono">Mietix</span></span>
+      </div>
     </div>
+  </div>
+  <!-- schwebende Info-Bubble (außerhalb des overflow-hidden Tracks) -->
+  <div id="brandTip" class="brand-tip" role="status" aria-live="polite">
+    <span class="tip-role"></span><span class="tip-text"></span>
   </div>
 </section>
 
@@ -493,6 +549,62 @@
         <span class="grid place-items-center w-11 h-11 rounded-xl grad-btn mb-5"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></span>
         <h3 class="font-bold text-lg">Der Beweis-Sprint zuerst</h3>
         <p class="text-sm text-mute mt-2.5 leading-relaxed">Ein kleines, messbares Test-Setup statt großem Paket. Du siehst, was funktioniert — und skalierst erst, wenn die Belege da sind.</p>
+      </div>
+    </div>
+
+    <!-- ==== Durchgezogener Case: von aggregiert zu konkret ==== -->
+    <!-- PLATZHALTER [ ] mit echten Werten füllen, bevor live gepusht wird -->
+    <div class="rv card rounded-2xl overflow-hidden mt-12 grid lg:grid-cols-[1.15fr_0.85fr]">
+      <div class="p-8 sm:p-10 order-2 lg:order-1">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="mono text-[11px] uppercase text-accentDeep">Fallstudie</span>
+          <span class="mono text-[11px] uppercase text-mute">· [Kunde / Nische] · [Zeitraum, z. B. 90 Tage]</span>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mt-3 leading-snug">[Eine Zeile Ergebnis-Headline — z. B. „Von 0 auf planbare Anfragen in 12 Wochen"]</h3>
+
+        <div class="mt-6 space-y-4 text-sm leading-relaxed">
+          <div>
+            <p class="mono text-[11px] uppercase text-mute">Ausgangslage</p>
+            <p class="text-mute mt-1.5">[Wo der Kunde vorher stand — Reichweite, Anfragen, was nicht lief.]</p>
+          </div>
+          <div>
+            <p class="mono text-[11px] uppercase text-mute">Was wir gemacht haben</p>
+            <p class="text-mute mt-1.5">[Content-Repurposing / Ads / Funnel — der konkrete Hebel in 1–2 Sätzen.]</p>
+          </div>
+        </div>
+
+        <!-- Ergebnis-Chips: Vorher → Nachher -->
+        <div class="grid grid-cols-3 gap-px bg-line rounded-xl overflow-hidden border border-line mt-7">
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-2xl font-semibold grad-text">[+X]</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">[Anfragen / Mt.]</div>
+          </div>
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-2xl font-semibold grad-text">[X ×]</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">[Reichweite]</div>
+          </div>
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-2xl font-semibold grad-text">[€ X]</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">[Umsatz / ROAS]</div>
+          </div>
+        </div>
+
+        <!-- Kundenstimme -->
+        <blockquote class="mt-7 border-l-2 border-accent pl-5">
+          <p class="text-[15px] leading-relaxed">„[Echtes Kundenzitat — 1–2 Sätze, wörtlich.]“</p>
+          <footer class="mono text-[11px] uppercase text-mute mt-2.5">[Name / Rolle · @handle]</footer>
+        </blockquote>
+      </div>
+
+      <!-- Beweis-Screenshot (Backend / Insights / Anfragen) -->
+      <div class="order-1 lg:order-2 bg-accent/[.04] border-b lg:border-b-0 lg:border-l border-line p-4 flex flex-col">
+        <span class="mono text-[11px] uppercase text-mute mb-3">Beleg · Screenshot</span>
+        <div class="flex-1 min-h-[240px] rounded-xl border border-dashed border-accent/40 bg-white grid place-items-center text-center px-6">
+          <div>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6" class="mx-auto"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+            <p class="text-xs text-mute mt-3">[Screenshot einsetzen:<br>images/case-[name].png]</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -794,6 +906,24 @@
         <p class="mono text-[11px] uppercase text-accentDeep mt-1.5">Founder · Strategie &amp; Wachstum</p>
         <p class="text-[15px] text-mute mt-5 leading-relaxed">Aid gründete Brand-Scale.eu mit einer klaren Haltung: Marketing wird zu oft versprochen und zu selten belegt. Er verantwortet Strategie, Brand-Architektur und den Aufbau von Reichweite, die nicht nur wächst, sondern Vertrauen mitnimmt.</p>
         <p class="text-[15px] text-mute mt-4 leading-relaxed">Wer mit Brand-Scale.eu arbeitet, spricht direkt mit ihm — kein Setter, keine Zwischenschicht. Analyse, ehrliche Einschätzung und die Entscheidung, ob es passt.</p>
+
+        <!-- Belegter Track Record: verankert die Haltung in echten Zahlen + Marken -->
+        <div class="mt-7 grid grid-cols-3 gap-px bg-line rounded-xl overflow-hidden border border-line">
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-xl sm:text-2xl font-semibold grad-text">700 Mio.+</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">Views gebaut</div>
+          </div>
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-xl sm:text-2xl font-semibold grad-text">1,1 Mio.+</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">Follower</div>
+          </div>
+          <div class="bg-white px-4 py-4 text-center">
+            <div class="text-xl sm:text-2xl font-semibold grad-text">€ 7,8 Mio.+</div>
+            <div class="mono text-[10px] uppercase text-mute mt-1">Kundenumsatz</div>
+          </div>
+        </div>
+        <p class="mono text-[11px] uppercase text-mute mt-4">Gearbeitet u. a. mit <span class="text-ink">ZDF · Lindt · Wiener Linien · Sidemen</span></p>
+
         <p class="text-lg mt-7 leading-snug font-semibold">„Erst der Beweis. <span class="grad-text">Dann skalieren wir.</span>“</p>
       </div>
     </div>
@@ -978,6 +1108,45 @@
       });
     }, { passive:true });
   }
+
+  // ----- work(ed) with: Info-Bubble, die der durchlaufenden Marke folgt -----
+  // Marquee läuft immer weiter → Bubble wird pro Frame neu über der Marke positioniert.
+  (function(){
+    var outer = document.querySelector('.brand-marquee-outer');
+    var tip = document.getElementById('brandTip');
+    if (!outer || !tip) return;
+    var roleEl = tip.querySelector('.tip-role'), textEl = tip.querySelector('.tip-text');
+    var current = null, raf = 0;
+    function place(){
+      if (!current){ raf = 0; return; }
+      var oRect = outer.getBoundingClientRect();
+      var iRect = current.getBoundingClientRect();
+      // Marke aus dem sichtbaren Band gelaufen → ausblenden
+      if (iRect.right < oRect.left || iRect.left > oRect.right){ hide(); return; }
+      var left = iRect.left - oRect.left + iRect.width / 2;
+      var top = iRect.bottom - oRect.top + 13;
+      var half = tip.offsetWidth / 2 + 12;   // horizontal in die Sektion klemmen
+      left = Math.max(half, Math.min(left, oRect.width - half));
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+      raf = requestAnimationFrame(place);
+    }
+    function show(item){
+      current = item;
+      roleEl.textContent = item.getAttribute('data-role') || '';
+      textEl.textContent = item.getAttribute('data-info') || '';
+      tip.classList.add('is-on');
+      if (!raf) raf = requestAnimationFrame(place); else place();
+    }
+    function hide(){ current = null; tip.classList.remove('is-on'); if (raf){ cancelAnimationFrame(raf); raf = 0; } }
+    outer.querySelectorAll('.logo-item').forEach(function(item){
+      item.addEventListener('mouseenter', function(){ show(item); });
+      item.addEventListener('mouseleave', function(){ hide(); });
+      item.addEventListener('focus', function(){ show(item); });
+      item.addEventListener('blur', function(){ hide(); });
+    });
+    window.addEventListener('scroll', function(){ if (current) hide(); }, { passive:true });
+  })();
 
   // ----- Scroll-Reveal: .rv / .rv-scale via IntersectionObserver -----
   // rootMargin oben riesig: Elemente OBERHALB des Viewports (z.B. nach Anchor-Jump
