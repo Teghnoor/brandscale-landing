@@ -1021,6 +1021,44 @@
         </a>
       </div>
     </div>
+
+    <!-- Direkt-Anfrage-Formular (angebunden via Web3Forms) -->
+    <div id="anfrage" class="rv card rounded-2xl p-8 sm:p-10 mt-6" style="--d:.2s">
+      <span class="mono text-[11px] uppercase text-accentDeep">Oder schreib uns direkt</span>
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-3 leading-tight">Kurze Anfrage — wir melden uns innerhalb von 24&nbsp;h.</h2>
+      <form id="contactForm" class="mt-7 grid sm:grid-cols-2 gap-4" novalidate>
+        <!-- ⇩ Web3Forms Access-Key hier eintragen (siehe web3forms.com, kostenlos) ⇩ -->
+        <input type="hidden" name="access_key" value="DEIN_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="Neue Anfrage über brand-scale.eu">
+        <input type="hidden" name="from_name" value="Brandscale Website">
+        <!-- Spam-Honeypot: für Menschen unsichtbar -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+        <div>
+          <label for="cf-name" class="mono text-[10px] uppercase text-mute">Name</label>
+          <input id="cf-name" required name="name" type="text" autocomplete="name" placeholder="Dein Name" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+        </div>
+        <div>
+          <label for="cf-email" class="mono text-[10px] uppercase text-mute">E-Mail</label>
+          <input id="cf-email" required name="email" type="email" autocomplete="email" placeholder="du@beispiel.de" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+        </div>
+        <div class="sm:col-span-2">
+          <label for="cf-profil" class="mono text-[10px] uppercase text-mute">Instagram / Website <span class="text-mute normal-case">(optional)</span></label>
+          <input id="cf-profil" name="profil" type="text" placeholder="@handle oder deine URL" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+        </div>
+        <div class="sm:col-span-2">
+          <label for="cf-message" class="mono text-[10px] uppercase text-mute">Worum geht's?</label>
+          <textarea id="cf-message" required name="message" rows="4" placeholder="Kurz: wo stehst du gerade, was willst du erreichen?" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition resize-y"></textarea>
+        </div>
+        <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
+          <button type="submit" class="grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 transition">
+            <span id="cfBtnText">Anfrage senden</span>
+            <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
+          <p id="cfStatus" class="text-sm font-medium" role="status" aria-live="polite"></p>
+        </div>
+        <p class="sm:col-span-2 text-xs text-mute">Mit dem Absenden stimmst du zu, dass wir deine Angaben zur Bearbeitung deiner Anfrage verwenden. Details in der <a href="datenschutz.html" class="underline hover:text-ink">Datenschutzerklärung</a>.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -1030,12 +1068,12 @@
     <div>
       <div class="flex items-center gap-2.5 font-semibold text-lg">
         <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-4"/><path d="M11.5 20v-7.5"/><path d="M18 20V6"/><path d="M14.4 9.6 18 6l3.6 3.6"/></svg></span>
-        Brand<span class="grad-text">scale</span><span class="text-mute font-bold">.eu</span>
+        <span class="tracking-[.02em]">Brand<span class="grad-text">scale</span><span class="text-mute font-bold">.eu</span></span>
       </div>
       <p class="text-sm text-mute mt-4 max-w-xs">Erst beweisen. Dann skalieren. Marketing für Coaches, Berater und Experten im DACH-Raum.</p>
       <div class="mt-6">
         <p class="mono text-[11px] uppercase text-mute">Kontakt</p>
-        <p class="text-sm mt-2"><a href="mailto:hallo@brand-scale.eu" class="hover:text-ink">hallo@brand-scale.eu</a></p>
+        <p class="text-sm mt-2"><a href="mailto:office@brand-scale.eu" class="hover:text-ink">office@brand-scale.eu</a></p>
         <div class="flex gap-4 mt-3 text-sm text-mute"><a href="https://www.instagram.com/brandscale.de" target="_blank" rel="noopener" class="hover:text-ink">Instagram</a></div>
       </div>
     </div>
@@ -1162,6 +1200,40 @@
     tip.addEventListener('mouseenter', function(){ overTip = true; clearTimeout(hideTimer); });
     tip.addEventListener('mouseleave', function(){ overTip = false; scheduleHide(); });
     window.addEventListener('scroll', function(){ overItem = overTip = false; tip.classList.remove('is-on'); }, { passive:true });
+  })();
+
+  // ----- Kontaktformular → Web3Forms (statisch, kein Server nötig) -----
+  (function(){
+    var cf = document.getElementById('contactForm');
+    if (!cf) return;
+    var status = document.getElementById('cfStatus'), btn = document.getElementById('cfBtnText');
+    cf.addEventListener('submit', function(e){
+      e.preventDefault();
+      var key = (cf.querySelector('[name=access_key]') || {}).value || '';
+      if (!key || key.indexOf('DEIN_') === 0){
+        status.textContent = 'Formular noch nicht aktiviert — Access-Key fehlt.';
+        status.style.color = '#b45309';
+        return;
+      }
+      if (!cf.checkValidity()){ cf.reportValidity(); return; }
+      btn.textContent = 'Senden …';
+      status.textContent = '';
+      fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(cf) })
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if (j.success){
+            cf.reset();
+            btn.textContent = 'Gesendet ✓';
+            status.textContent = 'Danke! Wir melden uns innerhalb von 24 h.';
+            status.style.color = '#15803d';
+          } else { throw new Error(j.message || 'fail'); }
+        })
+        .catch(function(){
+          btn.textContent = 'Anfrage senden';
+          status.textContent = 'Hat nicht geklappt — schreib uns direkt an office@brand-scale.eu.';
+          status.style.color = '#b91c1c';
+        });
+    });
   })();
 
   // ----- Scroll-Reveal: .rv / .rv-scale via IntersectionObserver -----
