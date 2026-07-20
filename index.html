@@ -35,7 +35,7 @@
   .sec-index { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(3.6rem,7vw,5.2rem); line-height:.82;
     color:transparent; -webkit-text-stroke:1.5px rgba(139,92,246,.55); paint-order:stroke; }
   @supports not (-webkit-text-stroke:1px black) { .sec-index { color:rgba(139,92,246,.3); } }
-  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; padding:0 .07em; margin:0 -.07em; }
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .grad-btn:hover { filter:brightness(1.05); }
   .glow-blue { box-shadow:0 0 80px -20px rgba(139,92,246,.5); }
@@ -79,7 +79,7 @@
 
   /* ============ WORD ROTATOR (Hero-Subline) ============ */
   /* Nur spans (kein ul in p — HTML-Parser würde den Absatz aufbrechen) */
-  .rotator { position:relative; display:inline-flex; overflow:hidden; height:1.6em; vertical-align:bottom; }
+  .rotator { position:relative; display:inline-flex; overflow:hidden; height:1.6em; vertical-align:bottom; padding:0 .14em; }
   .rotator-track { display:flex; flex-direction:column; animation:rotator-cycle 12s cubic-bezier(.7,0,.3,1) infinite; }
   .rotator-track > span { display:block; height:1.6em; line-height:1.6em; white-space:nowrap; font-weight:600; background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
   @keyframes rotator-cycle {
@@ -813,8 +813,8 @@
     </div>
     <div class="grid md:grid-cols-3 gap-6 mt-8">
       <div class="rv card card-hover rounded-2xl p-8">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
+          <img src="images/ablauf-1-erstgespraech.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
         </div>
         <h3 class="text-xl font-bold">Erstgespräch <span class="text-mute font-medium text-sm">· 45 Min, kein Pitch</span></h3>
         <p class="text-sm text-mute mt-3">Direkt mit dem Gründer. Wir schauen auf dein Business, deine Zielgruppe und deine Zahlen — und sagen dir ehrlich, ob wir passen. Wenn nicht, sagen wir auch das.</p>
@@ -831,8 +831,8 @@
         </ul>
       </div>
       <div class="rv card card-hover rounded-2xl p-8" style="--d:.2s">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
+          <img src="images/ablauf-2-fundament.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
         </div>
         <h3 class="text-xl font-bold">Fundament &amp; System</h3>
         <p class="text-sm text-mute mt-3">Deep-Dive in deine Marke: Vision, Positionierung, idealer Kunde. Erst Klarheit, dann System. Wir bauen die Strategie mit dir und richten alles auf deine Marke ein.</p>
@@ -843,8 +843,8 @@
         </ul>
       </div>
       <div class="rv card card-hover rounded-2xl p-8" style="--d:.4s">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>
+        <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
+          <img src="images/ablauf-3-skalierung.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
         </div>
         <h3 class="text-xl font-bold">Beweis-Sprint, dann Skalierung</h3>
         <p class="text-sm text-mute mt-3">Wir starten bewusst klein: ein messbares Test-Setup mit klarem Ziel — der Beweis-Sprint. Du siehst jede Zahl. Skaliert wird nur, was sich bewiesen hat — nicht, was sich gut anhört.</p>
