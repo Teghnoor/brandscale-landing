@@ -25,19 +25,10 @@
 <meta name="twitter:description" content="Erst beweisen. Dann skalieren. Content, Ads und Funnel aus dem, was du schon hast." />
 <meta name="twitter:image" content="https://brand-scale.eu/images/og-brandscale.png" />
 
-<script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="fonts.css">
-<script>
-  tailwind.config = {
-    theme: { extend: {
-      fontFamily: { sans: ['Instrument Sans','ui-sans-serif','system-ui','sans-serif'], mono: ['IBM Plex Mono','ui-monospace','monospace'], display: ['Bricolage Grotesque','ui-sans-serif','system-ui','sans-serif'] },
-      colors: {
-        ink:'#0A0C10', navy:'#1E1B4B',
-        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
-        paper:'#EFEDE6', line:'#E5E2D8', mute:'#5F5F58',
-      },
-    }},
-  }
-</script>
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" href="fonts/bricolagegrotesque-600-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrumentsans-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   html { scroll-behavior:smooth; }
   /* overflow-x:clip statt hidden — hidden macht body zum Scroll-Container und friert das Fenster-Scrolling ein */
@@ -72,9 +63,7 @@
   /* Feiner Film-Grain über allem — hochwertige Textur */
   body::after { content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.30; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"); }
-  .ph { outline:1px dashed rgba(139,92,246,.55); outline-offset:2px; }
   .badge-ph { background:rgba(139,92,246,.10); color:#5B21B6; border:1px solid rgba(139,92,246,.30); }
-  .eyebrow { letter-spacing:.22em; }
 
   /* ============ NAV: scrolled state ============ */
   #nav { transition:box-shadow .3s, background-color .3s; }
@@ -124,7 +113,9 @@
   .reveal-flow .word {
     --reveal:0%;
     display:inline-block;
-    background:linear-gradient(90deg,#0A0C10 0%,#0A0C10 50%,#B9C0CC 50%,#B9C0CC 100%);
+    /* Ungelesener Zustand #7C8694 statt #B9C0CC: letzteres lag bei 1,56:1 auf Papier
+       und war ohne Scroll faktisch unlesbar. Jetzt 4,6:1 — WCAG AA. */
+    background:linear-gradient(90deg,#0A0C10 0%,#0A0C10 50%,#7C8694 50%,#7C8694 100%);
     background-size:220% 100%;
     background-position:calc(100% - var(--reveal)) 0;
     -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -132,7 +123,7 @@
 
   /* ============ LOGO-MARQUEE ============ */
   .logo-item { display:inline-flex; align-items:center; height:30px; }
-  .logo-item img { height:26px; width:auto; filter:grayscale(1) opacity(.5); transition:filter .3s; }
+  .logo-item img { height:26px; width:auto; filter:grayscale(1) opacity(.68); transition:filter .3s; }
   .logo-item:hover img { filter:grayscale(0) opacity(1); }
   .wordmark { color:#7C8694; opacity:.85; white-space:nowrap; transition:color .3s; }
   .logo-item:hover .wordmark { color:#0A0C10; }
@@ -146,8 +137,26 @@
   /* ============ WORK(ED)-WITH LABEL + HOVER-INFO-TOOLTIP ============ */
   .worked-label { font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#0A0C10; }
   .worked-label .paren { color:#8B5CF6; }
-  .worked-hint { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#9AA2AE; }
-  .logo-item { outline:none; cursor:default; }
+  .worked-hint { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#5F5F58; }
+  .logo-item { cursor:default; }
+  .hint-touch { display:none; }
+  @media (hover: none) {
+    .hint-hover { display:none; }
+    .hint-touch { display:inline; }
+    .logo-item { cursor:pointer; }
+  }
+
+  /* ============ FOKUS: global sichtbar (WCAG 2.4.7) ============ */
+  :focus-visible {
+    outline:2px solid #5B21B6;
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  .banner :focus-visible, .glow-blue :focus-visible { outline-color:#C4B5FD; }
+  .sr-only {
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
   .brand-marquee-outer { position:relative; }
   /* Brand-Marquee: 3 identische Kopien → nahtloser Loop auch auf breiten Screens.
      to-Wert = eine Set-Breite (33.3333% minus g/3, g=3.5rem → 1.1667rem), sonst mini-Sprung am Übergang.
@@ -185,7 +194,6 @@
   @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(calc(-50% - 1.75rem))} }
   .marquee-wrap:hover .marquee, .marquee-wrap.is-paused .marquee { animation-play-state:paused; }
   .fade-x { -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
-  .hscroll { scrollbar-width:none; } .hscroll::-webkit-scrollbar{display:none;}
 
   /* ============ ORG-CHART VERGLEICH ============ */
   .org-row { position:relative; }
@@ -232,7 +240,6 @@
   .faq.open .faq-icon { transform:rotate(45deg); }
 
   /* ============ MORE CASES: smooth expand/collapse ============ */
-  .more-cases { max-height:0; overflow:hidden; transition:max-height .6s cubic-bezier(.22,.61,.36,1); }
 
   /* ============ CTA: Premium-Button — Glow, Licht-Sweep, Pfeil-Animation ============ */
   .cta-primary { position:relative; overflow:hidden;
@@ -258,9 +265,6 @@
     opacity:0; transition:opacity .35s; }
   .card-hover:hover::after { opacity:1; }
   /* Carousel: mit der Maus greifen und swipen */
-  .hscroll { cursor:grab; }
-  .hscroll.dragging { cursor:grabbing; scroll-snap-type:none; user-select:none; }
-  .hscroll.dragging * { pointer-events:none; }
   /* Stat-Kacheln: Tint + Zahl wächst leicht */
   .stat-tile { transition:background-color .3s; }
   .stat-tile:hover { background:#FAF8FF; }
@@ -281,8 +285,26 @@
     #scroll-progress { display:none; }
     .cta-primary::before { display:none; }
     .stat-tile:hover > div:first-child { transform:none; }
+    /* Film-Grain: nicht animiert, aber der teuerste Composite-Layer der Seite */
+    body::after { display:none; }
     html { scroll-behavior:auto; }
+    #sticky-cta { transition:none; }
   }
+
+  /* ============ STICKY MOBILE-CTA ============ */
+  /* Zwischen Beweis-Banner und Angebots-Sektion liegt sonst der halbe Scrollweg ohne CTA. */
+  #sticky-cta {
+    position:fixed; left:0; right:0; bottom:0; z-index:45;
+    padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+    background:rgba(239,237,230,.92);
+    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    border-top:1px solid #E5E2D8;
+    display:flex; align-items:center; gap:.9rem;
+    transform:translateY(110%); opacity:0; pointer-events:none;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1), opacity .25s;
+  }
+  #sticky-cta.is-on { transform:none; opacity:1; pointer-events:auto; }
+  @media (min-width: 768px) { #sticky-cta { display:none; } }
 </style>
 
 <script type="application/ld+json">
@@ -312,7 +334,7 @@
       "@id": "https://brand-scale.eu/#aid-muric",
       "name": "Aid Muric",
       "jobTitle": "Gründer",
-      "image": "https://brand-scale.eu/images/aid-muric.jpg",
+      "image": "https://brand-scale.eu/images/aid-muric.webp",
       "worksFor": { "@id": "https://brand-scale.eu/#organization" }
     },
     {
@@ -364,6 +386,14 @@
 </script>
 </head>
 <body class="font-sans antialiased selection:bg-accent/20">
+<noscript>
+  <style>
+    /* Ohne JS greift kein IntersectionObserver — sonst bliebe die halbe Seite bei opacity:0 */
+    .rv, .rv-scale, .hero-in, .org-node, .step-dot { opacity:1 !important; transform:none !important; }
+    .compare-section .draw-line { stroke-dashoffset:0 !important; }
+    .marquee-track { animation:none !important; }
+  </style>
+</noscript>
 
 <div id="scroll-progress"></div>
 
@@ -404,6 +434,8 @@
   </div>
 </header>
 
+<main>
+
 <!-- ============ HERO (Skeptiker-First) ============ -->
 <section id="top" class="relative pt-40 pb-16 overflow-hidden hex-light">
   <div class="par-1 absolute -top-40 left-1/2 w-[820px] h-[520px] pointer-events-none"><div class="orb w-full h-full rounded-full bg-accent2/20 blur-[150px]"></div></div>
@@ -419,11 +451,11 @@
       die keine <span class="strike-acc sm:whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
     </h1>
     <p class="hero-in d3 mt-8 text-lg text-mute max-w-2xl mx-auto">
-      Wir bauen das komplette Anfrage-System für <span class="rotator" aria-label="Coaches, Berater, Experten, Unternehmer"><span class="rotator-track" aria-hidden="true"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus dem, was du schon hast.
+      Wir bauen das komplette Anfrage-System für <span class="sr-only">Coaches, Berater, Experten und Unternehmer</span><span class="rotator" aria-hidden="true"><span class="rotator-track"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus dem, was du schon hast.
       Erst im Kleinen bewiesen, dann skaliert.
     </p>
     <div class="hero-in d4 mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#kontakt" class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 justify-center transition">
+      <a href="#kontakt" data-magnet class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 justify-center transition">
         Erstgespräch buchen
         <span class="cta-arrow grid place-items-center w-9 h-9 rounded-full bg-white/20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -446,47 +478,47 @@
 <section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-white">
   <div class="text-center mb-7">
     <p class="worked-label">work<span class="paren">(ed)</span> with</p>
-    <p class="worked-hint mt-2">Fahr über eine Marke →</p>
+    <p class="worked-hint mt-2"><span class="hint-hover">Fahr über eine Marke →</span><span class="hint-touch">Tipp auf eine Marke →</span></p>
   </div>
   <div class="marquee-wrap overflow-hidden">
     <div class="fade-x">
       <div class="marquee items-center">
         <!-- Set 1 -->
-        <span class="logo-item" tabindex="0" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt="ZDF"></span>
+        <span class="logo-item" tabindex="0" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt="ZDF" width="44" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" tabindex="0" data-info="Opening-Video &amp; VFX-Edit."><span class="wordmark wm-serif">Lindt</span></span>
-        <span class="logo-item" tabindex="0" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt="Wiener Linien"></span>
-        <span class="logo-item" tabindex="0" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt="Sidemen"></span>
+        <span class="logo-item" tabindex="0" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt="Wiener Linien" width="111" height="26" loading="lazy" decoding="async"></span>
+        <span class="logo-item" tabindex="0" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt="Sidemen" width="90" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><span class="wordmark wm-caps">Viral Vision</span></span>
         <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Niklas Wauch</span></span>
         <span class="logo-item" tabindex="0" data-info="Konzeptierung für organisches Wachstum." data-link="https://www.instagram.com/therealassad/" data-link-label="@therealassad"><span class="wordmark wm-script">TheRealAssad</span></span>
         <span class="logo-item" tabindex="0" data-info="Reel-Gestaltung."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
-        <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt="Jameson Connects"></span>
+        <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt="Jameson Connects" width="41" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><span class="wordmark wm-light">Ali Badbanker</span></span>
         <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
         <span class="logo-item" tabindex="0" data-info="Branding-Unterstützung."><span class="wordmark wm-mono">Mietix</span></span>
         <!-- Set 2 (dup für nahtlosen Loop) -->
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt="" width="44" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Opening-Video &amp; VFX-Edit."><span class="wordmark wm-serif">Lindt</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt=""></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt="" width="111" height="26" loading="lazy" decoding="async"></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt="" width="90" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-caps">Viral Vision</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Niklas Wauch</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Konzeptierung für organisches Wachstum." data-link="https://www.instagram.com/therealassad/" data-link-label="@therealassad"><span class="wordmark wm-script">TheRealAssad</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Reel-Gestaltung."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt="" width="41" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-light">Ali Badbanker</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-mono">Mietix</span></span>
         <!-- Set 3 (dup für nahtlosen Loop auf breiten Screens) -->
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt="" width="44" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Opening-Video &amp; VFX-Edit."><span class="wordmark wm-serif">Lindt</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt=""></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt="" width="111" height="26" loading="lazy" decoding="async"></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt="" width="90" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-caps">Viral Vision</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Niklas Wauch</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Konzeptierung für organisches Wachstum." data-link="https://www.instagram.com/therealassad/" data-link-label="@therealassad"><span class="wordmark wm-script">TheRealAssad</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Reel-Gestaltung."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt=""></span>
+        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt="" width="41" height="26" loading="lazy" decoding="async"></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-light">Ali Badbanker</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-mono">Mietix</span></span>
@@ -671,7 +703,7 @@
         <p class="mono text-[11px] uppercase text-accent2">Ehrlich gesagt</p>
         <p class="text-lg font-semibold mt-2.5 max-w-xl leading-snug">Wir zeigen dir keine erfundenen Zahlen — nur echte, die du live prüfen kannst. <span class="grad-text">Deine Marke wird der nächste Case.</span></p>
       </div>
-      <a href="#kontakt" class="shrink-0 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl inline-flex items-center gap-3 transition">
+      <a href="#kontakt" data-magnet class="shrink-0 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl inline-flex items-center gap-3 transition">
         Beweis-Sprint starten
         <span class="grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -837,7 +869,7 @@
           <li class="flex gap-2.5"><span class="text-accent2">•</span> Reporting auf Anfragen und Umsatz, nicht auf Likes</li>
           <li class="flex gap-2.5"><span class="text-accent2">•</span> Dir gehören Accounts, Daten und Creatives</li>
         </ul>
-        <a href="#kontakt" class="mt-8 flex items-center justify-between w-full grad-btn cta-primary font-semibold px-6 py-3.5 rounded-xl transition">
+        <a href="#kontakt" data-magnet class="mt-8 flex items-center justify-between w-full grad-btn cta-primary font-semibold px-6 py-3.5 rounded-xl transition">
           Erstgespräch buchen <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -867,7 +899,7 @@
     <div class="grid md:grid-cols-3 gap-6 mt-8">
       <div class="rv card card-hover rounded-2xl p-8">
         <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
-          <img src="images/ablauf-1-erstgespraech.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
+          <img src="images/ablauf-1-erstgespraech.webp" alt="Illustration: zwei Sprechblasen — das Erstgespräch als Analyse und Fit-Check" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1400" height="800">
         </div>
         <h3 class="text-xl font-bold">Erstgespräch <span class="text-mute font-medium text-sm">· 45 Min, kein Pitch</span></h3>
         <p class="text-sm text-mute mt-3">Direkt mit dem Gründer. Wir schauen auf dein Business, deine Zielgruppe und deine Zahlen — und sagen dir ehrlich, ob wir passen. Wenn nicht, sagen wir auch das.</p>
@@ -885,7 +917,7 @@
       </div>
       <div class="rv card card-hover rounded-2xl p-8" style="--d:.2s">
         <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
-          <img src="images/ablauf-2-fundament.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
+          <img src="images/ablauf-2-fundament.webp" alt="Illustration: gestapelte Bausteine — das Fundament aus Positionierung, Content und Setup" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1400" height="800">
         </div>
         <h3 class="text-xl font-bold">Fundament &amp; System</h3>
         <p class="text-sm text-mute mt-3">Deep-Dive in deine Marke: Vision, Positionierung, idealer Kunde. Erst Klarheit, dann System. Wir bauen die Strategie mit dir und richten alles auf deine Marke ein.</p>
@@ -897,7 +929,7 @@
       </div>
       <div class="rv card card-hover rounded-2xl p-8" style="--d:.4s">
         <div class="w-full aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 mb-7">
-          <img src="images/ablauf-3-skalierung.png" alt="" class="w-full h-full object-cover" loading="lazy" width="2688" height="1536">
+          <img src="images/ablauf-3-skalierung.webp" alt="Illustration: aufsteigende Balken — Skalierung erst nach dem Beweis-Sprint" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1400" height="800">
         </div>
         <h3 class="text-xl font-bold">Beweis-Sprint, dann Skalierung</h3>
         <p class="text-sm text-mute mt-3">Wir starten bewusst klein: ein messbares Test-Setup mit klarem Ziel — der Beweis-Sprint. Du siehst jede Zahl. Skaliert wird nur, was sich bewiesen hat — nicht, was sich gut anhört.</p>
@@ -957,7 +989,7 @@
     </div>
     <div class="rv card card-hover rounded-2xl overflow-hidden mt-14 grid md:grid-cols-[minmax(0,0.9fr)_1.1fr]">
       <div class="relative min-h-[340px] md:min-h-full">
-        <img src="images/aid-muric.jpg" alt="Aid Muric, Gründer von Brandscale.eu" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" width="1528" height="1486">
+        <img src="images/aid-muric.webp" alt="Aid Muric, Gründer von Brandscale.eu" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" decoding="async" width="900" height="875">
       </div>
       <div class="p-8 sm:p-10 flex flex-col justify-center">
         <h3 class="text-2xl font-bold tracking-tight">Aid Muric</h3>
@@ -994,46 +1026,46 @@
     <h2 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
     <div class="mt-12 space-y-3">
       <div class="rv faq card rounded-xl">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-1">
           <span class="font-semibold">„Schon wieder eine Agentur, die viel verspricht."</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p></div>
+        <div class="faq-body px-6" id="faq-panel-1" role="region"><p class="pb-5 text-mute text-sm">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.06s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-2">
           <span class="font-semibold">„Ich wurde schon mal verbrannt — lange Verträge, Intransparenz."</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Dir gehören Accounts, Daten und Content — auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Die laufende Zusammenarbeit startet mit drei Monaten, damit überhaupt etwas messbar werden kann — der Beweis-Sprint davor ist laufzeitfrei. Keine Jahresbindung, kein Lock-in.</p></div>
+        <div class="faq-body px-6" id="faq-panel-2" role="region"><p class="pb-5 text-mute text-sm">Dir gehören Accounts, Daten und Content — auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Die laufende Zusammenarbeit startet mit drei Monaten, damit überhaupt etwas messbar werden kann — der Beweis-Sprint davor ist laufzeitfrei. Keine Jahresbindung, kein Lock-in.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.12s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-3">
           <span class="font-semibold">„Muss ich mich im Erstgespräch entscheiden?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Du bekommst danach ein schriftliches Angebot und entscheidest in Ruhe — ohne Countdown, ohne Nachfass-Druck.</p></div>
+        <div class="faq-body px-6" id="faq-panel-3" role="region"><p class="pb-5 text-mute text-sm">Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Du bekommst danach ein schriftliches Angebot und entscheidest in Ruhe — ohne Countdown, ohne Nachfass-Druck.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.18s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-4">
           <span class="font-semibold">„Woher weiß ich, dass ihr wirklich liefert?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Gar nicht — noch nicht. Genau deshalb starten wir mit dem Beweis-Sprint: einem kleinen, messbaren Test-Setup statt einem großen Paket. Du siehst alle Zahlen von Tag eins und skalierst erst, wenn die Belege da sind.</p></div>
+        <div class="faq-body px-6" id="faq-panel-4" role="region"><p class="pb-5 text-mute text-sm">Gar nicht — noch nicht. Genau deshalb starten wir mit dem Beweis-Sprint: einem kleinen, messbaren Test-Setup statt einem großen Paket. Du siehst alle Zahlen von Tag eins und skalierst erst, wenn die Belege da sind.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.24s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-5">
           <span class="font-semibold">„Ich habe keine Zeit, ständig Content zu drehen."</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
+        <div class="faq-body px-6" id="faq-panel-5" role="region"><p class="pb-5 text-mute text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.3s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5">
+        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-6">
           <span class="font-semibold">„Funktioniert das auch in meiner Nische?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6"><p class="pb-5 text-mute text-sm">Das klären wir vorab im Erstgespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
+        <div class="faq-body px-6" id="faq-panel-6" role="region"><p class="pb-5 text-mute text-sm">Das klären wir vorab im Erstgespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
       </div>
     </div>
   </div>
@@ -1053,11 +1085,11 @@
           <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">2</span> <span><strong class="text-white">Erstgespräch, 45 Minuten</strong> — direkt mit dem Gründer. Analyse und Fit-Check, kein Pitch.</span></li>
           <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">3</span> <span><strong class="text-white">Ehrliche Einschätzung + Angebot in 72 h</strong> — und du entscheidest in Ruhe.</span></li>
         </ol>
-        <a href="https://cal.com/aid-muric-thqgsz/erstgespraech" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl transition">
+        <a href="https://cal.com/aid-muric-thqgsz/erstgespraech" target="_blank" rel="noopener" data-magnet class="mt-8 inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl transition">
           Erstgespräch buchen
           <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <p class="mt-4 mono text-[10px] uppercase text-white/45">Kein Pitch. Keine Setter. Du entscheidest danach in Ruhe.</p>
+        <p class="mt-4 mono text-[11px] uppercase text-white/70">45 Minuten. Danach weißt du, woran du bist.</p>
       </div>
       <!-- sekundär -->
       <div class="rv card rounded-2xl p-10" style="--d:.15s">
@@ -1103,7 +1135,7 @@
           <textarea id="cf-message" required name="message" rows="4" placeholder="Kurz: wo stehst du gerade, was willst du erreichen?" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition resize-y"></textarea>
         </div>
         <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
-          <button type="submit" class="grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 transition">
+          <button type="submit" data-magnet class="grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 transition">
             <span id="cfBtnText">Anfrage senden</span>
             <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </button>
@@ -1116,6 +1148,20 @@
 </section>
 
 <!-- ============ FOOTER ============ -->
+</main>
+
+<!-- Sticky-CTA (nur Mobile, erscheint nach dem Hero, verschwindet bei der Kontakt-Sektion) -->
+<div id="sticky-cta" aria-hidden="true">
+  <div class="min-w-0 flex-1">
+    <p class="text-sm font-semibold leading-tight">45 Min. Erstgespräch</p>
+    <p class="mono text-[10px] uppercase text-mute mt-0.5">Direkt mit dem Gründer.</p>
+  </div>
+  <a href="#kontakt" class="shrink-0 grad-btn text-sm font-semibold px-5 py-2.5 rounded-xl inline-flex items-center gap-2 transition" tabindex="-1">
+    Termin
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
 <footer class="border-t border-line py-14 bg-white">
   <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-4 gap-10">
     <div>
@@ -1162,23 +1208,46 @@
 </footer>
 
 <script>
+// Sicherheitsnetz: Alle Scroll-Effekte starten aus einem versteckten Zustand (.rv{opacity:0},
+// .word{--reveal:0%}). Bricht das Skript irgendwo ab, blieben große Teile der Seite unsichtbar
+// bzw. bei Kontrast 1,5:1 stehen. Dieser Handler stellt in dem Fall alles sofort dar.
+window.addEventListener('error', function(){
+  try {
+    document.querySelectorAll('.rv, .rv-scale').forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.reveal-flow .word').forEach(function(w){ w.style.setProperty('--reveal','100%'); });
+    document.querySelectorAll('.reveal-flow').forEach(function(p){ p.style.color = '#0A0C10'; });
+    document.querySelectorAll('.compare-section, .marquee-wrap').forEach(function(s){
+      s.classList.add('is-visible'); s.classList.remove('is-paused');
+    });
+  } catch (e) { /* letzter Fallback: nichts tun */ }
+});
+
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ----- Nav: Schatten sobald gescrollt -----
   var nav = document.getElementById('nav');
-  function onNavScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
-  window.addEventListener('scroll', onNavScroll, { passive:true });
-  onNavScroll();
+  if (nav) {
+    var onNavScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onNavScroll, { passive:true });
+    onNavScroll();
+  }
 
   // ----- Mobile-Menü -----
   var navToggle = document.getElementById('nav-toggle');
   var mobileMenu = document.getElementById('mobile-menu');
   if (navToggle && mobileMenu) {
+    var pageMain = document.querySelector('main');
+    var pageFoot = document.querySelector('footer');
     function setOpen(open){
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       navToggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       mobileMenu.classList.toggle('is-open', open);
+      // Bei offenem Menü nicht in die Seite dahinter tabben können
+      [pageMain, pageFoot].forEach(function(el){
+        if (!el) return;
+        if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert');
+      });
     }
     navToggle.addEventListener('click', function(){ setOpen(navToggle.getAttribute('aria-expanded') !== 'true'); });
     mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
@@ -1244,15 +1313,34 @@
       clearTimeout(hideTimer);
       hideTimer = setTimeout(function(){ if (!overItem && !overTip) tip.classList.remove('is-on'); }, 220);
     }
+    var touchItem = null;
     outer.querySelectorAll('.logo-item').forEach(function(item){
       item.addEventListener('mouseenter', function(){ overItem = true; clearTimeout(hideTimer); show(item); });
       item.addEventListener('mouseleave', function(){ overItem = false; scheduleHide(); });
       item.addEventListener('focus', function(){ overItem = true; clearTimeout(hideTimer); show(item); });
+      // Beim Weitertabben nicht sofort schließen — sonst ist der Link im Tooltip
+      // per Tastatur nie erreichbar.
       item.addEventListener('blur', function(){ overItem = false; scheduleHide(); });
+      // Touch: Tippen öffnet, erneutes Tippen schließt. Ohne das war der Tooltip
+      // (inkl. ZDF-Doku- und Instagram-Link) auf dem Handy nicht erreichbar.
+      item.addEventListener('touchstart', function(e){
+        e.preventDefault();
+        if (touchItem === item) { touchItem = null; overItem = false; tip.classList.remove('is-on'); return; }
+        touchItem = item; overItem = true; clearTimeout(hideTimer); show(item);
+      }, { passive:false });
     });
     tip.addEventListener('mouseenter', function(){ overTip = true; clearTimeout(hideTimer); });
     tip.addEventListener('mouseleave', function(){ overTip = false; scheduleHide(); });
-    window.addEventListener('scroll', function(){ overItem = overTip = false; tip.classList.remove('is-on'); }, { passive:true });
+    tip.addEventListener('focusin', function(){ overTip = true; clearTimeout(hideTimer); });
+    tip.addEventListener('focusout', function(){ overTip = false; scheduleHide(); });
+    document.addEventListener('touchstart', function(e){
+      if (!touchItem || tip.contains(e.target) || touchItem.contains(e.target)) return;
+      touchItem = null; overItem = false; tip.classList.remove('is-on');
+    }, { passive:true });
+    window.addEventListener('scroll', function(){
+      if (touchItem) return;   // Touch-Tooltip nicht durch Marquee-Scroll wegreißen
+      overItem = overTip = false; tip.classList.remove('is-on');
+    }, { passive:true });
   })();
 
   // ----- Kontaktformular → Web3Forms (statisch, kein Server nötig) -----
@@ -1279,6 +1367,8 @@
             btn.textContent = 'Gesendet ✓';
             status.textContent = 'Danke! Wir melden uns innerhalb von 24 h.';
             status.style.color = '#15803d';
+            // Zurücksetzen, sonst zeigt ein zweiter Versuch nie wieder einen Ladezustand
+            setTimeout(function(){ btn.textContent = 'Anfrage senden'; }, 4000);
           } else { throw new Error(j.message || 'fail'); }
         })
         .catch(function(){
@@ -1338,31 +1428,40 @@
   var END_VIEWPORT   = 0.30; // letztes Wort fertig
   var RAMP_WORDS     = 1;    // 1 = strikt Wort für Wort
 
+  // Wrappt nur reine Text-Kinder. Vorher wurde el.textContent überschrieben — damit wäre
+  // jedes verschachtelte Markup (<strong>, <span class="grad-text">) still verschwunden.
   function prepareFlow(el){
     if (el.dataset.prepared === '1') return;
     el.dataset.prepared = '1';
-    var raw = el.textContent;
-    el.textContent = '';
-    var words = raw.split(/\s+/).filter(Boolean);
-    var frag = document.createDocumentFragment();
-    words.forEach(function(w, i){
-      var span = document.createElement('span');
-      span.className = 'word';
-      span.textContent = w;
-      frag.appendChild(span);
-      if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
+    Array.prototype.slice.call(el.childNodes).forEach(function(node){
+      if (node.nodeType !== 3) return;                       // Elementknoten unangetastet lassen
+      var words = node.nodeValue.split(/\s+/).filter(Boolean);
+      if (!words.length) return;
+      var frag = document.createDocumentFragment();
+      words.forEach(function(w, i){
+        var span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = w;
+        frag.appendChild(span);
+        if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
+      });
+      el.replaceChild(frag, node);
     });
-    el.appendChild(frag);
   }
-  document.querySelectorAll('.reveal-flow').forEach(prepareFlow);
+  // Einmalig gecacht statt bei jedem Scroll-Frame neu abgefragt.
+  var flowParas = Array.prototype.slice.call(document.querySelectorAll('.reveal-flow'));
+  flowParas.forEach(prepareFlow);
+  var flowWords = flowParas.map(function(p){
+    return Array.prototype.slice.call(p.querySelectorAll('.word'));
+  });
 
   function updateScrollReveal(){
     var viewportH = window.innerHeight;
     var startY = viewportH * START_VIEWPORT;
     var endY   = viewportH * END_VIEWPORT;
     var range  = startY - endY;
-    document.querySelectorAll('.reveal-flow').forEach(function(para){
-      var words = para.querySelectorAll('.word');
+    flowParas.forEach(function(para, pi){
+      var words = flowWords[pi];
       var total = words.length;
       if (!total || range <= 0) return;
       var rect = para.getBoundingClientRect();
@@ -1421,6 +1520,7 @@
       var faq = btn.closest('.faq');
       var body = faq.querySelector('.faq-body');
       var isOpen = faq.classList.contains('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
       if (isOpen) {
         body.style.maxHeight = body.scrollHeight + 'px';
         void body.offsetHeight; // Reflow, damit die Transition einen Startwert hat
@@ -1438,37 +1538,31 @@
     });
   });
 
-  // ----- Weitere Stimmen: smooth expand/collapse -----
-  var moreBtn = document.getElementById('more-cases-toggle');
-  if (moreBtn) {
-    var target = document.getElementById(moreBtn.dataset.target);
-    if (target && target.getAttribute('data-collapsed') !== 'false') target.style.maxHeight = '0';
-    moreBtn.addEventListener('click', function(){
-      var collapsed = target.getAttribute('data-collapsed') !== 'false';
-      var textEl = moreBtn.querySelector('.toggle-text');
-      var chev = moreBtn.querySelector('.toggle-chevron');
-      if (collapsed) {
-        target.setAttribute('data-collapsed', 'false');
-        target.style.maxHeight = target.scrollHeight + 'px';
-        moreBtn.setAttribute('aria-expanded', 'true');
-        if (textEl) textEl.textContent = 'Weitere Stimmen verbergen';
-        if (chev) chev.style.transform = 'rotate(180deg)';
-        target.addEventListener('transitionend', function onEnd(e){
-          if (e.propertyName !== 'max-height') return;
-          if (target.getAttribute('data-collapsed') === 'false') target.style.maxHeight = 'none';
-          target.removeEventListener('transitionend', onEnd);
-        });
-      } else {
-        target.style.maxHeight = target.scrollHeight + 'px';
-        void target.offsetHeight;
-        target.setAttribute('data-collapsed', 'true');
-        target.style.maxHeight = '0';
-        moreBtn.setAttribute('aria-expanded', 'false');
-        if (textEl) textEl.textContent = 'Weitere Stimmen anzeigen';
-        if (chev) chev.style.transform = '';
-      }
-    });
-  }
+  // ----- Sticky Mobile-CTA: ab Ende Hero bis Kontakt-Sektion -----
+  (function(){
+    var bar = document.getElementById('sticky-cta');
+    var hero = document.getElementById('top');
+    var kontakt = document.getElementById('kontakt');
+    if (!bar || !hero) return;
+    var link = bar.querySelector('a');
+    function setShown(on){
+      bar.classList.toggle('is-on', on);
+      bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+      link.setAttribute('tabindex', on ? '0' : '-1');
+    }
+    function update(){
+      var pastHero = hero.getBoundingClientRect().bottom < 0;
+      var atKontakt = kontakt ? kontakt.getBoundingClientRect().top < window.innerHeight * 0.85 : false;
+      setShown(pastHero && !atKontakt);
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ ticking = false; update(); });
+    }, { passive:true });
+    update();
+  })();
 
   // ----- Scroll-Progress-Bar -----
   var prog = document.getElementById('scroll-progress');
@@ -1485,62 +1579,58 @@
 
   var finePointer = window.matchMedia('(pointer: fine)').matches;
 
-  // ----- Spotlight-Position + 3D-Tilt auf Karten -----
+  // ----- Spotlight-Position + 3D-Tilt auf Karten (rAF-gedrosselt) -----
   if (finePointer && !reduceMotion) {
     document.querySelectorAll('.card-hover').forEach(function(card){
-      card.addEventListener('mousemove', function(e){
-        var r = card.getBoundingClientRect();
-        var x = e.clientX - r.left, y = e.clientY - r.top;
-        card.style.setProperty('--mx', x + 'px');
-        card.style.setProperty('--my', y + 'px');
-        var ry = ((x / r.width) - .5) * 6;   // max ±3°
-        var rx = (.5 - (y / r.height)) * 6;
-        card.style.transition = 'transform .12s ease-out, box-shadow .35s, border-color .35s';
+      var rect = null, pending = false, mx = 0, my = 0;
+      function apply(){
+        pending = false;
+        if (!rect) return;
+        var ry = ((mx / rect.width) - .5) * 6;   // max ±3°
+        var rx = (.5 - (my / rect.height)) * 6;
+        card.style.setProperty('--mx', mx + 'px');
+        card.style.setProperty('--my', my + 'px');
         card.style.transform = 'perspective(750px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-4px)';
+      }
+      card.addEventListener('mouseenter', function(){
+        // getBoundingClientRect einmal pro Hover statt pro Mausbewegung — kein Layout-Thrashing
+        rect = card.getBoundingClientRect();
+        card.style.transition = 'transform .12s ease-out, box-shadow .35s, border-color .35s';
+      });
+      card.addEventListener('mousemove', function(e){
+        if (!rect) rect = card.getBoundingClientRect();
+        mx = e.clientX - rect.left; my = e.clientY - rect.top;
+        if (!pending) { pending = true; requestAnimationFrame(apply); }
       });
       card.addEventListener('mouseleave', function(){
+        rect = null;
         card.style.transition = 'transform .5s cubic-bezier(.22,.61,.36,1), box-shadow .35s, border-color .35s';
         card.style.transform = '';
       });
     });
   }
 
-  // ----- Magnetische CTA-Buttons -----
+  // ----- Magnetische CTA-Buttons (rAF-gedrosselt) -----
+  // data-magnet statt .grad-btn: die Klasse sitzt auch auf reinen Deko-Kacheln (Logo im
+  // Header/Footer), und ein inline transform im fixed Header erzeugt dort einen neuen
+  // Containing-Block.
   if (finePointer && !reduceMotion) {
-    document.querySelectorAll('a.grad-btn, button.grad-btn').forEach(function(btn){
-      btn.addEventListener('mousemove', function(e){
-        var r = btn.getBoundingClientRect();
-        var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-        var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    document.querySelectorAll('[data-magnet]').forEach(function(btn){
+      var rect = null, pending = false, dx = 0, dy = 0;
+      function apply(){
+        pending = false;
         btn.style.transform = 'translate(' + (dx * 5).toFixed(1) + 'px,' + (dy * 4).toFixed(1) + 'px)';
+      }
+      btn.addEventListener('mouseenter', function(){ rect = btn.getBoundingClientRect(); });
+      btn.addEventListener('mousemove', function(e){
+        if (!rect) rect = btn.getBoundingClientRect();
+        dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+        if (!pending) { pending = true; requestAnimationFrame(apply); }
       });
-      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+      btn.addEventListener('mouseleave', function(){ rect = null; btn.style.transform = ''; });
     });
   }
-
-  // ----- Carousel: Drag-to-Swipe mit der Maus (Touch swiped nativ) -----
-  document.querySelectorAll('.hscroll').forEach(function(sc){
-    var down = false, startX = 0, startScroll = 0, moved = false;
-    sc.addEventListener('mousedown', function(e){
-      down = true; moved = false; startX = e.pageX; startScroll = sc.scrollLeft;
-      sc.classList.add('dragging');
-      e.preventDefault(); // kein natives Bild-/Text-Dragging
-    });
-    window.addEventListener('mousemove', function(e){
-      if (!down) return;
-      var dx = e.pageX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      sc.scrollLeft = startScroll - dx;
-    });
-    window.addEventListener('mouseup', function(){
-      if (!down) return;
-      down = false; sc.classList.remove('dragging');
-    });
-    // Nach einem Drag keinen Klick auf Karten/Links auslösen
-    sc.addEventListener('click', function(e){
-      if (moved) { e.preventDefault(); e.stopPropagation(); }
-    }, true);
-  });
 })();
 </script>
 </body>
