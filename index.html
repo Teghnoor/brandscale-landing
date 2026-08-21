@@ -126,8 +126,10 @@
   .logo-item { display:inline-flex; align-items:center; height:30px; }
   .logo-item img { height:26px; width:auto; filter:grayscale(1) opacity(.68); transition:filter .3s; }
   .logo-item:hover img { filter:grayscale(0) opacity(1); }
-  .wordmark { color:#5F5A6B; opacity:.9; white-space:nowrap; transition:color .3s; }
-  .logo-item:hover .wordmark { color:#0A0C10; }
+  /* Kunden-Namen in Markenviolett (7,67:1 auf dem hellen Band). Die Bild-Logos daneben
+     bleiben bewusst grayscale: fremde Marken-Assets faerbt man nicht ein. */
+  .wordmark { color:#5B21B6; opacity:.92; white-space:nowrap; transition:color .3s, opacity .3s; }
+  .logo-item:hover .wordmark { color:#3B0F7A; opacity:1; }
   .wm-serif { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:22px; letter-spacing:.02em; }
   .wm-caps { font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:15px; letter-spacing:.28em; text-transform:uppercase; }
   .wm-mono { font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px; letter-spacing:.18em; text-transform:uppercase; }
