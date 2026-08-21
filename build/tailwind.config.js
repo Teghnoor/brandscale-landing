@@ -8,10 +8,12 @@ module.exports = {
         mono: ['IBM Plex Mono','ui-monospace','monospace'],
         display: ['Bricolage Grotesque','ui-sans-serif','system-ui','sans-serif'],
       },
+      /* Dunkles Farbsystem (Schwarz-Violett). Die Rollen sind gleich geblieben,
+         nur die Werte sind gedreht: ink = Text, paper = Grund, surface = Karte. */
       colors: {
-        ink:'#0A0C10', navy:'#1E1B4B',
-        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#5B21B6',
-        paper:'#EFEDE6', line:'#E5E2D8', mute:'#5F5F58',
+        ink:'#F4F2FA', navy:'#1E1B4B',
+        accent:'#8B5CF6', accent2:'#3B82F6', accentDeep:'#A78BFA',
+        paper:'#0B0912', surface:'#141021', line:'#26203A', mute:'#A29CB8',
       },
     },
   },

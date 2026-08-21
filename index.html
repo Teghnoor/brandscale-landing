@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Brandscale.eu — Planbare Anfragen für Coaches & Berater</title>
-<meta name="description" content="Content, Ads und Funnel aus dem, was du schon hast — erst im Kleinen bewiesen, dann skaliert. Für Coaches, Berater und Experten im DACH-Raum. Kein Pitch, keine Setter." />
+<title>Brandscale.eu — Warteliste für planbare Anfragen</title>
+<meta name="description" content="Wir nehmen pro Quartal nur eine feste Zahl neuer Marken auf. Video ansehen und Platz auf der Warteliste sichern — für Coaches, Berater und Experten im DACH-Raum. Kein Pitch, keine Setter." />
 <link rel="canonical" href="https://brand-scale.eu/" />
-<meta name="theme-color" content="#EFEDE6" />
+<meta name="theme-color" content="#0B0912" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
@@ -14,15 +14,15 @@
 <meta property="og:site_name" content="Brandscale.eu" />
 <meta property="og:locale" content="de_DE" />
 <meta property="og:url" content="https://brand-scale.eu/" />
-<meta property="og:title" content="Brandscale.eu — Planbare Anfragen für Coaches &amp; Berater" />
-<meta property="og:description" content="Erst beweisen. Dann skalieren. Content, Ads und Funnel aus dem, was du schon hast — für Experten, die keine Marketing-Versprechen mehr glauben." />
+<meta property="og:title" content="Brandscale.eu — Warteliste für planbare Anfragen" />
+<meta property="og:description" content="Erst beweisen. Dann skalieren. Begrenzte Plätze pro Quartal — Warteliste offen. Für Experten, die keine Marketing-Versprechen mehr glauben." />
 <meta property="og:image" content="https://brand-scale.eu/images/og-brandscale.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Brandscale.eu — Erst beweisen. Dann skalieren." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Brandscale.eu — Planbare Anfragen für Coaches &amp; Berater" />
-<meta name="twitter:description" content="Erst beweisen. Dann skalieren. Content, Ads und Funnel aus dem, was du schon hast." />
+<meta name="twitter:title" content="Brandscale.eu — Warteliste für planbare Anfragen" />
+<meta name="twitter:description" content="Erst beweisen. Dann skalieren. Begrenzte Plätze pro Quartal — Warteliste offen." />
 <meta name="twitter:image" content="https://brand-scale.eu/images/og-brandscale.png" />
 
 <link rel="stylesheet" href="tailwind.css">
@@ -37,7 +37,7 @@
   @supports not (overflow: clip) {
     html, body { overflow-x:hidden; }
   }
-  body { background:#EFEDE6; color:#0A0C10; }
+  body { background:#0B0912; color:#F4F2FA; }
   /* Eigenes Typo-System: Bricolage für Headlines, Instrument Sans für Body, Plex Mono für Eyebrows */
   h1, h2, h3, h4 { font-family:'Bricolage Grotesque','Instrument Sans',ui-sans-serif,sans-serif; }
   .mono { font-family:'IBM Plex Mono',ui-monospace,monospace; letter-spacing:.12em; }
@@ -51,17 +51,18 @@
   .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
   .grad-btn:hover { filter:brightness(1.05); }
   .glow-blue { box-shadow:0 0 80px -20px rgba(139,92,246,.5); }
-  .card { background:#fff; border:1px solid #E8ECF2; box-shadow:0 6px 24px -12px rgba(20,22,40,.14),0 1px 2px rgba(10,12,16,.04); }
+  .card { background:#141021; border:1px solid #241D38; box-shadow:0 10px 34px -16px rgba(0,0,0,.75),0 1px 0 rgba(255,255,255,.04) inset; }
   .card-hover { transition:transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s, border-color .35s; }
-  .card-hover:hover { border-color:#DDD6FE; box-shadow:0 18px 50px -20px rgba(139,92,246,.35); transform:translateY(-4px); }
+  .card-hover:hover { border-color:rgba(167,139,250,.45); box-shadow:0 18px 50px -20px rgba(139,92,246,.45); transform:translateY(-4px); }
   /* numbered dark banners */
   .banner { background:radial-gradient(120% 180% at 15% 0%,#4C1D95 0%,#1E1B4B 45%,#12102E 100%); }
   /* Feines Punkt-Raster statt Hexagon-Waben — dezent, premium */
   .hex { background-image:radial-gradient(rgba(167,139,250,.10) 1px, transparent 1.6px); background-size:23px 23px; }
   .banner.hex { background-color:#1E1B4B; background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.6px),radial-gradient(130% 190% at 12% -10%,#4C1D95 0%,#241C5C 42%,#12102E 100%); background-size:24px 24px, cover; }
-  .hex-light { background-image:radial-gradient(rgba(139,92,246,.05) 1px, transparent 1.6px); background-size:23px 23px; }
+  .hex-light { background-image:radial-gradient(rgba(167,139,250,.09) 1px, transparent 1.6px); background-size:23px 23px; }
   /* Feiner Film-Grain über allem — hochwertige Textur */
-  body::after { content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.30; mix-blend-mode:multiply;
+  /* Auf dunklem Grund wuerde multiply den Grain unsichtbar machen — overlay haelt die Textur. */
+  body::after { content:""; position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.20; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"); }
   .badge-ph { background:rgba(139,92,246,.10); color:#5B21B6; border:1px solid rgba(139,92,246,.30); }
 
@@ -115,7 +116,7 @@
     display:inline-block;
     /* Ungelesener Zustand #7C8694 statt #B9C0CC: letzteres lag bei 1,56:1 auf Papier
        und war ohne Scroll faktisch unlesbar. Jetzt 4,6:1 — WCAG AA. */
-    background:linear-gradient(90deg,#0A0C10 0%,#0A0C10 50%,#7C8694 50%,#7C8694 100%);
+    background:linear-gradient(90deg,#F4F2FA 0%,#F4F2FA 50%,#5B5573 50%,#5B5573 100%);
     background-size:220% 100%;
     background-position:calc(100% - var(--reveal)) 0;
     -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -125,7 +126,7 @@
   .logo-item { display:inline-flex; align-items:center; height:30px; }
   .logo-item img { height:26px; width:auto; filter:grayscale(1) opacity(.68); transition:filter .3s; }
   .logo-item:hover img { filter:grayscale(0) opacity(1); }
-  .wordmark { color:#7C8694; opacity:.85; white-space:nowrap; transition:color .3s; }
+  .wordmark { color:#5F5A6B; opacity:.9; white-space:nowrap; transition:color .3s; }
   .logo-item:hover .wordmark { color:#0A0C10; }
   .wm-serif { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:22px; letter-spacing:.02em; }
   .wm-caps { font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:15px; letter-spacing:.28em; text-transform:uppercase; }
@@ -162,7 +163,7 @@
      to-Wert = eine Set-Breite (33.3333% minus g/3, g=3.5rem → 1.1667rem), sonst mini-Sprung am Übergang.
      Läuft IMMER durch — kein Hover-Stopp (nur offscreen pausiert für Performance). */
   .brand-marquee-outer .marquee { animation:bscroll 34s linear infinite; }
-  @keyframes bscroll { from{transform:translateX(0)} to{transform:translateX(calc(-33.3333% - 1.1667rem))} }
+  @keyframes bscroll { from{transform:translateX(0)} to{transform:translateX(calc(-50% - 1.75rem))} }
   .brand-marquee-outer .marquee-wrap:hover .marquee { animation-play-state:running; }
   .brand-marquee-outer .marquee-wrap.is-paused .marquee { animation-play-state:paused; }
   .brand-tip {
@@ -235,6 +236,8 @@
   .ablauf-section.is-visible .step-dot.s3 { transition-delay:1.3s; }
 
   /* ============ FAQ: smooth accordion (JS-gemessen) ============ */
+  /* Die Ablauf-Motive stehen auf weissem Grund — Rahmen + leichte Daempfung binden sie ein. */
+  .ablauf-section img { filter:brightness(.94) saturate(1.05); border:1px solid rgba(255,255,255,.10); }
   .faq-body { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.22,.61,.36,1); }
   .faq-icon { transition:transform .3s; }
   .faq.open .faq-icon { transform:rotate(45deg); }
@@ -267,15 +270,75 @@
   /* Carousel: mit der Maus greifen und swipen */
   /* Stat-Kacheln: Tint + Zahl wächst leicht */
   .stat-tile { transition:background-color .3s; }
-  .stat-tile:hover { background:#FAF8FF; }
+  .stat-tile:hover { background:rgba(139,92,246,.10); }
   .stat-tile > div:first-child { transition:transform .35s cubic-bezier(.22,.61,.36,1); }
   .stat-tile:hover > div:first-child { transform:scale(1.06); }
   /* FAQ-Karten: Akzent-Rand beim Drüberfahren */
   .faq { transition:border-color .3s; }
   .faq:hover { border-color:rgba(139,92,246,.35); }
 
+  /* Hellere Gradient-Variante für Text auf dunklem Grund (der dunkle Verlauf säuft im Video ab) */
+  .grad-text-lite { background:linear-gradient(100deg,#C4B5FD,#93C5FD); -webkit-background-clip:text; background-clip:text; color:transparent; padding:0 .07em; margin:0 -.07em; }
+
+  /* ============ VSL-HERO: Fullscreen-Video ============ */
+  /* isolate: sonst legt sich der Film-Grain (body::after, z-index:1) über das Video */
+  .vsl-hero { min-height:100svh; isolation:isolate; }
+  /* svh-Fallback für ältere Browser */
+  @supports not (height: 100svh) { .vsl-hero { min-height:100vh; } }
+  .vsl-media { position:absolute; inset:0; overflow:hidden; }
+  .vsl-media video, .vsl-media img { width:100%; height:100%; object-fit:cover; display:block; }
+  /* Scrim: hält den Text lesbar, weicht beim Abspielen zurück */
+  .vsl-scrim { position:absolute; inset:0; pointer-events:none; transition:opacity .5s ease;
+    background:linear-gradient(180deg, rgba(10,12,16,.80) 0%, rgba(10,12,16,.55) 42%, rgba(10,12,16,.92) 100%); }
+  .vsl-copy { transition:opacity .45s ease, transform .45s cubic-bezier(.22,.61,.36,1); }
+  .vsl-hero.is-playing .vsl-scrim { opacity:.12; }
+  .vsl-hero.is-playing .vsl-copy { opacity:0; transform:translateY(12px); pointer-events:none; }
+  /* Play-Knopf: sitzt mittig über dem Video, verschwindet beim Abspielen */
+  .vsl-play { position:relative; display:inline-grid; place-items:center; width:64px; height:64px; border-radius:9999px;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    transition:transform .3s cubic-bezier(.22,.61,.36,1), background-color .3s; }
+  @media (min-width:640px){ .vsl-play { width:78px; height:78px; } }
+  .vsl-play:hover { transform:scale(1.07); background:rgba(255,255,255,.24); }
+  .vsl-play::before { content:""; position:absolute; inset:-6px; border-radius:9999px; border:1px solid rgba(255,255,255,.35);
+    animation:vsl-ring 2.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes vsl-ring { 0%{transform:scale(1); opacity:.7} 70%,100%{transform:scale(1.35); opacity:0} }
+  /* Pause-Leiste erscheint erst während der Wiedergabe */
+  .vsl-stop { opacity:0; pointer-events:none; transition:opacity .3s; }
+  .vsl-hero.is-playing .vsl-stop { opacity:1; pointer-events:auto; }
+  .vsl-hero.is-playing .vsl-play { opacity:0; pointer-events:none; }
+
+  /* ============ NAV über dem dunklen Hero ============ */
+  #nav.over-hero { background:transparent; border-color:transparent; box-shadow:none; }
+  #nav.over-hero .nav-word { color:#fff; }
+  #nav.over-hero .nav-tld { color:rgba(255,255,255,.55); }
+  #nav.over-hero nav a { color:rgba(255,255,255,.78); }
+  #nav.over-hero nav a:hover { color:#fff; }
+  #nav.over-hero #nav-toggle { background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.30); color:#fff; }
+
+  /* ============ KNAPPHEIT: Countdown, Plätze, Balken ============ */
+  .cd { display:inline-flex; align-items:flex-start; gap:.35rem; font-family:'IBM Plex Mono',ui-monospace,monospace; }
+  .cd-unit { display:inline-flex; flex-direction:column; align-items:center; min-width:2.55rem;
+    border-radius:.55rem; padding:.3rem .1rem .25rem; background:rgba(139,92,246,.10); border:1px solid rgba(139,92,246,.28); }
+  .cd-unit b { font-size:1.05rem; font-weight:600; line-height:1.1; font-variant-numeric:tabular-nums; }
+  .cd-unit i { font-style:normal; font-size:.55rem; letter-spacing:.14em; text-transform:uppercase; opacity:.62; }
+  /* Dunkle Variante (Hero + Banner) */
+  .cd-dark .cd-unit { background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.26); color:#fff; }
+  /* Kompakt für die Sticky-Leiste */
+  .cd-mini { font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; letter-spacing:.06em; }
+
+  .slot-bar { height:7px; border-radius:9999px; background:rgba(10,12,16,.09); overflow:hidden; }
+  .slot-fill { height:100%; width:0; border-radius:9999px; background:linear-gradient(90deg,#8B5CF6,#3B82F6);
+    transition:width 1.4s cubic-bezier(.22,.61,.36,1); }
+  .slot-bar-dark { background:rgba(255,255,255,.14); }
+
+  /* Knappheits-Badge: dezenter Puls, damit die Zahl ins Auge fällt */
+  @keyframes scarce-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,.42)} 55%{box-shadow:0 0 0 8px rgba(139,92,246,0)} }
+  .scarce-dot { animation:scarce-pulse 2.4s ease-out infinite; }
+
   /* ============ Reduced Motion: alles ruhigstellen ============ */
   @media (prefers-reduced-motion: reduce) {
+    .vsl-play::before, .scarce-dot { animation:none !important; }
+    .slot-fill { transition:none !important; }
     .hero-in, .rv, .rv-scale, .org-node, .step-dot { opacity:1 !important; transform:none !important; transition:none !important; animation:none !important; }
     .rv-num, .ablauf-line { opacity:1 !important; transform:none !important; transition:none !important; }
     .orb, .orb2, .ping, .org-node--ai, .marquee, .rotator-track { animation:none !important; }
@@ -296,9 +359,9 @@
   #sticky-cta {
     position:fixed; left:0; right:0; bottom:0; z-index:45;
     padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
-    background:rgba(239,237,230,.92);
+    background:rgba(11,9,18,.94);
     -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
-    border-top:1px solid #E5E2D8;
+    border-top:1px solid #26203A;
     display:flex; align-items:center; gap:.9rem;
     transform:translateY(110%); opacity:0; pointer-events:none;
     transition:transform .35s cubic-bezier(.22,.61,.36,1), opacity .25s;
@@ -362,7 +425,7 @@
         {
           "@type": "Question",
           "name": "Muss ich mich im Erstgespräch entscheiden?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Du bekommst danach ein schriftliches Angebot und entscheidest in Ruhe — ohne Countdown, ohne Nachfass-Druck." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Danach bekommst du ein schriftliches Angebot und entscheidest in Ruhe. Die Frist auf dieser Seite betrifft nur die Aufnahme ins laufende Quartal — nicht deine Entscheidung. Nachgefasst wird einmal, nicht täglich." }
         },
         {
           "@type": "Question",
@@ -371,13 +434,8 @@
         },
         {
           "@type": "Question",
-          "name": "Ich habe keine Zeit, ständig Content zu drehen.",
-          "acceptedAnswer": { "@type": "Answer", "text": "Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden." }
-        },
-        {
-          "@type": "Question",
-          "name": "Funktioniert das auch in meiner Nische?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Das klären wir vorab im Erstgespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen." }
+          "name": "Wie läuft das mit der Warteliste?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wir nehmen pro Quartal nur eine feste Zahl neuer Marken auf, weil wir intensiv statt oberflächlich arbeiten. Wird ein Platz frei, gehen wir die Liste der Reihe nach durch und melden uns per E-Mail. Kein Setter, keine Automatik-Strecke, kein Verkaufsdruck — und wenn der Fit nicht passt, sagen wir das direkt." }
         }
       ]
     }
@@ -386,6 +444,7 @@
 </script>
 </head>
 <body class="font-sans antialiased selection:bg-accent/20">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bs-mark" viewBox="0 0 24 24"><g transform="translate(-7.090,-6.968) scale(0.034804)" fill="#ffffff"><g transform="translate(0,1096) scale(0.1,-0.1)"><path d="M5365 8809 c-114 -17 -408 -150 -627 -285 -51 -32 -147 -89 -213 -127 -66 -39 -176 -105 -245 -148 -69 -42 -172 -103 -230 -134 -58 -31 -175 -99 -260 -150 -85 -51 -213 -125 -285 -165 -71 -40 -195 -112 -275 -160 -80 -48 -201 -117 -270 -154 -594 -321 -573 -272 -568 -1301 5 -925 -51 -811 568 -1161 424 -240 425 -268 15 -490 -789 -427 -767 -589 145 -1061 85 -44 243 -132 350 -195 107 -63 245 -141 305 -173 178 -93 304 -164 400 -225 50 -31 149 -87 220 -125 72 -37 193 -107 270 -155 77 -48 165 -100 195 -115 30 -15 144 -74 252 -132 400 -212 501 -199 1043 137 72 44 192 113 268 153 76 39 187 104 245 143 59 39 179 108 267 154 88 46 214 118 280 160 66 42 183 110 260 150 77 40 215 117 306 171 91 53 233 134 315 179 270 148 415 259 449 343 40 97 49 1547 11 1667 -41 126 -193 238 -666 492 -235 126 -256 174 -140 318 408 512 286 1142 -275 1423 -155 77 -164 79 -495 86 -377 8 -374 7 -419 188 -120 476 -634 774 -1196 692z m389 -623 c392 -193 303 -527 -214 -808 -86 -47 -200 -113 -253 -146 -54 -34 -153 -92 -220 -128 -67 -37 -171 -99 -232 -139 -123 -80 -626 -345 -705 -371 -107 -35 -162 -16 -545 189 -350 187 -346 212 62 433 98 53 243 136 323 184 80 48 177 104 215 125 39 22 169 96 290 165 121 70 256 146 300 170 44 24 177 98 295 165 386 220 508 249 684 161z m1427 -864 c166 -66 239 -246 171 -423 -43 -108 -111 -164 -412 -334 -85 -48 -222 -128 -305 -178 -82 -49 -210 -123 -283 -163 -73 -41 -172 -100 -220 -132 -48 -32 -114 -73 -147 -92 -33 -18 -119 -69 -192 -112 -290 -173 -303 -171 -807 114 -321 182 -307 217 197 500 87 48 193 112 235 142 42 29 131 82 197 116 66 35 161 89 210 120 263 165 784 425 924 460 74 18 370 6 432 -18z m-4055 -936 c64 -22 351 -178 459 -248 55 -36 201 -118 325 -183 124 -65 290 -157 370 -205 80 -48 226 -129 324 -180 99 -51 250 -135 335 -187 519 -314 532 -314 983 -51 122 71 293 166 378 211 85 44 223 122 305 172 385 236 381 236 770 17 341 -192 332 -244 -80 -465 -340 -182 -476 -257 -555 -309 -47 -31 -141 -86 -210 -124 -69 -37 -183 -104 -255 -149 -71 -45 -188 -112 -260 -150 -71 -38 -184 -103 -250 -144 -253 -158 -378 -128 -957 231 -70 43 -202 119 -294 169 -92 49 -214 120 -273 158 -58 37 -164 98 -236 136 -71 37 -206 114 -300 170 -93 56 -263 150 -378 208 -368 188 -351 163 -355 527 -5 397 14 446 154 396z m4824 -1474 c39 -39 42 -71 38 -382 -4 -367 6 -351 -373 -555 -96 -52 -207 -116 -247 -143 -40 -27 -153 -92 -250 -145 -97 -53 -216 -122 -265 -155 -48 -32 -151 -92 -228 -132 -77 -41 -180 -99 -230 -130 -140 -88 -500 -283 -755 -408 -154 -76 -227 -57 -571 150 -96 58 -237 138 -313 178 -77 40 -207 113 -290 163 -83 49 -216 125 -295 169 -80 44 -192 110 -250 147 -58 38 -167 101 -241 140 -373 200 -383 259 -69 439 375 216 382 215 889 -83 96 -56 243 -140 325 -185 83 -45 187 -106 232 -136 369 -239 533 -224 1047 100 72 46 194 116 271 156 77 41 208 115 290 165 83 50 213 125 290 165 77 40 190 105 250 143 61 39 191 113 290 165 99 52 198 106 219 120 130 82 193 96 236 54z"/></g></g></symbol></svg>
 <noscript>
   <style>
     /* Ohne JS greift kein IntersectionObserver — sonst bliebe die halbe Seite bei opacity:0 */
@@ -402,80 +461,212 @@
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-2.5 font-semibold text-lg tracking-tight">
       <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-4"/><path d="M11.5 20v-7.5"/><path d="M18 20V6"/><path d="M14.4 9.6 18 6l3.6 3.6"/></svg>
+        <svg width="16" height="16" aria-hidden="true"><use href="#bs-mark"/></svg>
       </span>
-      <span class="tracking-[.02em]">Brand<span class="grad-text">scale</span><span class="text-mute font-bold">.eu</span></span>
+      <span class="nav-word tracking-[.02em]">Brand<span class="grad-text">scale</span><span class="nav-tld text-mute font-bold">.eu</span></span>
     </a>
     <nav class="hidden md:flex items-center gap-8 text-sm text-mute">
       <a href="#resultate" class="hover:text-ink transition">Resultate</a>
       <a href="#problem" class="hover:text-ink transition">Ansatz</a>
       <a href="#angebot" class="hover:text-ink transition">Leistungen</a>
       <a href="#ablauf" class="hover:text-ink transition">Ablauf</a>
-      <a href="#gruender" class="hover:text-ink transition">Gründer</a>
     </nav>
     <div class="flex items-center gap-3">
-      <a href="#kontakt" class="grad-btn cta-primary text-sm font-semibold px-4 sm:pl-4 sm:pr-1.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition">
-        <span class="hidden sm:inline">Erstgespräch buchen</span><span class="sm:hidden">Erstgespräch</span>
+      <a href="#warteliste" class="grad-btn cta-primary text-sm font-semibold px-4 sm:pl-4 sm:pr-1.5 py-1.5 rounded-xl inline-flex items-center gap-2 transition">
+        <span class="hidden sm:inline">Auf die Warteliste</span><span class="sm:hidden">Warteliste</span>
         <span class="cta-arrow hidden sm:grid place-items-center w-6 h-6 rounded-full bg-white/20"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <button id="nav-toggle" class="md:hidden grid place-items-center w-9 h-9 rounded-md border border-line bg-white" aria-expanded="false" aria-label="Menü öffnen">
+      <button id="nav-toggle" class="md:hidden grid place-items-center w-9 h-9 rounded-md border border-line bg-surface" aria-expanded="false" aria-label="Menü öffnen">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
   <div id="mobile-menu" class="md:hidden border-t border-line bg-paper/95 backdrop-blur-md">
     <nav class="px-5 py-4 flex flex-col gap-3 text-sm text-mute">
+      <a href="#warteliste" class="py-2 font-semibold text-accentDeep hover:text-ink transition">Warteliste</a>
       <a href="#resultate" class="py-2 hover:text-ink transition">Resultate</a>
       <a href="#problem" class="py-2 hover:text-ink transition">Ansatz</a>
       <a href="#angebot" class="py-2 hover:text-ink transition">Leistungen</a>
       <a href="#ablauf" class="py-2 hover:text-ink transition">Ablauf</a>
-      <a href="#gruender" class="py-2 hover:text-ink transition">Gründer</a>
     </nav>
   </div>
 </header>
 
 <main>
 
-<!-- ============ HERO (Skeptiker-First) ============ -->
-<section id="top" class="relative pt-40 pb-16 overflow-hidden hex-light">
-  <div class="par-1 absolute -top-40 left-1/2 w-[820px] h-[520px] pointer-events-none"><div class="orb w-full h-full rounded-full bg-accent2/20 blur-[150px]"></div></div>
-  <div class="par-2 absolute top-40 right-[8%] w-[340px] h-[340px] pointer-events-none"><div class="orb2 w-full h-full rounded-full bg-accent/15 blur-[120px]"></div></div>
-  <div class="par-1 absolute top-[55%] left-[4%] w-[260px] h-[260px] pointer-events-none"><div class="orb2 w-full h-full rounded-full bg-accent2/10 blur-[100px]"></div></div>
-  <div class="relative max-w-5xl mx-auto px-5 text-center">
-    <span class="hero-in d1 inline-flex items-center gap-2 mono text-[11px] font-medium text-accentDeep border border-accent/30 bg-accent/5 rounded-full px-3.5 py-1.5 mb-8 uppercase">
-      <span class="relative flex w-2 h-2"><span class="ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60"></span><span class="relative inline-flex rounded-full w-2 h-2 grad-btn"></span></span>
-      Erst beweisen. Dann skalieren.
-    </span>
-    <h1 class="hero-in d2 text-4xl sm:text-5xl lg:text-[3.9rem] font-semibold tracking-tight leading-[1.08]">
-      <span class="grad-text">Planbare Anfragen</span> für Experten,<br class="hidden sm:block">
-      die keine <span class="strike-acc sm:whitespace-nowrap">Marketing-Versprechen</span><br class="hidden sm:block"> mehr glauben.
-    </h1>
-    <p class="hero-in d3 mt-8 text-lg text-mute max-w-2xl mx-auto">
-      Wir bauen das komplette Anfrage-System für <span class="sr-only">Coaches, Berater, Experten und Unternehmer</span><span class="rotator" aria-hidden="true"><span class="rotator-track"><span>Coaches</span><span>Berater</span><span>Experten</span><span>Unternehmer</span><span>Coaches</span></span></span> — Content, Ads und Funnel aus dem, was du schon hast.
-      Erst im Kleinen bewiesen, dann skaliert.
-    </p>
-    <div class="hero-in d4 mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#kontakt" data-magnet class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 justify-center transition">
-        Erstgespräch buchen
-        <span class="cta-arrow grid place-items-center w-9 h-9 rounded-full bg-white/20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a href="#resultate" class="font-semibold px-7 py-3.5 rounded-xl border border-line bg-white hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10 transition inline-flex items-center gap-2 justify-center">
-        Erst Beweise ansehen
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-      </a>
+<!-- ============ HERO: Fullscreen-VSL ============ -->
+<!-- Video liegt self-hosted in videos/ — keine fremde Ressource, kein Third-Party-Embed. -->
+<section id="top" class="vsl-hero relative flex items-center overflow-hidden" style="background:#0A0C10">
+  <div class="vsl-media">
+    <video id="vsl" poster="images/vsl-poster.jpg" autoplay muted loop playsinline preload="metadata"
+           aria-label="Video: Wie das Anfrage-System von Brandscale funktioniert">
+      <source src="videos/vsl.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="vsl-scrim"></div>
+
+  <div class="relative w-full max-w-4xl mx-auto px-5 pt-20 sm:pt-24 pb-24 sm:pb-28 text-center text-white">
+    <div class="vsl-copy">
+      <span class="hero-in d1 inline-flex items-center gap-2.5 mono text-[11px] font-medium text-white/85 border border-white/25 bg-white/10 rounded-full px-3.5 py-1.5 mb-7 uppercase backdrop-blur-sm">
+        <span class="scarce-dot inline-flex rounded-full w-2 h-2 grad-btn"></span>
+        Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen
+      </span>
+
+      <h1 class="hero-in d2 text-[2.1rem] sm:text-5xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.08]">
+        <span class="grad-text-lite">Planbare Anfragen</span> für Experten,<br class="hidden sm:block">
+        die keine <span class="strike-acc sm:whitespace-nowrap">Versprechen</span> mehr glauben.
+      </h1>
+
+      <p class="hero-in d3 mt-5 hidden sm:block text-base sm:text-lg text-white/70 max-w-xl mx-auto">
+        Zwei Minuten, in denen du siehst, wie das System arbeitet — bevor du irgendwem etwas glaubst.
+      </p>
+
+      <div class="hero-in d3 mt-6 sm:mt-7 flex flex-col items-center gap-3">
+        <button type="button" id="vslPlay" class="vsl-play" aria-label="Video mit Ton starten">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </button>
+        <span class="mono text-[11px] uppercase text-white/60">VSL ansehen · <span id="vslDur">2 Min</span></span>
+      </div>
+
+      <div class="hero-in d4 mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#warteliste" data-magnet class="grad-btn cta-primary text-[15px] font-semibold pl-8 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 justify-center transition">
+          Auf die Warteliste
+          <span class="cta-arrow grid place-items-center w-9 h-9 rounded-full bg-white/20"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#resultate" class="font-semibold px-7 py-3.5 rounded-xl border border-white/25 bg-white/5 text-white hover:bg-white/10 hover:border-white/40 transition inline-flex items-center gap-2 justify-center backdrop-blur-sm">
+          Erst Beweise ansehen
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+      </div>
+      <p class="hero-in d4 mt-4 mono text-[11px] uppercase text-white/55">Kein Pitch. Keine Setter. Du entscheidest danach in Ruhe.</p>
     </div>
-    <p class="hero-in d4 mt-4 mono text-[11px] uppercase text-mute">Kein Pitch. Keine Setter. Du entscheidest danach in Ruhe.</p>
-    <!-- Trust-Line: Prinzipien statt Zahlen (keine Fake-Claims) -->
-    <div class="hero-in d5 mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mono text-[11px] uppercase text-mute">
-      <span class="inline-flex items-center gap-2"><span class="text-accent">◆</span> Beweis-First statt Versprechen</span>
-      <span class="inline-flex items-center gap-2"><span class="text-accent">◆</span> Direkt mit dem Gründer</span>
-      <span class="inline-flex items-center gap-2"><span class="text-accent">◆</span> Kein Lock-in — dir gehört alles</span>
+
+    <button type="button" id="vslStop" class="vsl-stop absolute left-1/2 -translate-x-1/2 bottom-28 mono text-[11px] uppercase text-white/80 border border-white/25 bg-black/40 rounded-full px-4 py-2 backdrop-blur-sm">
+      Ton aus · Video pausieren
+    </button>
+  </div>
+
+  <!-- Knappheits-Leiste am Hero-Fuß -->
+  <div class="vsl-copy absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/35 backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-5 py-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-white">
+      <span class="hidden sm:inline mono text-[11px] uppercase text-white/60">Aufnahme schließt in</span>
+      <span class="cd cd-dark" data-countdown aria-live="off">
+        <span class="cd-unit"><b data-cd="d">--</b><i>Tage</i></span>
+        <span class="cd-unit"><b data-cd="h">--</b><i>Std</i></span>
+        <span class="cd-unit"><b data-cd="m">--</b><i>Min</i></span>
+        <span class="cd-unit"><b data-cd="s">--</b><i>Sek</i></span>
+      </span>
+      <a href="#warteliste" class="mono text-[11px] uppercase text-white/85 underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Platz sichern</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WARTELISTE (primärer Funnel-Eingang) ============ -->
+<section id="warteliste" class="py-16 sm:py-20">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="rv card rounded-2xl overflow-hidden">
+      <div class="grid md:grid-cols-2">
+
+        <!-- Knappheits-Seite -->
+        <div class="banner hex text-white p-8 sm:p-10 border-r border-white/10">
+          <span class="mono text-[11px] uppercase text-accent2">Warteliste</span>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-3 leading-tight">
+            Wir nehmen <span data-slots-total>6</span> neue Marken pro Quartal. Mehr geht nicht ohne Qualitätsverlust.
+          </h2>
+
+          <div class="mt-7">
+            <div class="flex items-end justify-between">
+              <span class="text-4xl font-semibold tracking-tight" data-count="4" data-slots-taken>0</span>
+              <span class="mono text-[11px] uppercase text-white/60">von <span data-slots-total>6</span> vergeben</span>
+            </div>
+            <div class="slot-bar slot-bar-dark mt-3"><div class="slot-fill" data-slot-fill></div></div>
+            <p class="mt-3 mono text-[11px] uppercase text-white/70">
+              Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> Plätze frei
+            </p>
+          </div>
+
+          <div class="mt-7">
+            <p class="mono text-[11px] uppercase text-white/60 mb-2.5">Aufnahme schließt in</p>
+            <span class="cd cd-dark" data-countdown>
+              <span class="cd-unit"><b data-cd="d">--</b><i>Tage</i></span>
+              <span class="cd-unit"><b data-cd="h">--</b><i>Std</i></span>
+              <span class="cd-unit"><b data-cd="m">--</b><i>Min</i></span>
+              <span class="cd-unit"><b data-cd="s">--</b><i>Sek</i></span>
+            </span>
+          </div>
+
+          <ul class="mt-8 space-y-2.5 text-sm text-white/80">
+            <li class="flex gap-2.5"><span class="text-accent2">◆</span> Wir gehen die Liste der Reihe nach durch.</li>
+            <li class="flex gap-2.5"><span class="text-accent2">◆</span> Passt es nicht, sagen wir es dir sofort.</li>
+            <li class="flex gap-2.5"><span class="text-accent2">◆</span> Kein Setter, kein Verkaufsdruck, keine Automatik-Mails.</li>
+          </ul>
+        </div>
+
+        <!-- Formular-Seite -->
+        <div class="p-8 sm:p-10">
+          <span class="mono text-[11px] uppercase text-accentDeep">Platz sichern</span>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-3 leading-tight">Trag dich ein — zwei Minuten, unverbindlich.</h2>
+
+          <form id="waitlistForm" class="mt-6 grid sm:grid-cols-2 gap-4" novalidate>
+            <input type="hidden" name="access_key" value="c94b8228-7e61-4b94-bff3-d4d80b15227a">
+            <input type="hidden" name="subject" value="Neue Warteliste-Eintragung — brand-scale.eu">
+            <input type="hidden" name="from_name" value="Brandscale Warteliste">
+            <!-- Honeypot -->
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+
+            <div>
+              <label for="wl-name" class="mono text-[10px] uppercase text-mute">Name *</label>
+              <input id="wl-name" name="name" type="text" required autocomplete="name" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+            </div>
+            <div>
+              <label for="wl-email" class="mono text-[10px] uppercase text-mute">E-Mail *</label>
+              <input id="wl-email" name="email" type="email" required autocomplete="email" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="wl-profil" class="mono text-[10px] uppercase text-mute">Profil oder Website</label>
+              <input id="wl-profil" name="profil" type="text" placeholder="@handle oder deine URL" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="wl-umsatz" class="mono text-[10px] uppercase text-mute">Monatsumsatz aktuell *</label>
+              <select id="wl-umsatz" name="umsatz" required class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+                <option value="">Bitte wählen</option>
+                <option>unter 15.000 €</option>
+                <option>15.000 – 30.000 €</option>
+                <option>30.000 – 50.000 €</option>
+                <option>über 50.000 €</option>
+              </select>
+              <p class="mt-1.5 text-[11px] text-mute">Damit wir einschätzen, ob unser Vorgehen für dich überhaupt Sinn ergibt.</p>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="wl-message" class="mono text-[10px] uppercase text-mute">Woran hängt es gerade?</label>
+              <textarea id="wl-message" name="message" rows="3" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition"></textarea>
+            </div>
+
+            <div class="sm:col-span-2 flex flex-wrap items-center gap-4 mt-1">
+              <button type="submit" data-magnet class="grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 transition">
+                <span id="wlBtnText">Platz auf der Warteliste sichern</span>
+                <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </button>
+              <p id="wlStatus" class="text-sm font-medium" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+          <!-- Erfolgs-State: ersetzt das Formular -->
+          <div id="wlDone" class="hidden mt-6 rounded-xl border border-accent/25 bg-accent/5 p-6">
+            <p class="text-lg font-semibold">Eingetragen.</p>
+            <p class="text-sm text-mute mt-2">Du stehst auf Position <b class="text-ink" data-wl-position>#28</b>. Wir gehen die Liste der Reihe nach durch und melden uns per E-Mail — ohne Automatik-Strecke.</p>
+          </div>
+
+          <p class="mt-4 text-[11px] text-mute">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben zur Kontaktaufnahme zu. Details in der <a href="datenschutz.html" class="underline decoration-line hover:decoration-accent">Datenschutzerklärung</a>.</p>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ KUNDEN & MARKEN MARQUEE ============ -->
-<section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-white">
+<section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-[#EFEDE6] text-[#0A0C10]">
   <div class="text-center mb-7">
     <p class="worked-label">work<span class="paren">(ed)</span> with</p>
     <p class="worked-hint mt-2"><span class="hint-hover">Fahr über eine Marke →</span><span class="hint-touch">Tipp auf eine Marke →</span></p>
@@ -509,19 +700,6 @@
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-light">Ali Badbanker</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
         <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-mono">Mietix</span></span>
-        <!-- Set 3 (dup für nahtlosen Loop auf breiten Screens) -->
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Ali Bad Banker — ZDF Doku." data-link="https://www.zdf.de/reportagen/die-spur-bad-banker-100" data-link-label="Doku ansehen"><img src="logos/zdf.svg" alt="" width="44" height="26" loading="lazy" decoding="async"></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Opening-Video &amp; VFX-Edit."><span class="wordmark wm-serif">Lindt</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Kampagnen-Unterstützung."><img src="logos/wienerlinien.svg" alt="" width="111" height="26" loading="lazy" decoding="async"></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Longform-Editing."><img src="logos/sidemen.svg" alt="" width="90" height="26" loading="lazy" decoding="async"></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-caps">Viral Vision</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Niklas Wauch</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Konzeptierung für organisches Wachstum." data-link="https://www.instagram.com/therealassad/" data-link-label="@therealassad"><span class="wordmark wm-script">TheRealAssad</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Reel-Gestaltung."><span class="wordmark wm-serif">Raphael Zenaty</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><img src="logos/jameson.jpeg" alt="" width="41" height="26" loading="lazy" decoding="async"></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-light">Ali Badbanker</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-bold">Ehssan Memarpuri</span></span>
-        <span class="logo-item" aria-hidden="true" tabindex="-1" data-info="Branding-Unterstützung."><span class="wordmark wm-mono">Mietix</span></span>
       </div>
     </div>
   </div>
@@ -534,43 +712,13 @@
   </div>
 </section>
 
-<!-- ============ EMPATHIE: Du kennst das Spiel schon ============ -->
-<section class="py-24 hex-light">
-  <div class="max-w-4xl mx-auto px-5">
-    <div class="text-center">
-      <span class="rv mono text-[11px] uppercase text-accentDeep">Klartext</span>
-      <h2 class="rv text-3xl sm:text-5xl font-semibold tracking-tight mt-4">Du kennst das Spiel schon.</h2>
-    </div>
-    <div class="grid sm:grid-cols-3 gap-5 mt-14">
-      <div class="rv card rounded-2xl p-7">
-        <span class="mono text-accent2 text-sm">1</span>
-        <h3 class="text-lg font-bold mt-3">Das Verkaufsgespräch</h3>
-        <p class="text-sm text-mute mt-2">Große Versprechen, beeindruckende Slides, alles klingt machbar.</p>
-      </div>
-      <div class="rv card rounded-2xl p-7" style="--d:.15s">
-        <span class="mono text-accent2 text-sm">2</span>
-        <h3 class="text-lg font-bold mt-3">Der monatliche Report</h3>
-        <p class="text-sm text-mute mt-2">Schöne Grafiken, viele Impressionen, alles wirkt beschäftigt.</p>
-      </div>
-      <div class="rv card rounded-2xl p-7" style="--d:.3s">
-        <span class="mono text-accent2 text-sm">3</span>
-        <h3 class="text-lg font-bold mt-3">Dein Konto</h3>
-        <p class="text-sm text-mute mt-2">Ändert sich nichts. Und beim Nachfragen wird es plötzlich kompliziert.</p>
-      </div>
-    </div>
-    <p class="reveal-flow text-2xl sm:text-4xl font-semibold tracking-tight text-center max-w-2xl mx-auto mt-20 leading-snug">
-      Wenn du deshalb skeptisch bist: gut. Skepsis ist gesund. Genau für Leute wie dich arbeiten wir anders.
-    </p>
-    <p class="rv text-center text-3xl sm:text-5xl font-semibold tracking-tight mt-14"><span class="grad-text">Weniger Versprechen.<br class="sm:hidden"> Mehr Beweise.</span></p>
-  </div>
-</section>
-
-<!-- ============ STATEMENT (Reveal-Flow) + STATS ============ -->
-<section class="pt-10 pb-24">
+<!-- ============ STATEMENT (Reveal-Flow) + TRACK-RECORD ============ -->
+<section class="py-16 hex-light">
   <div class="max-w-3xl mx-auto px-5 text-center">
-    <span class="rv-scale inline-grid place-items-center w-14 h-14 rounded-xl grad-btn glow-blue mx-auto">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-4"/><path d="M11.5 20v-7.5"/><path d="M18 20V6"/><path d="M14.4 9.6 18 6l3.6 3.6"/></svg>
-    </span>
+    <p class="reveal-flow text-2xl sm:text-4xl font-semibold tracking-tight max-w-2xl mx-auto leading-snug">
+      Wenn du skeptisch bist: gut. Skepsis ist gesund. Genau für Leute wie dich arbeiten wir anders.
+    </p>
+    <p class="rv text-3xl sm:text-5xl font-semibold tracking-tight mt-12"><span class="grad-text">Weniger Versprechen.<br class="sm:hidden"> Mehr Beweise.</span></p>
     <!-- Beweis-Ledger: Track Record im Audit-Look statt Kachel-Reihe -->
     <div class="rv card rounded-2xl overflow-hidden mt-10 text-left" style="--d:.1s">
       <div class="flex flex-wrap items-center justify-between gap-2 px-7 py-4 border-b border-line">
@@ -596,43 +744,8 @@
   </div>
 </section>
 
-<!-- ============ SERVICE PILLS MARQUEE ============ -->
-<section class="marquee-wrap border-y border-line py-7 bg-white overflow-hidden">
-  <div class="flex items-center justify-center gap-6 mb-6 text-mute">
-    <span class="mono text-[11px] uppercase">Alles aus einer Hand, auf allen Plattformen</span>
-    <div class="flex gap-5">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3v3.5a5.5 5.5 0 0 0 4 5.2v3.1a8.6 8.6 0 0 1-4-1.2V16a6 6 0 1 1-6-6v3.1A2.9 2.9 0 1 0 13 16V3h3z"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3s-2.3 1.57-2.3 3.2V21H9z"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.1 8.1L23 22h-6.6l-5.2-6.8L5.3 22H2l7.6-8.7L1.5 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 4H5.5l12.2 16z"/></svg>
-    </div>
-  </div>
-  <div class="fade-x">
-    <div class="marquee marquee-slow items-center mono text-xs uppercase text-mute">
-      <span class="whitespace-nowrap">◆ Content-Repurposing</span>
-      <span class="whitespace-nowrap">◆ Short-Form Produktion</span>
-      <span class="whitespace-nowrap">◆ Meta &amp; Paid Ads</span>
-      <span class="whitespace-nowrap">◆ Strategie &amp; Positionierung</span>
-      <span class="whitespace-nowrap">◆ Brand &amp; Voice</span>
-      <span class="whitespace-nowrap">◆ Funnel &amp; Tracking</span>
-      <span class="whitespace-nowrap">◆ Long-Form Content</span>
-      <span class="whitespace-nowrap">◆ E-Mail Marketing</span>
-      <!-- dup for seamless loop -->
-      <span class="whitespace-nowrap">◆ Content-Repurposing</span>
-      <span class="whitespace-nowrap">◆ Short-Form Produktion</span>
-      <span class="whitespace-nowrap">◆ Meta &amp; Paid Ads</span>
-      <span class="whitespace-nowrap">◆ Strategie &amp; Positionierung</span>
-      <span class="whitespace-nowrap">◆ Brand &amp; Voice</span>
-      <span class="whitespace-nowrap">◆ Funnel &amp; Tracking</span>
-      <span class="whitespace-nowrap">◆ Long-Form Content</span>
-      <span class="whitespace-nowrap">◆ E-Mail Marketing</span>
-    </div>
-  </div>
-</section>
-
 <!-- ============ 01 · RESULTATE ============ -->
-<section id="resultate" class="py-20">
+<section id="resultate" class="py-16">
   <div class="max-w-6xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">01</span>
@@ -643,34 +756,7 @@
     </div>
     <p class="rv text-mute text-[15px] max-w-2xl mt-6 leading-relaxed">Die meisten Agenturen zeigen dir hier fremde Screenshots und geliehene Erfolge. Wir zeigen dir unsere echten Zahlen — live im Backend, nicht als Screenshot. Und genauso transparent bauen wir deine auf: jede Reichweite, jeder Klick, jede Anfrage nachvollziehbar ab Tag eins.</p>
 
-    <!-- Echte, belegbare Zahlen (aggregiert, aus betreuten Accounts) -->
-    <div class="rv card rounded-2xl overflow-hidden mt-10">
-      <div class="flex flex-wrap items-center justify-between gap-2 px-6 py-3.5 border-b border-line">
-        <span class="mono text-[11px] uppercase text-mute">Echte Zahlen · letzte 30 Tage · aus betreuten Accounts</span>
-        <span class="mono text-[11px] uppercase text-accentDeep inline-flex items-center gap-2"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Live belegbar</span>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-line">
-        <div class="stat-tile bg-white px-6 py-7 text-center">
-          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="650" data-suffix=".000+">650.000+</div>
-          <div class="mono text-[11px] uppercase text-mute mt-2">Aufrufe / 30 Tage</div>
-        </div>
-        <div class="stat-tile bg-white px-6 py-7 text-center">
-          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="490" data-suffix=".000+">490.000+</div>
-          <div class="mono text-[11px] uppercase text-mute mt-2">Konten erreicht</div>
-        </div>
-        <div class="stat-tile bg-white px-6 py-7 text-center">
-          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="98" data-suffix=" %">98 %</div>
-          <div class="mono text-[11px] uppercase text-mute mt-2">bei neuen Leuten*</div>
-        </div>
-        <div class="stat-tile bg-white px-6 py-7 text-center">
-          <div class="text-3xl sm:text-4xl font-semibold grad-text" data-count="80" data-suffix=".000+">80.000+</div>
-          <div class="mono text-[11px] uppercase text-mute mt-2">Likes / Top-Reel</div>
-        </div>
-      </div>
-      <div class="px-6 py-3.5 border-t border-line bg-accent/[.04] text-xs text-mute">*98 % der Reichweite bei Nicht-Followern — echte neue Zielgruppe, kein recyceltes Bestandspublikum. Die Screenshots zeigen wir dir live im Erstgespräch.</div>
-    </div>
-
-    <div class="rv grid md:grid-cols-3 gap-5 mt-12">
+    <div class="rv grid md:grid-cols-3 gap-5 mt-10">
       <div class="card rounded-2xl p-7">
         <span class="grid place-items-center w-11 h-11 rounded-xl grad-btn mb-5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
         <h3 class="font-bold text-lg">Transparent ab Tag eins</h3>
@@ -690,7 +776,7 @@
 
     <!-- ==== Öffentlicher Case: steht bewusst noch aus (Freigabe des Kunden) ==== -->
     <div class="rv card rounded-2xl mt-12 p-7 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-5">
-      <span class="grid place-items-center shrink-0 w-11 h-11 rounded-xl border border-accent/30 bg-accent/5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B21B6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+      <span class="grid place-items-center shrink-0 w-11 h-11 rounded-xl border border-accent/30 bg-accent/5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
       <div>
         <p class="mono text-[11px] uppercase text-accentDeep">Öffentlicher Case</p>
         <h3 class="text-lg font-bold mt-1.5">Hier steht noch keine Fallstudie. Mit Absicht.</h3>
@@ -698,13 +784,13 @@
       </div>
     </div>
 
-    <div class="rv mt-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between rounded-2xl p-8 banner hex glow-blue text-white">
+    <div class="rv mt-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between rounded-2xl p-8 banner hex glow-blue text-white border border-white/10">
       <div>
         <p class="mono text-[11px] uppercase text-accent2">Ehrlich gesagt</p>
         <p class="text-lg font-semibold mt-2.5 max-w-xl leading-snug">Wir zeigen dir keine erfundenen Zahlen — nur echte, die du live prüfen kannst. <span class="grad-text">Deine Marke wird der nächste Case.</span></p>
       </div>
-      <a href="#kontakt" data-magnet class="shrink-0 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl inline-flex items-center gap-3 transition">
-        Beweis-Sprint starten
+      <a href="#warteliste" data-magnet class="shrink-0 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl inline-flex items-center gap-3 transition">
+        Platz auf der Warteliste
         <span class="grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
@@ -712,7 +798,7 @@
 </section>
 
 <!-- ============ 02 · PROBLEM: Drei Wege ============ -->
-<section id="problem" class="py-20 hex-light">
+<section id="problem" class="py-16 hex-light">
   <div class="max-w-6xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">02</span>
@@ -722,31 +808,27 @@
       </div>
     </div>
 
-    <p class="reveal-flow text-2xl sm:text-4xl font-semibold tracking-tight text-center max-w-3xl mx-auto mt-16 leading-snug">
-      Du investierst Zeit, Geld und Energie in dein Marketing, und trotzdem bewegt sich dein Umsatz kaum. Das liegt nicht an dir. Es liegt an den drei Wegen, die man dir bisher angeboten hat.
-    </p>
-
-    <h3 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center grad-text mt-20 leading-tight">Drei Wege, die du vermutlich<br>schon probiert hast.</h3>
-    <div class="grid md:grid-cols-3 gap-6 mt-14">
+    <h3 class="rv text-2xl sm:text-3xl font-semibold tracking-tight text-center grad-text mt-14 leading-tight">Drei Wege, die du vermutlich schon probiert hast.</h3>
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
       <div class="rv card card-hover rounded-2xl p-8 text-center">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-[#171226] to-[#100D1C] hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </div>
         <h4 class="text-2xl font-semibold tracking-tight">Du hast <span class="grad-text">keine Zeit</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 1 · Selbst machen</p>
         <p class="text-sm text-mute mt-4">Zwischen Kunden und Business bleibt kein Raum für täglichen Content. Du fängst an, verlierst die Konstanz, und nichts wächst.</p>
       </div>
       <div class="rv card card-hover rounded-2xl p-8 text-center" style="--d:.15s">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 8h5M19.5 5.5v5"/></svg>
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-[#171226] to-[#100D1C] hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 8h5M19.5 5.5v5"/></svg>
         </div>
         <h4 class="text-2xl font-semibold tracking-tight">Du findest <span class="grad-text">niemanden</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 2 · Team aufbauen</p>
         <p class="text-sm text-mute mt-4">A-Player sind teuer und rar. Bis ein eigenes Team steht und liefert, vergehen Monate — und die Fixkosten laufen sofort.</p>
       </div>
       <div class="rv card card-hover rounded-2xl p-8 text-center" style="--d:.3s">
-        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 hex-light mb-7 grid place-items-center">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.6"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="w-full aspect-video rounded-xl bg-gradient-to-br from-[#171226] to-[#100D1C] hex-light mb-7 grid place-items-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.6"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <h4 class="text-2xl font-semibold tracking-tight">Du zahlst <span class="grad-text">zu viel</span></h4>
         <p class="mono text-[11px] uppercase text-mute mt-3">Pfad 3 · Agentur beauftragen</p>
@@ -755,7 +837,7 @@
     </div>
 
     <!-- Der vierte Weg -->
-    <div class="rv text-center max-w-2xl mx-auto mt-24">
+    <div class="rv text-center max-w-2xl mx-auto mt-16">
       <span class="mono text-[11px] uppercase text-accentDeep">Unser Ansatz</span>
       <h3 class="text-3xl sm:text-4xl font-semibold tracking-tight leading-snug mt-4">Es gibt einen vierten Weg.</h3>
       <p class="text-mute mt-5">Ein schlankes Team mit KI-Systemen, das deine Marke aus deinen bestehenden Inhalten aufbaut und jede Entscheidung mit Zahlen belegt. Keine weitere Agentur. Die Marketing-Infrastruktur, die dir bisher gefehlt hat — ohne dass du sie selbst betreiben musst.</p>
@@ -770,68 +852,8 @@
   </div>
 </section>
 
-<!-- ============ VERGLEICH: animierter Org-Chart ============ -->
-<section class="compare-section py-20">
-  <div class="max-w-5xl mx-auto px-5">
-    <h2 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center">Klassische Agentur vs. Brandscale.eu</h2>
-    <div class="grid md:grid-cols-2 gap-6 mt-12">
-      <!-- klassisch: Org-Chart mit Linien-Draw + Überlauf-Flag -->
-      <div class="rv card rounded-2xl p-8 text-ink">
-        <p class="mono text-[11px] uppercase text-mute">Klassische Agentur</p>
-        <div class="mt-7 space-y-[22px]">
-          <div class="org-row flex justify-center">
-            <span class="org-node text-xs border border-line rounded-md px-3 py-1.5 text-ink font-medium bg-slate-50">Agency CEO</span>
-          </div>
-          <div class="org-row flex justify-center gap-2 flex-wrap">
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Creative Director</span>
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Account Director</span>
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Strategy Lead</span>
-          </div>
-          <div class="org-row flex justify-center gap-2 flex-wrap">
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Senior Copy</span>
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Art Director</span>
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Videograf</span>
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Editor</span>
-          </div>
-          <div class="org-row flex justify-center gap-2 flex-wrap">
-            <span class="org-node text-xs border border-line rounded-md px-2.5 py-1 text-mute">Data Analyst</span>
-            <span class="org-node org-node--overflow text-xs border rounded-md px-2.5 py-1">+ 6 weitere Rollen</span>
-          </div>
-        </div>
-        <div class="mt-8 divide-y divide-line text-sm">
-          <div class="flex justify-between py-3"><span class="text-mute">Teamgröße</span><span class="font-semibold">18–25 Personen</span></div>
-          <div class="flex justify-between py-3"><span class="text-mute">Onboarding</span><span class="font-semibold">3–6 Monate</span></div>
-          <div class="flex justify-between py-3"><span class="text-mute">Output-Geschwindigkeit</span><span class="font-semibold">Wochen pro Asset</span></div>
-          <div class="flex justify-between py-3"><span class="text-mute">Kosten</span><span class="font-semibold text-red-500">Zu viel</span></div>
-        </div>
-      </div>
-      <!-- brandscale: schlank + KI-Nodes mit Halo-Puls -->
-      <div class="rv rounded-2xl p-8 banner hex glow-blue text-white relative" style="--d:.15s">
-        <p class="mono text-[11px] uppercase text-accent2">Mit Brandscale.eu</p>
-        <div class="mt-7 space-y-[22px] text-white">
-          <div class="org-row flex justify-center">
-            <span class="org-node text-xs border border-white/25 rounded-md px-3 py-1.5 font-medium bg-white/10">Gründer · dein Ansprechpartner</span>
-          </div>
-          <div class="org-row grid grid-cols-4 gap-3">
-            <div class="org-node org-node--ai rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span class="text-[9px] mt-1.5 text-white/70">Content&nbsp;AI</span></div>
-            <div class="org-node org-node--ai rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg><span class="text-[9px] mt-1.5 text-white/70">Ads&nbsp;AI</span></div>
-            <div class="org-node org-node--ai rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="#A78BFA"/></svg><span class="text-[9px] mt-1.5 text-white/70">Video&nbsp;AI</span></div>
-            <div class="org-node org-node--ai rounded-lg border border-white/15 bg-white/5 py-3 grid place-items-center text-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg><span class="text-[9px] mt-1.5 text-white/70">Growth&nbsp;AI</span></div>
-          </div>
-        </div>
-        <div class="mt-8 divide-y divide-white/10 text-sm">
-          <div class="flex justify-between py-3"><span class="text-white/55">Kern-Team</span><span class="font-semibold">Schlank + KI</span></div>
-          <div class="flex justify-between py-3"><span class="text-white/55">Setup</span><span class="font-semibold">Wochen statt Monate</span></div>
-          <div class="flex justify-between py-3"><span class="text-white/55">Output-Geschwindigkeit</span><span class="font-semibold text-accent2">Stunden bis Tage</span></div>
-          <div class="flex justify-between py-3"><span class="text-white/55">Kosten</span><span class="font-semibold text-accent2">Bruchteil</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ 03 · ANGEBOT ============ -->
-<section id="angebot" class="py-20 hex-light">
+<section id="angebot" class="py-16">
   <div class="max-w-6xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">03</span>
@@ -857,7 +879,7 @@
         </a>
       </div>
       <!-- DFY -->
-      <div class="rv rounded-2xl p-8 banner hex glow-blue text-white relative" style="--d:.15s">
+      <div class="rv rounded-2xl p-8 banner hex glow-blue text-white border border-white/10 relative" style="--d:.15s">
         <span class="badge-ph absolute top-6 right-6 mono text-[10px] uppercase px-2 py-1 rounded" style="background:rgba(167,139,250,.16);color:#ede9fe;border-color:rgba(167,139,250,.4)">Beliebt</span>
         <span class="mono text-[11px] uppercase text-accent2">Done For You</span>
         <h3 class="text-2xl font-bold mt-3">Du lieferst Substanz.<br>Wir bauen daraus deine Marke.</h3>
@@ -879,7 +901,7 @@
 </section>
 
 <!-- ============ 04 · ABLAUF (No-Pitch-Reframe) ============ -->
-<section id="ablauf" class="ablauf-section py-20">
+<section id="ablauf" class="ablauf-section py-16">
   <div class="max-w-6xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">04</span>
@@ -944,7 +966,7 @@
 </section>
 
 <!-- ============ 05 · FÜR WEN / NICHT FÜR WEN ============ -->
-<section id="fuer-wen" class="py-20 hex-light">
+<section id="fuer-wen" class="py-16 hex-light">
   <div class="max-w-5xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">05</span>
@@ -953,14 +975,13 @@
         <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight mt-1.5">Wir nehmen nicht jeden. Das ist der Punkt.</h2>
       </div>
     </div>
-    <p class="rv text-mute text-sm max-w-2xl mt-6">Wir arbeiten mit wenigen Kunden intensiv statt mit vielen oberflächlich. Deshalb prüfen wir den Fit auf beiden Seiten — bevor Geld fließt.</p>
+    <p class="rv text-mute text-sm max-w-2xl mt-6">Die <span data-slots-total>6</span> Plätze pro Quartal sind kein Marketing-Trick, sondern unsere Kapazitätsgrenze: wir arbeiten mit wenigen Kunden intensiv statt mit vielen oberflächlich. Deshalb prüfen wir den Fit auf beiden Seiten — bevor Geld fließt.</p>
     <div class="grid md:grid-cols-2 gap-6 mt-10">
       <div class="rv card rounded-2xl p-8">
         <p class="mono text-[11px] uppercase text-accentDeep">Passt, wenn…</p>
         <ul class="mt-5 space-y-3.5 text-sm text-ink/85">
           <li class="flex gap-3"><span class="text-accent mt-0.5">✓</span> dein Geschäft läuft und ein echtes Angebot dahintersteht — nur deine Sichtbarkeit hinkt deiner Expertise hinterher.</li>
           <li class="flex gap-3"><span class="text-accent mt-0.5">✓</span> du bestehende Inhalte oder Substanz hast, aus der wir schöpfen können — oder bereit bist, sie mit uns aufzubauen.</li>
-          <li class="flex gap-3"><span class="text-accent mt-0.5">✓</span> du einen Partner auf Augenhöhe willst, der dir auch widerspricht — statt einen Dienstleister, der alles abnickt.</li>
           <li class="flex gap-3"><span class="text-accent mt-0.5">✓</span> du Entscheidungen auf Basis von Zahlen treffen willst, nicht auf Basis von Bauchgefühl und Hoffnung.</li>
         </ul>
       </div>
@@ -970,7 +991,6 @@
           <li class="flex gap-3"><span class="mt-0.5">✕</span> du in vier Wochen reich werden willst. Wir bauen Systeme, keine Wunder.</li>
           <li class="flex gap-3"><span class="mt-0.5">✕</span> es noch kein Angebot gibt, das Kunden nachweislich kaufen. Marketing verstärkt, was da ist — es ersetzt es nicht.</li>
           <li class="flex gap-3"><span class="mt-0.5">✕</span> du eine Garantie suchst. Garantien sind das Verkaufsargument derer, die keine Beweise haben.</li>
-          <li class="flex gap-3"><span class="mt-0.5">✕</span> du jemanden brauchst, der nur ausführt. Die besten Ergebnisse entstehen, wenn beide Seiten denken.</li>
         </ul>
       </div>
     </div>
@@ -978,7 +998,7 @@
 </section>
 
 <!-- ============ 06 · GRÜNDER ============ -->
-<section id="gruender" class="py-20">
+<section id="gruender" class="py-16">
   <div class="max-w-5xl mx-auto px-5">
     <div class="rv flex items-end gap-6 border-b-2 border-ink/10 pb-6">
       <span class="rv-num sec-index" aria-hidden="true">06</span>
@@ -997,31 +1017,16 @@
         <p class="text-[15px] text-mute mt-5 leading-relaxed">Aid gründete Brandscale.eu mit einer klaren Haltung: Marketing wird zu oft versprochen und zu selten belegt. Er verantwortet Strategie, Brand-Architektur und den Aufbau von Reichweite, die nicht nur wächst, sondern Vertrauen mitnimmt.</p>
         <p class="text-[15px] text-mute mt-4 leading-relaxed">Wer mit Brandscale.eu arbeitet, spricht direkt mit ihm — kein Setter, keine Zwischenschicht. Analyse, ehrliche Einschätzung und die Entscheidung, ob es passt.</p>
 
-        <!-- Belegter Track Record: verankert die Haltung in echten Zahlen + Marken -->
-        <div class="mt-7 grid grid-cols-3 gap-px bg-line rounded-xl overflow-hidden border border-line">
-          <div class="bg-white px-4 py-4 text-center">
-            <div class="text-xl sm:text-2xl font-semibold grad-text">700 Mio.+</div>
-            <div class="mono text-[10px] uppercase text-mute mt-1">Views gebaut</div>
-          </div>
-          <div class="bg-white px-4 py-4 text-center">
-            <div class="text-xl sm:text-2xl font-semibold grad-text">1,1 Mio.+</div>
-            <div class="mono text-[10px] uppercase text-mute mt-1">Follower</div>
-          </div>
-          <div class="bg-white px-4 py-4 text-center">
-            <div class="text-xl sm:text-2xl font-semibold grad-text">€ 7,8 Mio.+</div>
-            <div class="mono text-[10px] uppercase text-mute mt-1">Kundenumsatz</div>
-          </div>
-        </div>
-        <p class="mono text-[11px] uppercase text-mute mt-4">Gearbeitet u. a. mit <span class="text-ink">ZDF · Lindt · Wiener Linien · Sidemen</span></p>
+        <p class="mono text-[11px] uppercase text-mute mt-6">Gearbeitet u. a. mit <span class="text-ink">ZDF · Lindt · Wiener Linien · Sidemen</span></p>
 
-        <p class="text-lg mt-7 leading-snug font-semibold">„Erst der Beweis. <span class="grad-text">Dann skalieren wir.</span>“</p>
+        <p class="text-lg mt-6 leading-snug font-semibold">„Erst der Beweis. <span class="grad-text">Dann skalieren wir.</span>“</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="py-20 hex-light">
+<section id="faq" class="py-16 hex-light">
   <div class="max-w-3xl mx-auto px-5">
     <h2 class="rv text-3xl sm:text-4xl font-semibold tracking-tight text-center">Was du dich wahrscheinlich fragst</h2>
     <div class="mt-12 space-y-3">
@@ -1044,7 +1049,7 @@
           <span class="font-semibold">„Muss ich mich im Erstgespräch entscheiden?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6" id="faq-panel-3" role="region"><p class="pb-5 text-mute text-sm">Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Du bekommst danach ein schriftliches Angebot und entscheidest in Ruhe — ohne Countdown, ohne Nachfass-Druck.</p></div>
+        <div class="faq-body px-6" id="faq-panel-3" role="region"><p class="pb-5 text-mute text-sm">Nein. Das Erstgespräch ist Analyse und Fit-Check, keine Verkaufsshow. Danach bekommst du ein schriftliches Angebot und entscheidest in Ruhe. Die Frist auf dieser Seite betrifft nur die Aufnahme ins laufende Quartal — nicht deine Entscheidung. Nachgefasst wird einmal, nicht täglich.</p></div>
       </div>
       <div class="rv faq card rounded-xl" style="--d:.18s">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-4">
@@ -1055,62 +1060,55 @@
       </div>
       <div class="rv faq card rounded-xl" style="--d:.24s">
         <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-5">
-          <span class="font-semibold">„Ich habe keine Zeit, ständig Content zu drehen."</span>
+          <span class="font-semibold">„Wie läuft das mit der Warteliste?"</span>
           <span class="faq-icon text-accent text-xl">+</span>
         </button>
-        <div class="faq-body px-6" id="faq-panel-5" role="region"><p class="pb-5 text-mute text-sm">Genau dafür gibt es uns. Wir arbeiten aus deinem bestehenden Material (Repurposing) und klären Entscheidungen in kurzen Jour-Fixes. Du musst nicht zum Vollzeit-Creator werden.</p></div>
-      </div>
-      <div class="rv faq card rounded-xl" style="--d:.3s">
-        <button class="faq-toggle w-full flex items-center justify-between text-left px-6 py-5" aria-expanded="false" aria-controls="faq-panel-6">
-          <span class="font-semibold">„Funktioniert das auch in meiner Nische?"</span>
-          <span class="faq-icon text-accent text-xl">+</span>
-        </button>
-        <div class="faq-body px-6" id="faq-panel-6" role="region"><p class="pb-5 text-mute text-sm">Das klären wir vorab im Erstgespräch — ehrlich. Wenn der Fit nicht passt, sagen wir es dir klar, statt dir etwas zu verkaufen.</p></div>
+        <div class="faq-body px-6" id="faq-panel-5" role="region"><p class="pb-5 text-mute text-sm">Wir nehmen pro Quartal nur eine feste Zahl neuer Marken auf, weil wir intensiv statt oberflächlich arbeiten. Wird ein Platz frei, gehen wir die Liste der Reihe nach durch und melden uns per E-Mail. Kein Setter, keine Automatik-Strecke, kein Verkaufsdruck — und wenn der Fit nicht passt, sagen wir das direkt.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FINAL CTA (Split) ============ -->
-<section id="kontakt" class="py-24">
+<section id="kontakt" class="py-20">
   <div class="max-w-6xl mx-auto px-5">
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- primär -->
-      <div class="rv rounded-2xl p-10 banner hex glow-blue text-white relative overflow-hidden">
-        <span class="mono text-[11px] uppercase text-accent2">Der nächste Schritt</span>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Deine Marke könnte unser nächster öffentlicher Beweis sein.</h2>
-        <p class="text-white/65 mt-5 text-sm max-w-md">Das passiert nach deiner Anfrage — Schritt für Schritt, ohne Überraschungen:</p>
-        <ol class="mt-6 space-y-4 text-sm text-white/85">
-          <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">1</span> <span><strong class="text-white">Kurze Anfrage</strong> — dauert keine zwei Minuten.</span></li>
-          <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">2</span> <span><strong class="text-white">Erstgespräch, 45 Minuten</strong> — direkt mit dem Gründer. Analyse und Fit-Check, kein Pitch.</span></li>
-          <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">3</span> <span><strong class="text-white">Ehrliche Einschätzung + Angebot in 72 h</strong> — und du entscheidest in Ruhe.</span></li>
-        </ol>
-        <a href="https://cal.com/aid-muric-thqgsz/erstgespraech" target="_blank" rel="noopener" data-magnet class="mt-8 inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2 rounded-xl transition">
-          Erstgespräch buchen
-          <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <p class="mt-4 mono text-[11px] uppercase text-white/70">45 Minuten. Danach weißt du, woran du bist.</p>
-      </div>
-      <!-- sekundär -->
-      <div class="rv card rounded-2xl p-10" style="--d:.15s">
-        <span class="mono text-[11px] uppercase text-accentDeep">Andere Wege</span>
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Noch nicht bereit für die volle Infrastruktur?</h2>
-        <p class="text-mute mt-5 text-sm">Zwei kleinere Wege, uns erst zu testen, bevor du dich festlegst.</p>
-        <a href="#angebot" class="mt-6 flex items-center justify-between card card-hover rounded-xl p-5">
-          <div><p class="font-semibold">Done With You</p><p class="text-mute text-xs mt-1">Strategie-Sparring mit dem Gründer — du setzt selbst um</p></div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#anfrage" class="mt-4 flex items-center justify-between card card-hover rounded-xl p-5">
-          <div><p class="font-semibold">Content-Audit</p><p class="text-mute text-xs mt-1">Ehrliche Analyse deiner bestehenden Inhalte — schreib uns kurz, kein Kalender nötig</p></div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+    <div class="rv rounded-2xl p-8 sm:p-10 banner hex glow-blue text-white border border-white/10 relative overflow-hidden">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div>
+          <span class="mono text-[11px] uppercase text-accent2">Der nächste Schritt</span>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Noch <span data-slots-left>2</span> Plätze für <span data-cohort>September</span>.</h2>
+          <p class="text-white/65 mt-5 text-sm max-w-md">Danach geht es erst im nächsten Quartal weiter. So läuft es ab, ohne Überraschungen:</p>
+          <ol class="mt-6 space-y-3.5 text-sm text-white/85">
+            <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">1</span> <span><strong class="text-white">Warteliste</strong> — zwei Minuten, unverbindlich.</span></li>
+            <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">2</span> <span><strong class="text-white">Erstgespräch, 45 Minuten</strong> — direkt mit dem Gründer. Analyse und Fit-Check, kein Pitch.</span></li>
+            <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">3</span> <span><strong class="text-white">Ehrliche Einschätzung + Angebot in 72 h</strong> — und du entscheidest in Ruhe.</span></li>
+          </ol>
+        </div>
+        <div class="md:text-right">
+          <p class="mono text-[11px] uppercase text-white/60 mb-3">Aufnahme schließt in</p>
+          <span class="cd cd-dark md:justify-end" data-countdown>
+            <span class="cd-unit"><b data-cd="d">--</b><i>Tage</i></span>
+            <span class="cd-unit"><b data-cd="h">--</b><i>Std</i></span>
+            <span class="cd-unit"><b data-cd="m">--</b><i>Min</i></span>
+            <span class="cd-unit"><b data-cd="s">--</b><i>Sek</i></span>
+          </span>
+          <div class="mt-7">
+            <a href="#warteliste" data-magnet class="inline-flex items-center gap-3 grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl transition">
+              Platz sichern
+              <span class="cta-arrow grid place-items-center w-8 h-8 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+          <p class="mt-4 text-[13px] text-white/60">Du kennst uns schon?
+            <a href="https://cal.com/aid-muric-thqgsz/erstgespraech" target="_blank" rel="noopener" class="text-white/90 underline underline-offset-4 decoration-white/30 hover:decoration-white transition">Erstgespräch direkt buchen</a>
+          </p>
+        </div>
       </div>
     </div>
 
     <!-- Direkt-Anfrage-Formular (angebunden via Web3Forms) -->
     <div id="anfrage" class="rv card rounded-2xl p-8 sm:p-10 mt-6" style="--d:.2s">
       <span class="mono text-[11px] uppercase text-accentDeep">Oder schreib uns direkt</span>
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-3 leading-tight">Kurze Anfrage — wir melden uns innerhalb von 24&nbsp;h.</h2>
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-3 leading-tight">Frage vorab, ohne Warteliste — Antwort innerhalb von 24&nbsp;h.</h2>
       <form id="contactForm" class="mt-7 grid sm:grid-cols-2 gap-4" novalidate>
         <!-- ⇩ Web3Forms Access-Key hier eintragen (siehe web3forms.com, kostenlos) ⇩ -->
         <input type="hidden" name="access_key" value="c94b8228-7e61-4b94-bff3-d4d80b15227a">
@@ -1120,19 +1118,19 @@
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
         <div>
           <label for="cf-name" class="mono text-[10px] uppercase text-mute">Name</label>
-          <input id="cf-name" required name="name" type="text" autocomplete="name" placeholder="Dein Name" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+          <input id="cf-name" required name="name" type="text" autocomplete="name" placeholder="Dein Name" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
         </div>
         <div>
           <label for="cf-email" class="mono text-[10px] uppercase text-mute">E-Mail</label>
-          <input id="cf-email" required name="email" type="email" autocomplete="email" placeholder="du@beispiel.de" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+          <input id="cf-email" required name="email" type="email" autocomplete="email" placeholder="du@beispiel.de" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
         </div>
         <div class="sm:col-span-2">
           <label for="cf-profil" class="mono text-[10px] uppercase text-mute">Instagram / Website <span class="text-mute normal-case">(optional)</span></label>
-          <input id="cf-profil" name="profil" type="text" placeholder="@handle oder deine URL" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
+          <input id="cf-profil" name="profil" type="text" placeholder="@handle oder deine URL" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition">
         </div>
         <div class="sm:col-span-2">
           <label for="cf-message" class="mono text-[10px] uppercase text-mute">Worum geht's?</label>
-          <textarea id="cf-message" required name="message" rows="4" placeholder="Kurz: wo stehst du gerade, was willst du erreichen?" class="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-sm focus:border-accent/60 focus:outline-none focus:ring-2 focus:ring-accent/15 transition resize-y"></textarea>
+          <textarea id="cf-message" required name="message" rows="4" placeholder="Kurz: wo stehst du gerade, was willst du erreichen?" class="mt-1.5 w-full rounded-xl border border-[#332B4A] bg-[#0E0B18] px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:border-accent/70 focus:outline-none focus:ring-2 focus:ring-accent/15 transition resize-y"></textarea>
         </div>
         <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
           <button type="submit" data-magnet class="grad-btn cta-primary font-semibold pl-7 pr-2 py-2.5 rounded-xl inline-flex items-center gap-3 transition">
@@ -1153,20 +1151,20 @@
 <!-- Sticky-CTA (nur Mobile, erscheint nach dem Hero, verschwindet bei der Kontakt-Sektion) -->
 <div id="sticky-cta" aria-hidden="true">
   <div class="min-w-0 flex-1">
-    <p class="text-sm font-semibold leading-tight">45 Min. Erstgespräch</p>
-    <p class="mono text-[10px] uppercase text-mute mt-0.5">Direkt mit dem Gründer.</p>
+    <p class="text-sm font-semibold leading-tight">Noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen</p>
+    <p class="cd-mini text-[10px] uppercase text-mute mt-0.5">Schließt in <span data-cd-compact>--</span></p>
   </div>
-  <a href="#kontakt" class="shrink-0 grad-btn text-sm font-semibold px-5 py-2.5 rounded-xl inline-flex items-center gap-2 transition" tabindex="-1">
-    Termin
+  <a href="#warteliste" class="shrink-0 grad-btn text-sm font-semibold px-5 py-2.5 rounded-xl inline-flex items-center gap-2 transition" tabindex="-1">
+    Warteliste
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
 </div>
 
-<footer class="border-t border-line py-14 bg-white">
+<footer class="border-t border-line py-14 bg-surface">
   <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-4 gap-10">
     <div>
       <div class="flex items-center gap-2.5 font-semibold text-lg">
-        <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20v-4"/><path d="M11.5 20v-7.5"/><path d="M18 20V6"/><path d="M14.4 9.6 18 6l3.6 3.6"/></svg></span>
+        <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn"><svg width="16" height="16" aria-hidden="true"><use href="#bs-mark"/></svg></span>
         <span class="tracking-[.02em]">Brand<span class="grad-text">scale</span><span class="text-mute font-bold">.eu</span></span>
       </div>
       <p class="text-sm text-mute mt-4 max-w-xs">Erst beweisen. Dann skalieren. Marketing für Coaches, Berater und Experten im DACH-Raum.</p>
@@ -1187,10 +1185,11 @@
       </ul>
     </div>
     <div>
-      <p class="mono text-[11px] uppercase text-mute">Andere Wege</p>
+      <p class="mono text-[11px] uppercase text-mute">Zusammenarbeit</p>
       <ul class="mt-4 space-y-2.5 text-sm text-mute">
+        <li><a href="#warteliste" class="hover:text-ink">Warteliste</a></li>
         <li><a href="#angebot" class="hover:text-ink">Done With You</a></li>
-        <li><a href="#kontakt" class="hover:text-ink">Content-Audit</a></li>
+        <li><a href="#anfrage" class="hover:text-ink">Direkte Anfrage</a></li>
       </ul>
     </div>
     <div>
@@ -1222,8 +1221,87 @@ window.addEventListener('error', function(){
   } catch (e) { /* letzter Fallback: nichts tun */ }
 });
 
+/* ===================================================================
+   WARTELISTE & KNAPPHEIT — hier pflegst du die Zahlen.
+   Jede Angabe auf der Seite kommt aus diesem Objekt. Wenn eine Zahl
+   hier nicht stimmt, steht auf der Seite eine Behauptung ohne Deckung.
+   =================================================================== */
+var SCARCITY = {
+  cohortLabel:   'September',                    // Name der laufenden Aufnahme
+  deadline:      '2026-09-01T09:00:00+02:00',    // Countdown-Ziel (ISO, mit Zeitzone)
+  autoRoll:      true,                           // true = springt nach Ablauf auf den nächsten Monatsersten
+                                                 //        (verhindert einen abgelaufenen Timer auf der Live-Seite)
+  slotsTotal:    6,                              // Plätze pro Aufnahme
+  slotsLeft:     2,                              // davon noch frei
+  waitlistCount: 27                              // bisherige Einträge → nächster bekommt Position 28
+};
+
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ----- Knappheits-Zahlen in die Seite schreiben -----
+  var MONATE = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  var slotsTaken = Math.max(0, SCARCITY.slotsTotal - SCARCITY.slotsLeft);
+  var deadlineTs = new Date(SCARCITY.deadline).getTime();
+  var cohortLabel = SCARCITY.cohortLabel;
+
+  // Abgelaufene Frist: entweder auf den nächsten Monatsersten rollen oder ehrlich stehen lassen
+  if (SCARCITY.autoRoll && isFinite(deadlineTs) && deadlineTs < Date.now()) {
+    var d = new Date(deadlineTs);
+    while (d.getTime() < Date.now()) { d.setMonth(d.getMonth() + 1); }
+    deadlineTs = d.getTime();
+    cohortLabel = MONATE[d.getMonth()];
+  }
+
+  var fill = function(sel, val){
+    document.querySelectorAll(sel).forEach(function(el){ el.textContent = val; });
+  };
+  fill('[data-cohort]', cohortLabel);
+  fill('[data-slots-left]', SCARCITY.slotsLeft);
+  fill('[data-slots-total]', SCARCITY.slotsTotal);
+  document.querySelectorAll('[data-slots-taken]').forEach(function(el){
+    el.setAttribute('data-count', String(slotsTaken));   // Count-Up-Animation weiter unten
+    el.textContent = '0';
+  });
+  document.querySelectorAll('[data-wl-position]').forEach(function(el){
+    el.textContent = '#' + (SCARCITY.waitlistCount + 1);
+  });
+
+  // Fortschrittsbalken füllt sich, sobald er im Bild ist
+  var bars = document.querySelectorAll('[data-slot-fill]');
+  if (bars.length) {
+    var pct = SCARCITY.slotsTotal > 0 ? Math.round(slotsTaken / SCARCITY.slotsTotal * 100) : 0;
+    var setBars = function(){ bars.forEach(function(b){ b.style.width = pct + '%'; }); };
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      var barObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if (en.isIntersecting) { setBars(); barObs.unobserve(en.target); } });
+      }, { threshold: 0.4 });
+      bars.forEach(function(b){ barObs.observe(b); });
+    } else { setBars(); }
+  }
+
+  // ----- Countdown -----
+  var cdBlocks = document.querySelectorAll('[data-countdown]');
+  var cdCompact = document.querySelectorAll('[data-cd-compact]');
+  if ((cdBlocks.length || cdCompact.length) && isFinite(deadlineTs)) {
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    var tick = function(){
+      var diff = Math.max(0, deadlineTs - Date.now());
+      var sec = Math.floor(diff / 1000);
+      var dd = Math.floor(sec / 86400), hh = Math.floor(sec % 86400 / 3600),
+          mm = Math.floor(sec % 3600 / 60), ss = sec % 60;
+      cdBlocks.forEach(function(block){
+        var set = function(k, v){ var t = block.querySelector('[data-cd="' + k + '"]'); if (t) t.textContent = v; };
+        set('d', pad(dd)); set('h', pad(hh)); set('m', pad(mm)); set('s', pad(ss));
+      });
+      cdCompact.forEach(function(el){
+        el.textContent = dd > 0 ? (dd + ' T ' + pad(hh) + ':' + pad(mm) + ':' + pad(ss))
+                                : (pad(hh) + ':' + pad(mm) + ':' + pad(ss));
+      });
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
 
   // ----- Nav: Schatten sobald gescrollt -----
   var nav = document.getElementById('nav');
@@ -1255,23 +1333,76 @@ window.addEventListener('error', function(){
     window.matchMedia('(min-width: 768px)').addEventListener('change', function(ev){ if (ev.matches) setOpen(false); });
   }
 
-  // ----- Hero: sanfte Maus-Parallax auf den Glow-Orbs -----
   var hero = document.getElementById('top');
-  if (hero && !reduceMotion && window.matchMedia('(pointer:fine)').matches) {
-    var p1 = hero.querySelectorAll('.par-1'), p2 = hero.querySelectorAll('.par-2');
-    var parTicking = false, parX = 0, parY = 0;
-    hero.addEventListener('mousemove', function(e){
-      var r = hero.getBoundingClientRect();
-      parX = (e.clientX - r.width / 2) / r.width;
-      parY = (e.clientY - r.top - r.height / 2) / r.height;
-      if (parTicking) return;
-      parTicking = true;
-      requestAnimationFrame(function(){
-        p1.forEach(function(el){ el.style.transform = 'translate(' + (parX * 18).toFixed(1) + 'px,' + (parY * 12).toFixed(1) + 'px)'; });
-        p2.forEach(function(el){ el.style.transform = 'translate(' + (parX * -26).toFixed(1) + 'px,' + (parY * -16).toFixed(1) + 'px)'; });
-        parTicking = false;
-      });
-    }, { passive:true });
+
+  // ----- Nav über dem dunklen Video invertieren -----
+  // Solange der Hero den Header überlagert, braucht die Nav weiße Schrift auf transparentem Grund.
+  if (nav && hero) {
+    var overHero = function(){
+      nav.classList.toggle('over-hero', hero.getBoundingClientRect().bottom > 80);
+    };
+    window.addEventListener('scroll', overHero, { passive:true });
+    window.addEventListener('resize', overHero, { passive:true });
+    overHero();
+  }
+
+  // ----- VSL: stummer Loop im Hintergrund, per Klick mit Ton von vorn -----
+  var vsl = document.getElementById('vsl');
+  if (vsl && hero) {
+    var vslPlay = document.getElementById('vslPlay');
+    var vslStop = document.getElementById('vslStop');
+    var vslDur  = document.getElementById('vslDur');
+
+    // Bei reduzierter Bewegung nur das Poster zeigen — erst ein Klick startet das Video.
+    if (reduceMotion) { vsl.removeAttribute('autoplay'); vsl.pause(); }
+
+    // Laufzeit aus der Datei lesen, statt sie im Markup zu behaupten
+    vsl.addEventListener('loadedmetadata', function(){
+      if (!vslDur || !isFinite(vsl.duration) || vsl.duration < 1) return;
+      var m = Math.floor(vsl.duration / 60), s = Math.round(vsl.duration % 60);
+      if (s === 60) { m += 1; s = 0; }
+      vslDur.textContent = m > 0 ? (m + ':' + (s < 10 ? '0' : '') + s + ' Min') : (s + ' Sek');
+    });
+
+    var startSound = function(){
+      hero.classList.add('is-playing');
+      vsl.loop = false;
+      vsl.muted = false;
+      vsl.currentTime = 0;
+      var p = vsl.play();
+      // Blockiert der Browser die Wiedergabe mit Ton, fällt alles in den Ausgangszustand zurück
+      if (p && p.catch) p.catch(function(){ stopSound(); });
+    };
+    var stopSound = function(){
+      hero.classList.remove('is-playing');
+      vsl.muted = true;
+      vsl.loop = true;
+      if (!reduceMotion) { var q = vsl.play(); if (q && q.catch) q.catch(function(){}); }
+      else { vsl.pause(); }
+    };
+
+    if (vslPlay) vslPlay.addEventListener('click', startSound);
+    if (vslStop) vslStop.addEventListener('click', stopSound);
+    vsl.addEventListener('ended', stopSound);
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopSound();
+    });
+
+    // Außerhalb des Sichtfelds pausieren — spart Akku und verhindert Ton aus dem Nichts
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) {
+            if (!reduceMotion || hero.classList.contains('is-playing')) {
+              var r = vsl.play(); if (r && r.catch) r.catch(function(){});
+            }
+          } else {
+            vsl.pause();
+            if (hero.classList.contains('is-playing')) stopSound();
+          }
+        });
+      }, { threshold: 0.15 }).observe(hero);
+    }
   }
 
   // ----- work(ed) with: Info-Bubble mit Beschreibung + IG-Link -----
@@ -1343,41 +1474,57 @@ window.addEventListener('error', function(){
     }, { passive:true });
   })();
 
-  // ----- Kontaktformular → Web3Forms (statisch, kein Server nötig) -----
-  (function(){
-    var cf = document.getElementById('contactForm');
-    if (!cf) return;
-    var status = document.getElementById('cfStatus'), btn = document.getElementById('cfBtnText');
-    cf.addEventListener('submit', function(e){
+  // ----- Formulare → Web3Forms (statisch, kein Server nötig) -----
+  // Ein Handler für Kontaktformular und Warteliste — sie unterscheiden sich nur in Texten und IDs.
+  function wireForm(cfg){
+    var form = document.getElementById(cfg.form);
+    if (!form) return;
+    var status = document.getElementById(cfg.status);
+    var btn    = document.getElementById(cfg.btnText);
+    var done   = cfg.done ? document.getElementById(cfg.done) : null;
+    if (!status || !btn) return;
+
+    form.addEventListener('submit', function(e){
       e.preventDefault();
-      var key = (cf.querySelector('[name=access_key]') || {}).value || '';
+      var key = (form.querySelector('[name=access_key]') || {}).value || '';
       if (!key || key.indexOf('DEIN_') === 0){
         status.textContent = 'Formular noch nicht aktiviert — Access-Key fehlt.';
         status.style.color = '#b45309';
         return;
       }
-      if (!cf.checkValidity()){ cf.reportValidity(); return; }
+      if (!form.checkValidity()){ form.reportValidity(); return; }
       btn.textContent = 'Senden …';
       status.textContent = '';
-      fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(cf) })
+      fetch('https://api.web3forms.com/submit', { method:'POST', body: new FormData(form) })
         .then(function(r){ return r.json(); })
         .then(function(j){
-          if (j.success){
-            cf.reset();
-            btn.textContent = 'Gesendet ✓';
-            status.textContent = 'Danke! Wir melden uns innerhalb von 24 h.';
-            status.style.color = '#15803d';
-            // Zurücksetzen, sonst zeigt ein zweiter Versuch nie wieder einen Ladezustand
-            setTimeout(function(){ btn.textContent = 'Anfrage senden'; }, 4000);
-          } else { throw new Error(j.message || 'fail'); }
+          if (!j.success) throw new Error(j.message || 'fail');
+          form.reset();
+          btn.textContent = 'Gesendet ✓';
+          status.textContent = cfg.successText;
+          status.style.color = '#15803d';
+          if (done){ form.classList.add('hidden'); done.classList.remove('hidden'); status.textContent = ''; }
+          // Zurücksetzen, sonst zeigt ein zweiter Versuch nie wieder einen Ladezustand
+          else setTimeout(function(){ btn.textContent = cfg.idleText; }, 4000);
         })
         .catch(function(){
-          btn.textContent = 'Anfrage senden';
+          btn.textContent = cfg.idleText;
           status.textContent = 'Hat nicht geklappt — schreib uns direkt an office@brand-scale.eu.';
           status.style.color = '#b91c1c';
         });
     });
-  })();
+  }
+
+  wireForm({
+    form:'contactForm', status:'cfStatus', btnText:'cfBtnText',
+    idleText:'Anfrage senden',
+    successText:'Danke! Wir melden uns innerhalb von 24 h.'
+  });
+  wireForm({
+    form:'waitlistForm', status:'wlStatus', btnText:'wlBtnText', done:'wlDone',
+    idleText:'Platz auf der Warteliste sichern',
+    successText:'Eingetragen. Wir melden uns der Reihe nach.'
+  });
 
   // ----- Scroll-Reveal: .rv / .rv-scale via IntersectionObserver -----
   // rootMargin oben riesig: Elemente OBERHALB des Viewports (z.B. nach Anchor-Jump
@@ -1538,12 +1685,14 @@ window.addEventListener('error', function(){
     });
   });
 
-  // ----- Sticky Mobile-CTA: ab Ende Hero bis Kontakt-Sektion -----
+  // ----- Sticky Mobile-CTA: ab Ende Warteliste bis Kontakt-Sektion -----
+  // Der Hero ist jetzt viewport-hoch und direkt darunter steht die Warteliste selbst —
+  // die Leiste darf also erst greifen, wenn beide durchgescrollt sind.
   (function(){
     var bar = document.getElementById('sticky-cta');
-    var hero = document.getElementById('top');
+    var anchor = document.getElementById('warteliste') || document.getElementById('top');
     var kontakt = document.getElementById('kontakt');
-    if (!bar || !hero) return;
+    if (!bar || !anchor) return;
     var link = bar.querySelector('a');
     function setShown(on){
       bar.classList.toggle('is-on', on);
@@ -1551,9 +1700,9 @@ window.addEventListener('error', function(){
       link.setAttribute('tabindex', on ? '0' : '-1');
     }
     function update(){
-      var pastHero = hero.getBoundingClientRect().bottom < 0;
+      var pastAnchor = anchor.getBoundingClientRect().bottom < 0;
       var atKontakt = kontakt ? kontakt.getBoundingClientRect().top < window.innerHeight * 0.85 : false;
-      setShown(pastHero && !atKontakt);
+      setShown(pastAnchor && !atKontakt);
     }
     var ticking = false;
     window.addEventListener('scroll', function(){

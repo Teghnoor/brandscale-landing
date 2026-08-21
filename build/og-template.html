@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<!-- Quelle für images/og-brandscale.png (1200x630). Neu bauen:
+     Google Chrome --headless=new --window-size=1200,630 --screenshot=../images/og-brandscale.png build/og-template.html
+     Danach in WebP/PNG-Groesse pruefen. Fonts kommen self-hosted aus ../fonts.css. -->
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1200px;height:630px;background:#0B0912;color:#F4F2FA;overflow:hidden;position:relative;
+       font-family:'Instrument Sans',ui-sans-serif,sans-serif}
+  /* Violetter Glow oben rechts + kühler Schimmer unten links, wie auf der Seite */
+  body::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(900px 520px at 88% -12%, rgba(139,92,246,.30), transparent 62%),
+               radial-gradient(700px 460px at -8% 112%, rgba(59,130,246,.20), transparent 60%)}
+  .wrap{position:relative;height:100%;padding:64px 72px;display:flex;flex-direction:column;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand img{width:52px;height:52px;display:block}
+  .brand .wm{font-size:30px;font-weight:700;letter-spacing:.01em;font-family:'Bricolage Grotesque',sans-serif}
+  .grad{background:linear-gradient(100deg,#A78BFA,#60A5FA);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:60px;line-height:1.1;
+     letter-spacing:-.02em;max-width:1000px}
+  .lite{background:linear-gradient(100deg,#C4B5FD,#93C5FD);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .strike{font-family:'Playfair Display',Georgia,serif;font-style:italic;text-decoration:line-through;
+          text-decoration-color:rgba(167,139,250,.75);text-decoration-thickness:3px}
+  .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:15px;letter-spacing:.12em;
+        text-transform:uppercase;color:#A78BFA}
+  .sub{font-size:19px;color:#A29CB8;text-align:right}
+</style></head>
+<body><div class="wrap">
+  <div class="brand"><img src="../favicon.svg" alt=""><span class="wm">Brand<span class="grad">scale</span><span style="color:#A29CB8">.eu</span></span></div>
+  <h1><span class="lite">Planbare Anfragen</span> für Experten,<br>die keine <span class="strike">Versprechen</span> mehr glauben.</h1>
+  <div class="foot">
+    <span class="mono">Erst beweisen. Dann skalieren.</span>
+    <span class="sub">Content · Ads · Funnel — für Coaches, Berater &amp; Experten</span>
+  </div>
+</div></body></html>
