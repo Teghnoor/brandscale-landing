@@ -123,13 +123,19 @@
   }
 
   /* ============ LOGO-MARQUEE ============ */
-  .logo-item { display:inline-flex; align-items:center; height:30px; }
-  .logo-item img { height:26px; width:auto; filter:grayscale(1) opacity(.68); transition:filter .3s; }
-  .logo-item:hover img { filter:grayscale(0) opacity(1); }
+  .logo-item { display:inline-flex; align-items:center; height:40px; }
+  /* Auf dem dunklen Band braucht jedes Bild-Logo einen hellen Traeger: Wiener Linien und
+     Jameson haben weisse Flaechen, Sidemen ist rein schwarz — als Silhouette oder auf
+     Schwarz waeren sie Kloetze bzw. unsichtbar. Der Chip laesst die Originalfarben stehen,
+     statt fremde Marken umzufaerben. */
+  /* content-box: sonst frisst das Padding die 26px Bildhoehe auf (Tailwind setzt border-box global) */
+  .logo-item img { box-sizing:content-box; height:26px; width:auto; display:block; background:#EFEDE6;
+    padding:7px 11px; border-radius:8px; opacity:.9; transition:opacity .3s, transform .3s; }
+  .logo-item:hover img { opacity:1; transform:translateY(-1px); }
   /* Kunden-Namen in Markenviolett (7,67:1 auf dem hellen Band). Die Bild-Logos daneben
      bleiben bewusst grayscale: fremde Marken-Assets faerbt man nicht ein. */
-  .wordmark { color:#5B21B6; opacity:.92; white-space:nowrap; transition:color .3s, opacity .3s; }
-  .logo-item:hover .wordmark { color:#3B0F7A; opacity:1; }
+  .wordmark { color:#F4F2FA; opacity:.88; white-space:nowrap; transition:color .3s, opacity .3s; }
+  .logo-item:hover .wordmark { color:#A78BFA; opacity:1; }
   .wm-serif { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:22px; letter-spacing:.02em; }
   .wm-caps { font-family:'Instrument Sans',sans-serif; font-weight:700; font-size:15px; letter-spacing:.28em; text-transform:uppercase; }
   .wm-mono { font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px; letter-spacing:.18em; text-transform:uppercase; }
@@ -138,9 +144,9 @@
   .wm-light { font-family:'Instrument Sans',sans-serif; font-weight:400; font-size:18px; letter-spacing:.12em; text-transform:uppercase; }
 
   /* ============ WORK(ED)-WITH LABEL + HOVER-INFO-TOOLTIP ============ */
-  .worked-label { font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#0A0C10; }
-  .worked-label .paren { color:#8B5CF6; }
-  .worked-hint { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#5F5F58; }
+  .worked-label { font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#F4F2FA; }
+  .worked-label .paren { color:#A78BFA; }
+  .worked-hint { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#A29CB8; }
   .logo-item { cursor:default; }
   .hint-touch { display:none; }
   @media (hover: none) {
@@ -161,6 +167,10 @@
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
   .brand-marquee-outer { position:relative; }
+  /* dezenter Violett-Schimmer, damit der Streifen als eigene Flaeche liest statt als Loch */
+  .brand-marquee-outer::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(680px 190px at 50% 0%, rgba(139,92,246,.16), transparent 70%); }
+  .brand-marquee-outer > * { position:relative; }
   /* Brand-Marquee: 3 identische Kopien → nahtloser Loop auch auf breiten Screens.
      to-Wert = eine Set-Breite (33.3333% minus g/3, g=3.5rem → 1.1667rem), sonst mini-Sprung am Übergang.
      Läuft IMMER durch — kein Hover-Stopp (nur offscreen pausiert für Performance). */
@@ -170,7 +180,7 @@
   .brand-marquee-outer .marquee-wrap.is-paused .marquee { animation-play-state:paused; }
   .brand-tip {
     position:absolute; width:238px; padding:.72rem .85rem; border-radius:11px;
-    background:#0A0C10; text-align:left; z-index:40;
+    background:#1C1533; border:1px solid rgba(167,139,250,.30); text-align:left; z-index:40;
     opacity:0; visibility:hidden; pointer-events:none;
     transform:translateX(-50%) translateY(5px);
     transition:opacity .2s ease, transform .2s ease;
@@ -179,7 +189,7 @@
   .brand-tip.is-on { opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
   .brand-tip::before {
     content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
-    border:6px solid transparent; border-bottom-color:#0A0C10;
+    border:6px solid transparent; border-bottom-color:#1C1533;
   }
   .brand-tip .tip-text { display:block; font-size:12.5px; line-height:1.4; color:#E7E9EE; }
   .brand-tip .tip-ig { display:none; margin-top:.6rem; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.04em; color:#B79CFF; text-decoration:none; }
@@ -669,7 +679,7 @@
 </section>
 
 <!-- ============ KUNDEN & MARKEN MARQUEE ============ -->
-<section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-[#EFEDE6] text-[#0A0C10]">
+<section class="brand-marquee-outer border-y border-line pt-8 pb-14 bg-surface text-ink">
   <div class="text-center mb-7">
     <p class="worked-label">work<span class="paren">(ed)</span> with</p>
     <p class="worked-hint mt-2"><span class="hint-hover">Fahr über eine Marke →</span><span class="hint-touch">Tipp auf eine Marke →</span></p>
