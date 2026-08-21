@@ -282,29 +282,35 @@
 
   /* ============ VSL-HERO: Fullscreen-Video ============ */
   /* isolate: sonst legt sich der Film-Grain (body::after, z-index:1) über das Video */
-  .vsl-hero { min-height:100svh; isolation:isolate; }
-  /* svh-Fallback für ältere Browser */
-  @supports not (height: 100svh) { .vsl-hero { min-height:100vh; } }
-  .vsl-media { position:absolute; inset:0; overflow:hidden; }
-  .vsl-media video, .vsl-media img { width:100%; height:100%; object-fit:cover; display:block; }
-  /* Scrim: hält den Text lesbar, weicht beim Abspielen zurück */
-  .vsl-scrim { position:absolute; inset:0; pointer-events:none; transition:opacity .5s ease;
-    background:linear-gradient(180deg, rgba(10,12,16,.80) 0%, rgba(10,12,16,.55) 42%, rgba(10,12,16,.92) 100%); }
+  /* Hero traegt jetzt selbst den dunklen Grund + Glow — das Video sitzt als eigene Box
+     im Textfluss statt als Vollflaechen-Hintergrund. isolate: haelt den Film-Grain drunter. */
+  .vsl-hero { isolation:isolate; }
+  .vsl-hero::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(900px 560px at 82% -10%, rgba(139,92,246,.26), transparent 62%),
+               radial-gradient(760px 480px at -6% 108%, rgba(59,130,246,.18), transparent 60%); }
+  /* Video-Box: 16:9, begrenzte Breite, damit sie den Hero nicht auffrisst */
+  .vsl-box { position:relative; width:100%; max-width:620px; margin-inline:auto; aspect-ratio:16/9;
+    border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.16);
+    background:#0A0C10; box-shadow:0 30px 70px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04) inset; }
+  @supports not (aspect-ratio: 16/9) { .vsl-box { height:0; padding-bottom:56.25%; } }
+  .vsl-box video { width:100%; height:100%; object-fit:cover; display:block; }
+  /* Abdunkeln, solange das Standbild steht — verschwindet beim Abspielen */
+  .vsl-box::after { content:""; position:absolute; inset:0; pointer-events:none; transition:opacity .4s ease;
+    background:linear-gradient(180deg, rgba(10,12,16,.30) 0%, rgba(10,12,16,.10) 45%, rgba(10,12,16,.45) 100%); }
+  .vsl-hero.is-playing .vsl-box::after { opacity:0; }
   .vsl-copy { transition:opacity .45s ease, transform .45s cubic-bezier(.22,.61,.36,1); }
-  .vsl-hero.is-playing .vsl-scrim { opacity:.12; }
-  .vsl-hero.is-playing .vsl-copy { opacity:0; transform:translateY(12px); pointer-events:none; }
   /* Play-Knopf: sitzt mittig über dem Video, verschwindet beim Abspielen */
-  .vsl-play { position:relative; display:inline-grid; place-items:center; width:64px; height:64px; border-radius:9999px;
-    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.45); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  .vsl-play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center;
+    width:64px; height:64px; border-radius:9999px; transition:opacity .3s;
+    background:rgba(10,12,16,.58); border:1.5px solid rgba(255,255,255,.85); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    box-shadow:0 8px 30px -6px rgba(0,0,0,.7);
     transition:transform .3s cubic-bezier(.22,.61,.36,1), background-color .3s; }
   @media (min-width:640px){ .vsl-play { width:78px; height:78px; } }
-  .vsl-play:hover { transform:scale(1.07); background:rgba(255,255,255,.24); }
-  .vsl-play::before { content:""; position:absolute; inset:-6px; border-radius:9999px; border:1px solid rgba(255,255,255,.35);
+  .vsl-play:hover { transform:translate(-50%,-50%) scale(1.07); background:rgba(10,12,16,.78); }
+  .vsl-play::before { content:""; position:absolute; inset:-6px; border-radius:9999px; border:1.5px solid rgba(255,255,255,.6);
     animation:vsl-ring 2.6s cubic-bezier(0,0,.2,1) infinite; }
   @keyframes vsl-ring { 0%{transform:scale(1); opacity:.7} 70%,100%{transform:scale(1.35); opacity:0} }
   /* Pause-Leiste erscheint erst während der Wiedergabe */
-  .vsl-stop { opacity:0; pointer-events:none; transition:opacity .3s; }
-  .vsl-hero.is-playing .vsl-stop { opacity:1; pointer-events:auto; }
   .vsl-hero.is-playing .vsl-play { opacity:0; pointer-events:none; }
 
   /* ============ NAV über dem dunklen Hero ============ */
@@ -497,15 +503,7 @@
 <!-- ============ HERO: Fullscreen-VSL ============ -->
 <!-- Video liegt self-hosted in videos/ — keine fremde Ressource, kein Third-Party-Embed. -->
 <section id="top" class="vsl-hero relative flex items-center overflow-hidden" style="background:#0A0C10">
-  <div class="vsl-media">
-    <video id="vsl" poster="images/vsl-poster.jpg" autoplay muted loop playsinline preload="metadata"
-           aria-label="Video: Wie das Anfrage-System von Brandscale funktioniert">
-      <source src="videos/vsl.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="vsl-scrim"></div>
-
-  <div class="relative w-full max-w-4xl mx-auto px-5 pt-20 sm:pt-24 pb-24 sm:pb-28 text-center text-white">
+  <div class="relative w-full max-w-4xl mx-auto px-5 pt-28 sm:pt-32 pb-28 sm:pb-32 text-center text-white">
     <div class="vsl-copy">
       <span class="hero-in d1 inline-flex items-center gap-2.5 mono text-[11px] font-medium text-white/85 border border-white/25 bg-white/10 rounded-full px-3.5 py-1.5 mb-7 uppercase backdrop-blur-sm">
         <span class="scarce-dot inline-flex rounded-full w-2 h-2 grad-btn"></span>
@@ -521,10 +519,16 @@
         Eine halbe Minute, in der du siehst, wie das System arbeitet — bevor du irgendwem etwas glaubst.
       </p>
 
-      <div class="hero-in d3 mt-6 sm:mt-7 flex flex-col items-center gap-3">
-        <button type="button" id="vslPlay" class="vsl-play" aria-label="Video mit Ton starten">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-        </button>
+      <div class="hero-in d3 mt-7 sm:mt-8 flex flex-col items-center gap-3">
+        <div class="vsl-box">
+          <video id="vsl" poster="images/vsl-poster.jpg" muted playsinline preload="metadata"
+                 aria-label="Video: Wie das Anfrage-System von Brandscale funktioniert">
+            <source src="videos/vsl.mp4" type="video/mp4">
+          </video>
+          <button type="button" id="vslPlay" class="vsl-play" aria-label="Video mit Ton starten">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+        </div>
         <span class="mono text-[11px] uppercase text-white/60">VSL ansehen · <span id="vslDur">32 Sek</span></span>
       </div>
 
@@ -541,9 +545,6 @@
       <p class="hero-in d4 mt-4 mono text-[11px] uppercase text-white/55">Kein Pitch. Keine Setter. Du entscheidest danach in Ruhe.</p>
     </div>
 
-    <button type="button" id="vslStop" class="vsl-stop absolute left-1/2 -translate-x-1/2 bottom-28 mono text-[11px] uppercase text-white/80 border border-white/25 bg-black/40 rounded-full px-4 py-2 backdrop-blur-sm">
-      Ton aus · Video pausieren
-    </button>
   </div>
 
   <!-- Knappheits-Leiste am Hero-Fuß -->
@@ -1346,15 +1347,13 @@ var SCARCITY = {
     overHero();
   }
 
-  // ----- VSL: stummer Loop im Hintergrund, per Klick mit Ton von vorn -----
+  // ----- VSL: Standbild (Poster) in der Box, per Klick mit Ton von vorn -----
+  // Kein Autoplay: preload="metadata" laedt nur die Kopfdaten (fuer die Laufzeit-Anzeige),
+  // die 10,8 MB gehen erst beim Klick ueber die Leitung.
   var vsl = document.getElementById('vsl');
   if (vsl && hero) {
     var vslPlay = document.getElementById('vslPlay');
-    var vslStop = document.getElementById('vslStop');
     var vslDur  = document.getElementById('vslDur');
-
-    // Bei reduzierter Bewegung nur das Poster zeigen — erst ein Klick startet das Video.
-    if (reduceMotion) { vsl.removeAttribute('autoplay'); vsl.pause(); }
 
     // Laufzeit aus der Datei lesen, statt sie im Markup zu behaupten
     vsl.addEventListener('loadedmetadata', function(){
@@ -1366,40 +1365,34 @@ var SCARCITY = {
 
     var startSound = function(){
       hero.classList.add('is-playing');
-      vsl.loop = false;
       vsl.muted = false;
+      vsl.controls = true;          // ab hier steuert der Nutzer selbst (Pause, Spulen, Lautstaerke)
       vsl.currentTime = 0;
       var p = vsl.play();
-      // Blockiert der Browser die Wiedergabe mit Ton, fällt alles in den Ausgangszustand zurück
-      if (p && p.catch) p.catch(function(){ stopSound(); });
+      // Blockiert der Browser die Wiedergabe mit Ton, faellt alles in den Ausgangszustand zurueck
+      if (p && p.catch) p.catch(function(){ reset(); });
     };
-    var stopSound = function(){
+    // Zurueck aufs Standbild. load() statt pause(), weil ein pausiertes Video den letzten
+    // Frame stehen laesst — das Poster kommt nur ueber einen echten Reset zurueck.
+    var reset = function(){
       hero.classList.remove('is-playing');
+      vsl.controls = false;
       vsl.muted = true;
-      vsl.loop = true;
-      if (!reduceMotion) { var q = vsl.play(); if (q && q.catch) q.catch(function(){}); }
-      else { vsl.pause(); }
+      vsl.load();
     };
 
     if (vslPlay) vslPlay.addEventListener('click', startSound);
-    if (vslStop) vslStop.addEventListener('click', stopSound);
-    vsl.addEventListener('ended', stopSound);
+    vsl.addEventListener('ended', reset);
     document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopSound();
+      if (e.key === 'Escape' && hero.classList.contains('is-playing')) reset();
     });
 
-    // Außerhalb des Sichtfelds pausieren — spart Akku und verhindert Ton aus dem Nichts
+    // Aus dem Sichtfeld gescrollt: anhalten, damit kein Ton aus dem Nichts weiterlaeuft.
+    // Das Standbild bleibt stehen, damit der Nutzer beim Zurueckscrollen dort weitermacht.
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function(entries){
         entries.forEach(function(en){
-          if (en.isIntersecting) {
-            if (!reduceMotion || hero.classList.contains('is-playing')) {
-              var r = vsl.play(); if (r && r.catch) r.catch(function(){});
-            }
-          } else {
-            vsl.pause();
-            if (hero.classList.contains('is-playing')) stopSound();
-          }
+          if (!en.isIntersecting && hero.classList.contains('is-playing')) vsl.pause();
         });
       }, { threshold: 0.15 }).observe(hero);
     }
