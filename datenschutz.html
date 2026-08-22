@@ -25,6 +25,20 @@
   .toc-chip { transition:border-color .25s, color .25s, background-color .25s; }
   .toc-chip:hover { border-color:rgba(167,139,250,.55); color:#F4F2FA; background:#1B1530; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  /* ============================================================
+     MOBILE-PASS (<= 639px) — identisch gehalten mit index.html:
+     Trefferflaechen und Randabstaende fuer Touch.
+     ============================================================ */
+  @media (max-width: 639.98px) {
+    header a[href="index.html"], header a[href="/"], header > div > a { min-height:44px; }
+    footer ul li a, footer .flex a, footer p a:not(.underline),
+    a[href="index.html"], .toc-chip {
+      display:inline-flex; align-items:center; min-height:44px;
+    }
+    footer ul { display:flex; flex-direction:column; gap:.15rem; }
+    footer ul li { margin-top:0 !important; }
+    .mono { letter-spacing:.08em; }
+  }
 </style>
 </head>
 <body class="font-sans antialiased selection:bg-accent/20">

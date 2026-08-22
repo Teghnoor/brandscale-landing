@@ -22,6 +22,20 @@
   .card { background:#141021; border:1px solid #26203A; }
   .legal-num { color:#A78BFA; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:.8rem; letter-spacing:.12em; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  /* ============================================================
+     MOBILE-PASS (<= 639px) — identisch gehalten mit index.html:
+     Trefferflaechen und Randabstaende fuer Touch.
+     ============================================================ */
+  @media (max-width: 639.98px) {
+    header a[href="index.html"], header a[href="/"], header > div > a { min-height:44px; }
+    footer ul li a, footer .flex a, footer p a:not(.underline),
+    a[href="index.html"], .toc-chip {
+      display:inline-flex; align-items:center; min-height:44px;
+    }
+    footer ul { display:flex; flex-direction:column; gap:.15rem; }
+    footer ul li { margin-top:0 !important; }
+    .mono { letter-spacing:.08em; }
+  }
 </style>
 </head>
 <body class="font-sans antialiased selection:bg-accent/20">
@@ -118,7 +132,7 @@
 
     </div>
 
-    <div class="card rounded-2xl p-6 mt-14 flex items-center justify-between gap-4">
+    <div class="card rounded-2xl p-6 mt-14 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <p class="text-sm text-mute">Wie wir mit deinen Daten umgehen, liest du in unserer Datenschutzerklärung.</p>
       <a href="datenschutz.html" class="shrink-0 text-sm font-semibold text-accentDeep hover:underline inline-flex items-center gap-1.5">Zur Datenschutzerklärung <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>

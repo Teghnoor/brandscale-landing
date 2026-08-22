@@ -31,6 +31,9 @@
 <link rel="preload" href="fonts/instrumentsans-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   html { scroll-behavior:smooth; }
+  /* Der Header ist fixiert (h-16 = 64px). Ohne scroll-margin landet jedes
+     Sprungziel (#warteliste, #resultate, ...) unter der Leiste. */
+  :target, section[id], [id^="anfrage"] { scroll-margin-top:84px; }
   /* overflow-x:clip statt hidden — hidden macht body zum Scroll-Container und friert das Fenster-Scrolling ein */
   html, body { overflow-x:clip; }
   /* Fallback für ältere Safari-Versionen ohne clip-Support (sonst horizontale Riesen-Seite auf iOS) */
@@ -386,6 +389,112 @@
   }
   #sticky-cta.is-on { transform:none; opacity:1; pointer-events:auto; }
   @media (min-width: 768px) { #sticky-cta { display:none; } }
+
+  /* ============================================================
+     MOBILE-PASS (<= 639px)
+     Bewusst ein eigener Block am Ende des Stylesheets statt hunderter
+     Tailwind-Klassen im Markup: gleiche Spezifitaet, spaetere Regel gewinnt,
+     und der Desktop bleibt garantiert unberuehrt.
+     ============================================================ */
+  @media (max-width: 639.98px) {
+
+    /* --- iOS-Safari zoomt beim Fokus automatisch in die Seite, wenn ein Feld
+           kleiner als 16px rendert. Traf alle sichtbaren Felder (14px) — also
+           ausgerechnet das Warteliste-Formular, den primaeren Funnel-Eingang. --- */
+    input:not([type="hidden"]), select, textarea { font-size:16px; }
+
+    /* --- Trefferflaechen: WCAG 2.5.8 fordert 24px, Apple/Google empfehlen 44px --- */
+    #nav-toggle { width:44px; height:44px; }
+    #nav .cta-primary { min-height:44px; }
+    #mobile-menu nav a { display:flex; align-items:center; min-height:44px; }
+    #sticky-cta a { min-height:44px; }
+    #nav > div > a[href="#top"] { min-height:44px; }
+    /* Textlinks in Fusszeile/Listen brauchen eine Trefferflaeche, keine Textzeile */
+    footer ul li a, footer .flex a, footer p a:not(.underline) {
+      display:inline-flex; align-items:center; min-height:44px;
+    }
+    footer ul { display:flex; flex-direction:column; gap:.15rem; }
+    footer ul li { margin-top:0 !important; }
+    /* Unterstrichene Mini-CTAs ("Platz sichern", "Erstgespraech direkt buchen") */
+    a[href="#warteliste"].underline, a.underline.underline-offset-4 {
+      display:inline-flex; align-items:center; min-height:44px;
+    }
+
+    /* --- Lesbarkeit: 10px-Mono ist auf dem Handy zu klein --- */
+    .text-\[10px\] { font-size:11px; }
+    .mono { letter-spacing:.08em; }
+
+    /* --- Hero-Badge: lief als inline-flex, wodurch jeder Textabschnitt ein
+           eigenes Flex-Item war und "noch" mitten im Satz umbrach. --- */
+    .hero-badge { letter-spacing:.05em; line-height:1.35; text-align:center; }
+
+    /* --- Vertikale Straffung: der Scrollweg war auf 390px ueber 16.000px --- */
+    #warteliste, #resultate, #problem, #angebot,
+    #ablauf, #fuer-wen, #gruender, #faq { padding-top:2.75rem; padding-bottom:2.75rem; }
+    #kontakt { padding-top:3rem; padding-bottom:3rem; }
+    /* Karten-Innenabstand 32px -> 22px */
+    .card.p-8, .card.p-7 { padding:1.4rem; }
+    #warteliste .banner.p-8, #warteliste form.p-8, #warteliste .p-8 { padding:1.5rem; }
+    #gruender .p-8 { padding:1.5rem; }
+    /* Grosse Zwischenabstaende */
+    .mt-14 { margin-top:2rem; }
+    .mt-16 { margin-top:2.25rem; }
+    .mt-12 { margin-top:1.75rem; }
+
+    /* --- Die Diagnose-Karten hielten je eine 160px hohe Flaeche fuer ein
+           34px-Icon frei. Auf dem Handy wird daraus eine kompakte Kachel.
+           Der Verlauf allein traegt bei 64px nicht mehr — sie braucht einen Rand. --- */
+    #problem .aspect-video {
+      aspect-ratio:auto; width:60px; height:60px; margin:0 auto 1.1rem;
+      border:1px solid rgba(167,139,250,.28); background:rgba(139,92,246,.09);
+    }
+    #problem .aspect-video svg { width:28px; height:28px; }
+
+    /* --- Ablauf-Bilder und Gruender-Portrait etwas flacher --- */
+    #ablauf .card img { height:132px; }
+    #gruender .min-h-\[340px\] { min-height:250px; }
+
+    /* --- Sektionskopf: Ghost-Nummer schmaler, damit die H2 mehr Zeile hat.
+           shrink-0, sonst quetscht der Flex sie unter die Headline. --- */
+    .sec-index { font-size:2.6rem; flex:0 0 auto; }
+    #resultate > div > .rv.flex, #problem > div > .rv.flex, #angebot > div > .rv.flex,
+    #ablauf > div > .rv.flex, #fuer-wen > div > .rv.flex, #gruender > div > .rv.flex,
+    #faq > div > .rv.flex { gap:1.1rem; }
+
+    /* --- Marquee-Ausblendung: 7% sind auf 390px nur 27px, die Woerter wirkten
+           abgeschnitten statt ausgeblendet. --- */
+    .fade-x { -webkit-mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent);
+              mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent); }
+
+    /* --- Hero: 112px Kopf-/Fusspolster sind auf dem Handy zu viel.
+           NUR der Textblock — "#top > div" traf auch die absolut gesetzte
+           Knappheits-Leiste und blies sie auf 305px auf, die dann die
+           beiden Hero-Buttons verdeckte. --- */
+    #top > div.relative { padding-top:6rem; padding-bottom:5.5rem; }
+
+    /* --- Die Serif-Kursive ("Versprechen") hat groessere Ober-/Unterlaengen
+           als die Grotesk; bei 1.08 stiessen die Zeilen aneinander. --- */
+    #top h1 { line-height:1.15; }
+  }
+
+  /* ============================================================
+     SEHR SCHMALE GERAETE (<= 374px, z.B. iPhone SE 1./2. Gen)
+     Logo + Header-CTA + Menue-Knopf passten zusammen nicht mehr in die
+     Zeile — der Menue-Knopf lief rechts aus dem Bild und war nicht
+     mehr antippbar. (overflow-x:clip kaschierte es, statt es zu zeigen.)
+     ============================================================ */
+  @media (max-width: 374.98px) {
+    #nav .nav-word { font-size:1rem; }
+    #nav .nav-tld { display:none; }
+    #nav .cta-primary { font-size:13px; padding-left:.7rem; padding-right:.7rem; }
+    #nav > div { gap:.5rem; }
+    #nav > div > .flex.items-center.gap-3 { gap:.5rem; }
+    /* Knappheits-Leiste am Hero-Fuss: 4 Countdown-Kacheln + Link passen
+       sonst nicht mehr nebeneinander. */
+    .cd-unit { min-width:2.2rem; padding-left:.25rem; padding-right:.25rem; }
+    .cd { gap:.25rem; }
+    #top .flex.flex-wrap { gap-x:1rem; column-gap:1rem; }
+  }
 </style>
 
 <script type="application/ld+json">
@@ -517,9 +626,9 @@
 <section id="top" class="vsl-hero relative flex items-center overflow-hidden" style="background:#0A0C10">
   <div class="relative w-full max-w-4xl mx-auto px-5 pt-28 sm:pt-32 pb-28 sm:pb-32 text-center text-white">
     <div class="vsl-copy">
-      <span class="hero-in d1 inline-flex items-center gap-2.5 mono text-[11px] font-medium text-white/85 border border-white/25 bg-white/10 rounded-full px-3.5 py-1.5 mb-7 uppercase backdrop-blur-sm">
-        <span class="scarce-dot inline-flex rounded-full w-2 h-2 grad-btn"></span>
-        Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen
+      <span class="hero-badge hero-in d1 inline-flex items-center gap-2.5 mono text-[11px] font-medium text-white/85 border border-white/25 bg-white/10 rounded-full px-3.5 py-1.5 mb-7 uppercase backdrop-blur-sm">
+        <span class="scarce-dot shrink-0 inline-flex rounded-full w-2 h-2 grad-btn"></span>
+        <span>Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen</span>
       </span>
 
       <h1 class="hero-in d2 text-[2.1rem] sm:text-5xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.08]">
