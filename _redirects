@@ -1,1 +1,12 @@
-https://www.brand-scale.eu/*  https://brand-scale.eu/:splat  301
+# ACHTUNG: Cloudflare Pages wertet in dieser Datei NUR Pfade aus,
+# keine Host-Regeln. Ein Eintrag wie
+#   https://www.brand-scale.eu/*  https://brand-scale.eu/:splat  301
+# wird stillschweigend ignoriert und www liefert dann dieselbe Seite
+# aus wie der Apex (Duplicate Content).
+#
+# Der www -> Apex-Redirect laeuft deshalb als Cloudflare Redirect Rule
+# in der Zone: Rules > Redirect Rules > "Redirect from WWW to root",
+# 301, Wildcard https://www.* -> https://${1}, preserve query string.
+#
+# Pfad-Redirects koennen hier stehen, z.B.:
+#   /alt-pfad  /neuer-pfad  301
