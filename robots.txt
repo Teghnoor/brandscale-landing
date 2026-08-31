@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /impressum
 Disallow: /impressum.html
+Disallow: /datenschutz
 Disallow: /datenschutz.html
 
 Sitemap: https://brand-scale.eu/sitemap.xml

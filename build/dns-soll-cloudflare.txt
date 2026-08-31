@@ -1,0 +1,38 @@
+; ===================================================================
+; brand-scale.eu — SOLL-Zone für Cloudflare
+; Erhoben per dig am 2026-08-30 aus der laufenden GoDaddy-Zone.
+; Zweck: Abgleich nach Cloudflares Auto-Scan. Fehlt hier etwas
+;        in Cloudflare, MUSS es vor dem Nameserver-Wechsel rein.
+; ===================================================================
+
+; --- WEBSITE (ersetzt die 4 GitHub-Pages-A-Records) ---
+; Apex per CNAME-Flattening auf das Pages-Projekt (kann nur Cloudflare):
+brand-scale.eu.        CNAME  <projekt>.pages.dev.    ; Proxy AN (orange)
+www.brand-scale.eu.    CNAME  <projekt>.pages.dev.    ; Proxy AN (orange)
+; ALT, entfaellt: A 185.199.108-111.153 + www CNAME teghnoor.github.io
+
+; --- MAIL: Google Workspace (KRITISCH — office@brand-scale.eu) ---
+brand-scale.eu.  MX   1  aspmx.l.google.com.          ; Proxy AUS (grau)
+brand-scale.eu.  MX   5  alt1.aspmx.l.google.com.     ; Proxy AUS
+brand-scale.eu.  MX   5  alt2.aspmx.l.google.com.     ; Proxy AUS
+brand-scale.eu.  MX  10  alt3.aspmx.l.google.com.     ; Proxy AUS
+brand-scale.eu.  MX  10  alt4.aspmx.l.google.com.     ; Proxy AUS
+
+; --- TXT ---
+; SPF: GoDaddy-Macro aufgeloest und direkt gesetzt (der alte Include
+;      "dc-aa8e722993._spfm.brand-scale.eu" ist ein GoDaddy-Konstrukt
+;      und stirbt mit dem Nameserver-Wechsel!)
+brand-scale.eu.  TXT  "v=spf1 include:_spf.google.com ~all"
+brand-scale.eu.  TXT  "google-site-verification=aMtXLFmc2_1biO4vyWMRNaNjg_WZgalbbXFOsucc5LA"
+
+; DMARC: RUA zeigt bisher auf GoDaddy (onsecureserver.net) — beim
+;        Wechsel sinnlos. Empfehlung: auf eigene Adresse umbiegen.
+_dmarc.brand-scale.eu. TXT "v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:office@brand-scale.eu"
+
+; --- FEHLT AKTUELL (kein Cloudflare-Thema, aber offen) ---
+; DKIM ist NICHT eingerichtet: google._domainkey liefert nichts.
+; -> Google Admin > Apps > Gmail > E-Mail authentifizieren > Schluessel
+;    generieren, danach den TXT-Record hier ergaenzen.
+
+; --- GEPRUEFT, EXISTIERT NICHT (nicht anlegen) ---
+; AAAA, mail., autodiscover., cal., app., dashboard., blog., status.
