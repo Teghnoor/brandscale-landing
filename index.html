@@ -627,7 +627,7 @@
     <div class="vsl-copy">
       <span class="hero-badge hero-in d1 inline-flex items-center gap-2.5 mono text-[11px] font-medium text-white/85 border border-white/25 bg-white/10 rounded-full px-3.5 py-1.5 mb-7 uppercase backdrop-blur-sm">
         <span class="scarce-dot shrink-0 inline-flex rounded-full w-2 h-2 grad-btn"></span>
-        <span>Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen</span>
+        <span>Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>5</span> von <span data-slots-total>6</span> Plätzen</span>
       </span>
 
       <h1 class="hero-in d2 text-[2.1rem] sm:text-5xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.08]">
@@ -697,12 +697,12 @@
 
           <div class="mt-7">
             <div class="flex items-end justify-between">
-              <span class="text-4xl font-semibold tracking-tight" data-count="4" data-slots-taken>0</span>
+              <span class="text-4xl font-semibold tracking-tight" data-count="1" data-slots-taken>0</span>
               <span class="mono text-[11px] uppercase text-white/60">von <span data-slots-total>6</span> vergeben</span>
             </div>
             <div class="slot-bar slot-bar-dark mt-3"><div class="slot-fill" data-slot-fill></div></div>
             <p class="mt-3 mono text-[11px] uppercase text-white/70">
-              Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>2</span> Plätze frei
+              Aufnahme <span data-cohort>September</span> · noch <span data-slots-left>5</span> Plätze frei
             </p>
           </div>
 
@@ -1205,7 +1205,7 @@
       <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div>
           <span class="mono text-[11px] uppercase text-accent2">Der nächste Schritt</span>
-          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Noch <span data-slots-left>2</span> Plätze für <span data-cohort>September</span>.</h2>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight mt-4 leading-tight">Noch <span data-slots-left>5</span> Plätze für <span data-cohort>September</span>.</h2>
           <p class="text-white/65 mt-5 text-sm max-w-md">Danach geht es erst im nächsten Monat weiter. So läuft es ab, ohne Überraschungen:</p>
           <ol class="mt-6 space-y-3.5 text-sm text-white/85">
             <li class="flex gap-3.5"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full bg-white/10 border border-white/20 mono text-[11px]">1</span> <span><strong class="text-white">Warteliste</strong> — zwei Minuten, unverbindlich.</span></li>
@@ -1280,7 +1280,7 @@
 <!-- Sticky-CTA (nur Mobile, erscheint nach dem Hero, verschwindet bei der Kontakt-Sektion) -->
 <div id="sticky-cta" aria-hidden="true">
   <div class="min-w-0 flex-1">
-    <p class="text-sm font-semibold leading-tight">Noch <span data-slots-left>2</span> von <span data-slots-total>6</span> Plätzen</p>
+    <p class="text-sm font-semibold leading-tight">Noch <span data-slots-left>5</span> von <span data-slots-total>6</span> Plätzen</p>
     <p class="cd-mini text-[10px] uppercase text-mute mt-0.5">Schließt in <span data-cd-compact>--</span></p>
   </div>
   <a href="#warteliste" class="shrink-0 grad-btn text-sm font-semibold px-5 py-2.5 rounded-xl inline-flex items-center gap-2 transition" tabindex="-1">
@@ -1357,11 +1357,11 @@ window.addEventListener('error', function(){
    =================================================================== */
 var SCARCITY = {
   cohortLabel:   'September',                    // Name der laufenden Aufnahme
-  deadline:      '2026-09-01T09:00:00+02:00',    // Countdown-Ziel (ISO, mit Zeitzone)
+  deadline:      '2026-09-30T23:59:00+02:00',    // Countdown-Ziel (ISO, mit Zeitzone)
   autoRoll:      true,                           // true = springt nach Ablauf auf den nächsten Monatsersten
                                                  //        (verhindert einen abgelaufenen Timer auf der Live-Seite)
   slotsTotal:    6,                              // Plätze pro Aufnahme
-  slotsLeft:     2,                              // davon noch frei
+  slotsLeft:     5,                              // davon noch frei
   waitlistCount: 27                              // bisherige Einträge → nächster bekommt Position 28
 };
 
