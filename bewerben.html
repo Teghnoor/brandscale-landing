@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Bewerbung für ein Erstgespräch — Brandscale.eu</title>
+<meta name="description" content="Personal Branding für Coaches, Berater und Unternehmer im DACH-Raum. Zwei Minuten Bewerbung, danach ein ehrlicher Fit-Check mit dem Gründer. Kein Pitch, keine Setter." />
+<link rel="canonical" href="https://brand-scale.eu/bewerben" />
+<meta name="theme-color" content="#0B0912" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Brandscale.eu" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:url" content="https://brand-scale.eu/bewerben" />
+<meta property="og:title" content="Bewerbung für ein Erstgespräch — Brandscale.eu" />
+<meta property="og:description" content="Für Coaches, Berater und Unternehmer, die sichtbar werden wollen, ohne selbst Content denken zu müssen. Zwei Minuten, unverbindlich." />
+<meta property="og:image" content="https://brand-scale.eu/images/og-brandscale.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" href="fonts/bricolagegrotesque-600-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrumentsans-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  html { scroll-behavior:smooth; }
+  html, body { overflow-x:clip; }
+  @supports not (overflow: clip) { html, body { overflow-x:hidden; } }
+  body { background:#0B0912; color:#F4F2FA; -webkit-tap-highlight-color:transparent; }
+  h1, h2, h3 { font-family:'Bricolage Grotesque','Instrument Sans',ui-sans-serif,sans-serif; }
+  .mono { font-family:'IBM Plex Mono',ui-monospace,monospace; letter-spacing:.12em; }
+  .grad-text { background:linear-gradient(100deg,#8B5CF6,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; padding:0 .07em; margin:0 -.07em; }
+  .grad-btn { background:linear-gradient(100deg,#8B5CF6,#3B82F6); color:#fff; }
+  .grad-btn:hover { filter:brightness(1.07); }
+  .grad-btn:disabled { opacity:.45; cursor:not-allowed; filter:none; }
+  .card { background:#141021; border:1px solid #241D38; box-shadow:0 10px 34px -16px rgba(0,0,0,.75),0 1px 0 rgba(255,255,255,.04) inset; }
+  .no-scrollbar { scrollbar-width:none; } .no-scrollbar::-webkit-scrollbar { display:none; }
+
+  /* Hintergrund-Glühen hinter dem Formular */
+  .aura { position:absolute; inset:-40px -20px auto; height:420px; pointer-events:none; z-index:-1;
+    background:radial-gradient(60% 55% at 50% 40%, rgba(139,92,246,.28), transparent 70%); filter:blur(10px); }
+
+  /* Live-Punkt */
+  .live { position:relative; width:8px; height:8px; border-radius:999px; background:#22C55E; }
+  .live::after { content:""; position:absolute; inset:0; border-radius:999px; background:#22C55E; animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes ping { 75%,100% { transform:scale(2.4); opacity:0; } }
+
+  /* Zahlen-Leiste */
+  .stat { flex:1; min-width:0; padding:.8rem .65rem; }
+  .stat b { display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:clamp(.98rem,5vw,1.75rem); letter-spacing:-.02em; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .stat span { display:block; font-size:11px; color:#A29CB8; margin-top:.2rem; line-height:1.3; }
+
+  /* Antwort-Karten */
+  .opt { position:relative; display:flex; align-items:center; gap:.85rem; width:100%; text-align:left; padding:1rem 1.05rem; border-radius:1rem;
+    border:1px solid #332B4A; background:#0E0B18; color:#F4F2FA; font-size:.97rem; line-height:1.35; min-height:56px;
+    transition:border-color .2s, background .2s, transform .15s, box-shadow .25s; }
+  @media (hover:hover){ .opt:hover { border-color:rgba(167,139,250,.6); background:#15102A; transform:translateY(-1px); } }
+  .opt:active { transform:scale(.985); }
+  .opt:focus-visible { outline:2px solid #8B5CF6; outline-offset:2px; }
+  .opt[aria-pressed="true"] { border-color:#8B5CF6; background:rgba(139,92,246,.16); box-shadow:0 0 0 4px rgba(139,92,246,.12); }
+  .opt .dot { flex-shrink:0; width:22px; height:22px; border-radius:999px; border:1.5px solid #4A4163; display:grid; place-items:center; transition:all .2s; }
+  .opt .dot svg { opacity:0; transform:scale(.4); transition:all .25s cubic-bezier(.34,1.56,.64,1); }
+  .opt[aria-pressed="true"] .dot { border-color:transparent; background:linear-gradient(135deg,#8B5CF6,#3B82F6); }
+  .opt[aria-pressed="true"] .dot svg { opacity:1; transform:scale(1); }
+  .opt small { display:block; color:#A29CB8; font-size:.8rem; margin-top:.15rem; }
+  .opt kbd { margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6B6485; border:1px solid #2E2743; border-radius:6px; padding:1px 6px; display:none; }
+  @media (hover:hover) and (min-width:1024px){ .opt kbd { display:inline-block; } }
+  .opt .emoji { font-size:1.35rem; line-height:1; flex-shrink:0; }
+
+  /* Schritt-Übergänge, richtungsabhängig */
+  .step { display:none; }
+  .step.is-on { display:block; animation:inR .38s cubic-bezier(.22,.61,.36,1); }
+  .step.is-on.back { animation:inL .38s cubic-bezier(.22,.61,.36,1); }
+  @keyframes inR { from { opacity:0; transform:translateX(22px); } to { opacity:1; transform:none; } }
+  @keyframes inL { from { opacity:0; transform:translateX(-22px); } to { opacity:1; transform:none; } }
+  .step .opt { animation:optIn .4s cubic-bezier(.22,.61,.36,1) both; }
+  .step .opt:nth-child(2){ animation-delay:.04s } .step .opt:nth-child(3){ animation-delay:.08s }
+  .step .opt:nth-child(4){ animation-delay:.12s } .step .opt:nth-child(5){ animation-delay:.16s }
+  @keyframes optIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  /* Fortschritt in Segmenten */
+  .segs { display:flex; gap:4px; }
+  .segs i { flex:1; height:4px; border-radius:999px; background:#26203A; overflow:hidden; position:relative; }
+  .segs i::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,#8B5CF6,#3B82F6); transform:scaleX(0); transform-origin:left; transition:transform .4s ease; }
+  .segs i.done::after { transform:scaleX(1); }
+  .segs i.now::after { transform:scaleX(.45); }
+
+  .field { margin-top:.4rem; width:100%; border-radius:.8rem; border:1px solid #332B4A; background:#0E0B18; padding:.85rem 1rem; font-size:16px; color:#F4F2FA; transition:border-color .2s, box-shadow .2s; }
+  .field::placeholder { color:rgba(162,156,184,.5); }
+  .field:focus { border-color:rgba(139,92,246,.7); outline:none; box-shadow:0 0 0 3px rgba(139,92,246,.15); }
+
+  /* Erfolg: gezeichneter Haken */
+  .check-draw circle { stroke-dasharray:160; stroke-dashoffset:160; animation:draw .7s ease forwards; }
+  .check-draw path { stroke-dasharray:40; stroke-dashoffset:40; animation:draw .4s .55s ease forwards; }
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  .pulse-ring { box-shadow:0 0 0 0 rgba(139,92,246,.55); animation:pulse 2.2s infinite; }
+  @keyframes pulse { 70% { box-shadow:0 0 0 14px rgba(139,92,246,0); } 100% { box-shadow:0 0 0 0 rgba(139,92,246,0); } }
+
+  /* Logo-Laufband */
+  .marquee { display:flex; gap:2.25rem; width:max-content; animation:run 28s linear infinite; }
+  .marquee-wrap { mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  .marquee-wrap:hover .marquee { animation-play-state:paused; }
+  @keyframes run { to { transform:translateX(-50%); } }
+  .logo-chip img { height:24px; width:auto; border-radius:5px; background:#EFEDE6; padding:3px 6px; box-sizing:content-box; }
+  .wm { font-family:'Bricolage Grotesque',sans-serif; font-weight:600; color:rgba(244,242,250,.8); white-space:nowrap; font-size:1.05rem; }
+
+  /* Beweis-Galerie: auf dem Handy wischbar */
+  .proof-dots button { width:7px; height:7px; border-radius:999px; background:#3A3252; transition:all .25s; }
+  .proof-dots button[aria-current="true"] { width:22px; background:#8B5CF6; }
+
+  /* Einblenden beim Scrollen */
+  .rv { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+  .rv.in { opacity:1; transform:none; }
+
+  /* Mobile-Leiste zum Fortsetzen */
+  #resume { transform:translateY(120%); transition:transform .35s cubic-bezier(.22,.61,.36,1); padding-bottom:max(.75rem, env(safe-area-inset-bottom)); }
+  #resume.show { transform:none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; }
+    .rv { opacity:1; transform:none; }
+    .check-draw circle, .check-draw path { stroke-dashoffset:0; }
+  }
+</style>
+<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+</head>
+<body class="font-sans antialiased selection:bg-accent/20">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bs-mark" viewBox="0 0 24 24"><g transform="translate(-7.090,-6.968) scale(0.034804)" fill="#ffffff"><g transform="translate(0,1096) scale(0.1,-0.1)"><path d="M5365 8809 c-114 -17 -408 -150 -627 -285 -51 -32 -147 -89 -213 -127 -66 -39 -176 -105 -245 -148 -69 -42 -172 -103 -230 -134 -58 -31 -175 -99 -260 -150 -85 -51 -213 -125 -285 -165 -71 -40 -195 -112 -275 -160 -80 -48 -201 -117 -270 -154 -594 -321 -573 -272 -568 -1301 5 -925 -51 -811 568 -1161 424 -240 425 -268 15 -490 -789 -427 -767 -589 145 -1061 85 -44 243 -132 350 -195 107 -63 245 -141 305 -173 178 -93 304 -164 400 -225 50 -31 149 -87 220 -125 72 -37 193 -107 270 -155 77 -48 165 -100 195 -115 30 -15 144 -74 252 -132 400 -212 501 -199 1043 137 72 44 192 113 268 153 76 39 187 104 245 143 59 39 179 108 267 154 88 46 214 118 280 160 66 42 183 110 260 150 77 40 215 117 306 171 91 53 233 134 315 179 270 148 415 259 449 343 40 97 49 1547 11 1667 -41 126 -193 238 -666 492 -235 126 -256 174 -140 318 408 512 286 1142 -275 1423 -155 77 -164 79 -495 86 -377 8 -374 7 -419 188 -120 476 -634 774 -1196 692z m389 -623 c392 -193 303 -527 -214 -808 -86 -47 -200 -113 -253 -146 -54 -34 -153 -92 -220 -128 -67 -37 -171 -99 -232 -139 -123 -80 -626 -345 -705 -371 -107 -35 -162 -16 -545 189 -350 187 -346 212 62 433 98 53 243 136 323 184 80 48 177 104 215 125 39 22 169 96 290 165 121 70 256 146 300 170 44 24 177 98 295 165 386 220 508 249 684 161z m1427 -864 c166 -66 239 -246 171 -423 -43 -108 -111 -164 -412 -334 -85 -48 -222 -128 -305 -178 -82 -49 -210 -123 -283 -163 -73 -41 -172 -100 -220 -132 -48 -32 -114 -73 -147 -92 -33 -18 -119 -69 -192 -112 -290 -173 -303 -171 -807 114 -321 182 -307 217 197 500 87 48 193 112 235 142 42 29 131 82 197 116 66 35 161 89 210 120 263 165 784 425 924 460 74 18 370 6 432 -18z m-4055 -936 c64 -22 351 -178 459 -248 55 -36 201 -118 325 -183 124 -65 290 -157 370 -205 80 -48 226 -129 324 -180 99 -51 250 -135 335 -187 519 -314 532 -314 983 -51 122 71 293 166 378 211 85 44 223 122 305 172 385 236 381 236 770 17 341 -192 332 -244 -80 -465 -340 -182 -476 -257 -555 -309 -47 -31 -141 -86 -210 -124 -69 -37 -183 -104 -255 -149 -71 -45 -188 -112 -260 -150 -71 -38 -184 -103 -250 -144 -253 -158 -378 -128 -957 231 -70 43 -202 119 -294 169 -92 49 -214 120 -273 158 -58 37 -164 98 -236 136 -71 37 -206 114 -300 170 -93 56 -263 150 -378 208 -368 188 -351 163 -355 527 -5 397 14 446 154 396z m4824 -1474 c39 -39 42 -71 38 -382 -4 -367 6 -351 -373 -555 -96 -52 -207 -116 -247 -143 -40 -27 -153 -92 -250 -145 -97 -53 -216 -122 -265 -155 -48 -32 -151 -92 -228 -132 -77 -41 -180 -99 -230 -130 -140 -88 -500 -283 -755 -408 -154 -76 -227 -57 -571 150 -96 58 -237 138 -313 178 -77 40 -207 113 -290 163 -83 49 -216 125 -295 169 -80 44 -192 110 -250 147 -58 38 -167 101 -241 140 -373 200 -383 259 -69 439 375 216 382 215 889 -83 96 -56 243 -140 325 -185 83 -45 187 -106 232 -136 369 -239 533 -224 1047 100 72 46 194 116 271 156 77 41 208 115 290 165 83 50 213 125 290 165 77 40 190 105 250 143 61 39 191 113 290 165 99 52 198 106 219 120 130 82 193 96 236 54z"/></g></g></symbol></svg>
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-paper/80 border-b border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-5 h-14 sm:h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2.5 font-semibold text-lg tracking-tight">
+      <span class="inline-grid place-items-center w-7 h-7 rounded-md grad-btn">
+        <svg width="16" height="16" aria-hidden="true"><use href="#bs-mark"/></svg>
+      </span>
+      <span class="tracking-[.02em]">Brand<span class="grad-text">scale</span><span class="text-mute font-bold">.eu</span></span>
+    </a>
+    <span class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-2.5 sm:px-3 py-1 text-[12px] shrink-0">
+      <span class="live" aria-hidden="true"></span><span class="whitespace-nowrap"><span class="hidden min-[400px]:inline"><span data-cohort>Oktober</span>: </span>noch <strong data-slots-left>1</strong> <span data-slots-word>Platz</span></span>
+    </span>
+  </div>
+</header>
+
+<main class="pt-20 sm:pt-28 pb-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-5 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-x-14 gap-y-6 items-start">
+
+    <section class="min-w-0 lg:col-start-1 lg:row-start-1">
+      <span class="mono text-[10px] sm:text-[11px] uppercase text-accentDeep">Bewerbung · ca. 60 Sekunden</span>
+      <h1 class="text-[2rem] leading-[1.05] sm:text-5xl font-semibold tracking-tight mt-3">
+        Sichtbar werden, <span class="grad-text">ohne selbst Content denken zu müssen.</span>
+      </h1>
+      <p class="hidden sm:block text-mute mt-5 text-base max-w-lg">Personal Branding für Coaches, Berater und Unternehmer im DACH-Raum. Du bleibst das Gesicht, wir machen den Rest.</p>
+
+      <div class="card rounded-2xl mt-4 sm:mt-7">
+        <div class="flex divide-x divide-line">
+          <div class="stat"><b data-to="700" data-suffix=" Mio.+">700 Mio.+</b><span>Views</span></div>
+          <div class="stat"><b data-to="1.1" data-dec="1" data-suffix=" Mio.+">1,1 Mio.+</b><span>aufgebaute Follower</span></div>
+          <div class="stat"><b data-to="7.8" data-dec="1" data-prefix="€ " data-suffix=" Mio.+">€ 7,8 Mio.+</b><span>Kundenumsatz</span></div>
+        </div>
+        <p class="px-4 py-2.5 border-t border-line text-[11.5px] text-mute flex items-center gap-2">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          Live belegbar: wir zeigen dir jede Zahl im Erstgespräch.
+        </p>
+      </div>
+    </section>
+
+    <section id="bewerbung" class="relative min-w-0 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1 lg:row-span-2 scroll-mt-20">
+      <div class="aura" aria-hidden="true"></div>
+      <div class="card rounded-3xl p-5 sm:p-8" aria-live="polite">
+        <div id="fn-head">
+          <div class="flex items-center justify-between gap-4 h-6">
+            <button type="button" id="fn-back" class="text-sm text-mute hover:text-ink transition invisible inline-flex items-center gap-1" aria-label="Zurück zur vorherigen Frage">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>Zurück
+            </button>
+            <span id="fn-count" class="mono text-[10px] uppercase text-mute">Frage 1 von 7</span>
+          </div>
+          <div id="fn-segs" class="segs mt-3" aria-hidden="true"></div>
+          <p id="fn-eta" class="text-[11.5px] text-mute mt-2">Noch ca. 60 Sekunden</p>
+        </div>
+
+        <form id="fn-form" class="mt-5" novalidate>
+          <input type="hidden" name="access_key" value="c94b8228-7e61-4b94-bff3-d4d80b15227a">
+          <input type="hidden" name="subject" value="">
+          <input type="hidden" name="from_name" value="Brandscale Bewerbung">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+
+          <div class="step" data-step="segment">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Was beschreibt dich am besten?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="segment">
+              <button type="button" class="opt" data-v="coach"><span class="emoji" aria-hidden="true">🎙️</span><span>Coach, Berater oder Experte<small>Du verkaufst dein Wissen, meist allein oder mit kleinem Team.</small></span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="unternehmer"><span class="emoji" aria-hidden="true">🏢</span><span>Unternehmer oder Geschäftsführer<small>Du führst eine Firma mit Team und willst als Person dahinter sichtbar werden.</small></span><kbd>2</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="umsatz">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wo liegt dein Monatsumsatz ungefähr?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="umsatz">
+              <button type="button" class="opt" data-v="unter 15.000 €"><span class="dot"></span><span>unter 15.000 €</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="15.000 – 30.000 €"><span class="dot"></span><span>15.000 – 30.000 €</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="30.000 – 50.000 €"><span class="dot"></span><span>30.000 – 50.000 €</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="über 50.000 €"><span class="dot"></span><span>über 50.000 €</span><kbd>4</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="team">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wie groß ist dein Team?</h2>
+            <div class="mt-4 grid grid-cols-2 gap-2.5" data-q="team">
+              <button type="button" class="opt" data-v="1 – 5"><span class="dot"></span><span>1 – 5</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="6 – 20"><span class="dot"></span><span>6 – 20</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="21 – 100"><span class="dot"></span><span>21 – 100</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="über 100"><span class="dot"></span><span>über 100</span><kbd>4</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="follower">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wie viele Follower hast du auf deinem Hauptkanal?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="follower">
+              <button type="button" class="opt" data-v="unter 1.000"><span class="dot"></span><span>unter 1.000</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="1.000 – 10.000"><span class="dot"></span><span>1.000 – 10.000</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="über 10.000"><span class="dot"></span><span>über 10.000</span><kbd>3</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="ziel">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Was soll deine Sichtbarkeit vor allem bringen?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="ziel">
+              <button type="button" class="opt" data-v="Kunden und Vertrieb"><span class="emoji" aria-hidden="true">🤝</span><span>Neue Kunden und mehr Vertrieb</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="Recruiting"><span class="emoji" aria-hidden="true">🧲</span><span>Bessere Bewerber und Recruiting</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="Vertrauen und Reputation"><span class="emoji" aria-hidden="true">🛡️</span><span>Vertrauen und Reputation in der Branche</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="Sichtbarkeit allgemein"><span class="emoji" aria-hidden="true">📣</span><span>Erst einmal überhaupt sichtbar werden</span><kbd>4</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="engpass">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Was bremst dich gerade am meisten?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="engpass">
+              <button type="button" class="opt" data-v="zu wenig qualifizierte Anfragen"><span class="emoji" aria-hidden="true">📉</span><span>Ich poste, aber es kommen zu wenig passende Anfragen</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="Content-Last"><span class="emoji" aria-hidden="true">⏳</span><span>Content frisst zu viel Zeit neben dem Kerngeschäft</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="Positionierung"><span class="emoji" aria-hidden="true">🎯</span><span>Ich werde verwechselbar wahrgenommen</span><kbd>3</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="kanal">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wo bist du heute schon aktiv?</h2>
+            <div class="mt-4 grid grid-cols-2 gap-2.5" data-q="kanal">
+              <button type="button" class="opt" data-v="LinkedIn"><span class="dot"></span><span>LinkedIn</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="Instagram"><span class="dot"></span><span>Instagram</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="beide"><span class="dot"></span><span>Beide</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="noch keiner"><span class="dot"></span><span>Noch nirgends</span><kbd>4</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="budget">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Welche monatliche Investition ist realistisch?</h2>
+            <p class="text-[13px] text-mute mt-1.5">Damit wir dir im Gespräch nichts vorschlagen, das nicht zu dir passt.</p>
+            <div class="mt-4 grid grid-cols-2 gap-2.5" data-q="budget">
+              <button type="button" class="opt" data-v="unter 1.500 €"><span class="dot"></span><span>unter 1.500 €</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="1.500 – 3.000 €"><span class="dot"></span><span>1.500 – 3.000 €</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="3.000 – 5.000 €"><span class="dot"></span><span>3.000 – 5.000 €</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="über 5.000 €"><span class="dot"></span><span>über 5.000 €</span><kbd>4</kbd></button>
+              <button type="button" class="opt col-span-2" data-v="noch offen"><span class="dot"></span><span>Noch offen<small>Grundsätzlich bereit zu investieren, Rahmen noch nicht festgelegt.</small></span><kbd>5</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="start">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wann möchtest du starten?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="start">
+              <button type="button" class="opt" data-v="sofort"><span class="emoji" aria-hidden="true">⚡</span><span>So bald wie möglich</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="in 30 Tagen"><span class="emoji" aria-hidden="true">📅</span><span>In den nächsten 30 Tagen</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="in 1 – 3 Monaten"><span class="emoji" aria-hidden="true">🗓️</span><span>In 1 – 3 Monaten</span><kbd>3</kbd></button>
+              <button type="button" class="opt" data-v="nur Orientierung"><span class="emoji" aria-hidden="true">🧭</span><span>Ich will mich erst orientieren</span><kbd>4</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="entscheider">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Wer entscheidet über eine Zusammenarbeit?</h2>
+            <div class="mt-4 grid gap-2.5" data-q="entscheider">
+              <button type="button" class="opt" data-v="ich allein"><span class="dot"></span><span>Ich allein</span><kbd>1</kbd></button>
+              <button type="button" class="opt" data-v="gemeinsam"><span class="dot"></span><span>Ich gemeinsam mit einer weiteren Person</span><kbd>2</kbd></button>
+              <button type="button" class="opt" data-v="jemand anderes"><span class="dot"></span><span>Jemand anderes</span><kbd>3</kbd></button>
+            </div>
+          </div>
+
+          <div class="step" data-step="kontakt">
+            <h2 class="text-[1.45rem] sm:text-2xl font-semibold tracking-tight leading-tight">Fast geschafft. Wohin dürfen wir uns melden?</h2>
+            <div class="mt-4 grid sm:grid-cols-2 gap-3.5">
+              <label class="block text-sm">Name *
+                <input name="name" type="text" required autocomplete="name" class="field" placeholder="Vor- und Nachname">
+              </label>
+              <label class="block text-sm">E-Mail *
+                <input name="email" type="email" required autocomplete="email" inputmode="email" class="field" placeholder="du@beispiel.de">
+              </label>
+              <label class="block text-sm" data-only="unternehmer">Firma
+                <input name="firma" type="text" autocomplete="organization" class="field" placeholder="Name deines Unternehmens">
+              </label>
+              <label class="block text-sm">Profil oder Website
+                <input name="profil" type="text" autocapitalize="off" class="field" placeholder="@handle oder URL">
+              </label>
+              <label class="block text-sm sm:col-span-2">Was sollten wir vorher wissen? <span class="text-mute">(optional)</span>
+                <textarea name="message" rows="3" maxlength="600" class="field" placeholder="Wo stehst du, was hast du schon probiert?"></textarea>
+              </label>
+            </div>
+            <button type="submit" id="fn-submit" class="mt-5 w-full grad-btn font-semibold py-4 rounded-2xl transition inline-flex items-center justify-center gap-2">
+              <span id="fn-submit-text">Bewerbung absenden</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p id="fn-status" class="mt-3 text-sm" role="status"></p>
+            <p class="mt-3 text-[11px] text-mute">Wir nutzen deine Angaben nur, um deine Anfrage zu bearbeiten. Details in der <a href="datenschutz.html" class="underline decoration-line hover:decoration-accent">Datenschutzerklärung</a>.</p>
+          </div>
+        </form>
+
+        <div id="fn-fit" class="hidden text-center py-3">
+          <svg class="check-draw mx-auto" width="64" height="64" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="24" stroke="#8B5CF6" stroke-width="2.5"/><path d="M15 27l7 7 15-15" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2 class="text-[1.75rem] sm:text-3xl font-semibold tracking-tight mt-4">Das klingt nach einem Fit.</h2>
+          <p class="text-mute mt-3 max-w-md mx-auto text-[15px]">Such dir direkt einen Termin für das Erstgespräch aus. Nimm bitte dieselbe E-Mail-Adresse, damit wir deine Antworten zuordnen können.</p>
+          <div id="fn-summary" class="flex flex-wrap justify-center gap-2 mt-5"></div>
+          <a href="https://cal.com/aid-muric-thqgsz/erstgespraech" target="_blank" rel="noopener" class="pulse-ring mt-6 inline-flex items-center gap-3 grad-btn font-semibold pl-7 pr-2 py-2.5 rounded-2xl transition">
+            Termin auswählen
+            <span class="grid place-items-center w-9 h-9 rounded-full bg-white/20"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <p class="text-[12px] text-mute mt-4">45 Minuten mit dem Gründer · öffnet Cal.com in einem neuen Tab</p>
+        </div>
+
+        <div id="fn-review" class="hidden text-center py-3">
+          <svg class="check-draw mx-auto" width="64" height="64" viewBox="0 0 52 52" fill="none" aria-hidden="true"><circle cx="26" cy="26" r="24" stroke="#8B5CF6" stroke-width="2.5"/><path d="M15 27l7 7 15-15" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2 class="text-[1.75rem] sm:text-3xl font-semibold tracking-tight mt-4">Danke. Wir schauen uns das persönlich an.</h2>
+          <p class="text-mute mt-3 max-w-md mx-auto text-[15px]">Du hörst innerhalb von 48 Stunden von uns. Wenn wir aktuell nicht die richtige Lösung für dich sind, sagen wir dir das ehrlich und nennen dir, was stattdessen sinnvoll wäre.</p>
+          <p id="fn-aufbau" class="hidden text-sm text-mute mt-4 max-w-md mx-auto">Für Profile unter 1.000 Followern gibt es bei uns einen eigenen Einstieg: den Personal-Branding-Aufbau. Den schauen wir uns in dem Fall gemeinsam an.</p>
+          <a href="https://www.instagram.com/ehssanmemarpuri/" target="_blank" rel="noopener" class="inline-block mt-6 text-sm underline underline-offset-4 decoration-line hover:decoration-accent">Bis dahin: unseren öffentlichen Case ansehen ↗</a>
+        </div>
+      </div>
+
+      <ul class="mt-4 flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-1.5 text-[12px] text-mute">
+        <li class="inline-flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Kein Pitch</li>
+        <li class="inline-flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Keine Setter</li>
+        <li class="inline-flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Direkt mit dem Gründer</li>
+      </ul>
+    </section>
+
+    <section class="lg:col-start-1 lg:row-start-2 min-w-0 mt-6 lg:mt-2">
+      <div class="rv">
+        <p class="mono text-[10px] sm:text-[11px] uppercase text-mute">Gearbeitet u. a. mit</p>
+        <div class="marquee-wrap overflow-hidden mt-3 -mx-4 sm:mx-0">
+          <div class="marquee items-center py-1">
+            <span class="logo-chip"><img src="logos/zdf.svg" alt="ZDF" width="44" height="24"></span>
+            <span class="wm">Lindt</span>
+            <span class="logo-chip"><img src="logos/jameson.jpeg" alt="Jameson Connects" width="38" height="24"></span>
+            <span class="wm">Ali Badbanker</span>
+            <span class="wm">Ehssan Memarpuri</span>
+            <span class="wm">Mietix</span>
+            <span class="wm">Tobi.Scales</span>
+            <span class="logo-chip" aria-hidden="true"><img src="logos/zdf.svg" alt="" width="44" height="24"></span>
+            <span class="wm" aria-hidden="true">Lindt</span>
+            <span class="logo-chip" aria-hidden="true"><img src="logos/jameson.jpeg" alt="" width="38" height="24"></span>
+            <span class="wm" aria-hidden="true">Ali Badbanker</span>
+            <span class="wm" aria-hidden="true">Ehssan Memarpuri</span>
+            <span class="wm" aria-hidden="true">Mietix</span>
+            <span class="wm" aria-hidden="true">Tobi.Scales</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv mt-8 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight">Beweise statt Versprechen.</h2>
+        <span class="lg:hidden mono text-[10px] uppercase text-mute whitespace-nowrap">Wischen →</span>
+      </div>
+
+      <div id="proof" class="rv mt-4 flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-4 px-4 pb-1 lg:mx-0 lg:px-0 lg:flex-col lg:gap-5 lg:overflow-visible">
+
+        <article class="card rounded-2xl p-5 shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center">
+          <div class="flex items-center justify-between gap-3">
+            <span class="mono text-[10px] uppercase text-accentDeep">Case · freigegeben</span>
+            <a href="https://www.instagram.com/ehssanmemarpuri/" target="_blank" rel="noopener" class="mono text-[10px] uppercase text-mute hover:text-ink transition">Profil ↗</a>
+          </div>
+          <h3 class="text-xl font-semibold tracking-tight mt-3">Ehssan Memarpuri</h3>
+          <p class="text-[13px] text-mute mt-0.5">Unternehmer · Immobilien-Investor</p>
+          <div class="grid grid-cols-2 gap-2.5 mt-4">
+            <div class="rounded-xl border border-line bg-white/[.02] px-3 py-2.5"><div class="stat !p-0"><b data-to="1.08" data-dec="2" data-suffix=" Mio.">1,08 Mio.</b></div><div class="text-[11px] text-mute mt-0.5">Follower</div></div>
+            <div class="rounded-xl border border-line bg-white/[.02] px-3 py-2.5"><div class="font-display font-semibold text-[1rem] sm:text-[1.15rem] inline-flex items-center gap-1 whitespace-nowrap">Verifiziert <svg width="15" height="15" class="shrink-0" viewBox="0 0 24 24" fill="#3B82F6" aria-hidden="true"><path d="M12 1l2.6 2.3 3.4-.5 1 3.3 3 1.7-1.3 3.2 1.3 3.2-3 1.7-1 3.3-3.4-.5L12 23l-2.6-2.3-3.4.5-1-3.3-3-1.7L3.3 13 2 9.8l3-1.7 1-3.3 3.4.5z"/><path d="M8 12l3 3 5-6" stroke="#fff" stroke-width="2" fill="none"/></svg></div><div class="text-[11px] text-mute mt-0.5">blauer Haken</div></div>
+          </div>
+          <ul class="mt-4 space-y-2 text-[13.5px]">
+            <li class="flex gap-2.5"><span class="mono text-accentDeep text-[11px] pt-0.5">01</span><span><strong>Base gesetzt:</strong> <span class="text-mute">Positionierung, Profil, Content-Linie.</span></span></li>
+            <li class="flex gap-2.5"><span class="mono text-accentDeep text-[11px] pt-0.5">02</span><span><strong>Content:</strong> <span class="text-mute">alles, was auf dem Profil läuft.</span></span></li>
+            <li class="flex gap-2.5"><span class="mono text-accentDeep text-[11px] pt-0.5">03</span><span><strong>Clipping:</strong> <span class="text-mute">laufend Clips aus seinem Material.</span></span></li>
+          </ul>
+        </article>
+
+        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center flex flex-col lg:grid lg:grid-cols-[0.8fr_1fr]">
+          <img src="images/kunde-memarpuri-event.webp" alt="Aid Muric, Gründer von Brandscale.eu (links), mit den betreuten Marken Ehssan Memarpuri (Mitte) und Radin Zahedi (rechts) auf einem Branchen-Event." class="w-full h-52 lg:h-full object-cover object-[50%_12%]" loading="lazy" decoding="async" width="900" height="1037">
+          <div class="p-5 flex flex-col justify-center">
+            <span class="mono text-[10px] uppercase text-accentDeep">Vor Ort</span>
+            <p class="font-semibold mt-2">Wir kennen die Leute, für die wir arbeiten.</p>
+            <p class="text-[13px] text-mute mt-1.5">Kein Stock-Foto. Aid Muric (links) mit Ehssan Memarpuri und Radin Zahedi.</p>
+          </div>
+        </article>
+
+        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center flex flex-col lg:grid lg:grid-cols-[150px_1fr]">
+          <img src="images/aid-muric.webp" alt="Aid Muric, Gründer von Brandscale.eu" class="w-full h-52 lg:h-full object-cover object-top" loading="lazy" decoding="async" width="900" height="875">
+          <div class="p-5 flex flex-col justify-center">
+            <span class="mono text-[10px] uppercase text-accentDeep">Gründer</span>
+            <p class="font-semibold mt-2">Aid Muric</p>
+            <p class="text-[13px] text-mute mt-1.5">Das Erstgespräch führst du direkt mit ihm. Kein Setter, keine Zwischenschicht. Er sagt dir ehrlich, ob es passt.</p>
+          </div>
+        </article>
+      </div>
+      <div class="proof-dots lg:hidden flex justify-center gap-1.5 mt-4" role="tablist" aria-label="Beweise durchblättern"></div>
+
+      <div class="rv card rounded-2xl p-6 mt-10 text-center lg:text-left relative overflow-hidden">
+        <p class="font-display text-xl font-semibold tracking-tight">Die erste Frage dauert fünf Sekunden.</p>
+        <p class="text-[13.5px] text-mute mt-1.5">Im <span data-cohort>Oktober</span> ist noch <span data-slots-left>1</span> <span data-slots-word>Platz</span> frei.</p>
+        <a href="#bewerbung" class="mt-4 inline-flex items-center gap-2 grad-btn font-semibold px-6 py-3 rounded-2xl transition">Bewerbung starten
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="resume" class="lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pt-3 bg-paper/90 backdrop-blur-md border-t border-line" aria-hidden="true">
+  <div class="flex items-center gap-3">
+    <div class="flex-1 min-w-0">
+      <p id="resume-label" class="text-[13px] font-semibold truncate">Bewerbung starten</p>
+      <div class="h-1 rounded-full bg-[#26203A] mt-1.5 overflow-hidden"><i id="resume-bar" class="block h-full w-0 bg-gradient-to-r from-accent to-accent2 transition-all"></i></div>
+    </div>
+    <a href="#bewerbung" class="grad-btn text-sm font-semibold px-4 py-2.5 rounded-xl inline-flex items-center gap-1.5 shrink-0" tabindex="-1">Weiter
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</div>
+
+<footer class="border-t border-line py-8 bg-surface pb-24 lg:pb-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-mute text-center">
+    <span>© 2026 Brandscale.eu · <a href="mailto:office@brand-scale.eu" class="hover:text-ink">office@brand-scale.eu</a></span>
+    <span class="flex gap-5"><a href="impressum.html" class="hover:text-ink">Impressum</a><a href="datenschutz.html" class="hover:text-ink">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script>
+/* ===================================================================
+   AUFNAHME — gleiche Zahlen wie SCARCITY in index.html halten.
+   =================================================================== */
+var COHORT = { label:'Oktober', slotsLeft:1 };
+
+/* ===================================================================
+   BEWERBUNGS-FUNNEL — hier pflegst du Punkte und Schwelle.
+   Ab `threshold` Punkten gibt es direkt den Kalender, darunter meldet
+   ihr euch persönlich. Jede Bewerbung geht per Mail an office@.
+   =================================================================== */
+var FUNNEL = {
+  threshold: 5,
+  points: {
+    budget:      { 'unter 1.500 €':-3, '1.500 – 3.000 €':3, '3.000 – 5.000 €':3, 'über 5.000 €':3, 'noch offen':1 },
+    start:       { 'sofort':2, 'in 30 Tagen':2, 'in 1 – 3 Monaten':2, 'nur Orientierung':-2 },
+    entscheider: { 'ich allein':2, 'gemeinsam':1, 'jemand anderes':-1 },
+    umsatz:      { 'unter 15.000 €':-1, '15.000 – 30.000 €':2, '30.000 – 50.000 €':2, 'über 50.000 €':2 },
+    team:        { '1 – 5':0, '6 – 20':2, '21 – 100':2, 'über 100':2 }
+  },
+  paths: {
+    coach:       ['segment','umsatz','follower','engpass','budget','start','entscheider','kontakt'],
+    unternehmer: ['segment','team','ziel','kanal','budget','start','entscheider','kontakt']
+  }
+};
+
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ----- Aufnahme-Angaben -----
+  document.querySelectorAll('[data-cohort]').forEach(function(el){ el.textContent = COHORT.label; });
+  document.querySelectorAll('[data-slots-left]').forEach(function(el){ el.textContent = COHORT.slotsLeft; });
+  document.querySelectorAll('[data-slots-word]').forEach(function(el){ el.textContent = COHORT.slotsLeft === 1 ? 'Platz' : 'Plätze'; });
+
+  // ----- Zahlen zählen hoch, sobald sichtbar -----
+  function fmt(n, dec){ return n.toLocaleString('de-DE', { minimumFractionDigits:dec, maximumFractionDigits:dec }); }
+  function countUp(el){
+    var to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0);
+    var pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    if (reduce) { el.textContent = pre + fmt(to, dec) + suf; return; }
+    var t0 = null, dur = 1400;
+    function tick(t){
+      if (!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + fmt(to * e, dec) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ----- Einblenden + Hochzählen beim Scrollen -----
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        if (en.target.classList.contains('rv')) en.target.classList.add('in');
+        if (en.target.dataset.to) countUp(en.target);
+        io.unobserve(en.target);
+      });
+    }, { threshold:.2 });
+    document.querySelectorAll('.rv, [data-to]').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ----- Beweis-Galerie: Punkte synchron zum Wischen -----
+  var proof = document.getElementById('proof');
+  var dotsWrap = document.querySelector('.proof-dots');
+  var cards = proof.querySelectorAll('article');
+  cards.forEach(function(c, i){
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Karte ' + (i + 1));
+    b.addEventListener('click', function(){ proof.scrollTo({ left: c.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' }); });
+    dotsWrap.appendChild(b);
+  });
+  function syncDots(){
+    var mid = proof.scrollLeft + proof.clientWidth / 2, best = 0, bestD = 1e9;
+    cards.forEach(function(c, i){ var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bestD) { bestD = d; best = i; } });
+    dotsWrap.querySelectorAll('button').forEach(function(b, i){ b.setAttribute('aria-current', i === best ? 'true' : 'false'); });
+  }
+  proof.addEventListener('scroll', function(){ requestAnimationFrame(syncDots); }, { passive:true });
+  syncDots();
+
+  // ----- Funnel -----
+  var card    = document.getElementById('bewerbung');
+  var form    = document.getElementById('fn-form');
+  var steps   = {};
+  form.querySelectorAll('.step').forEach(function(s){ steps[s.dataset.step] = s; });
+  var answers = {};
+  var path    = FUNNEL.paths.coach;
+  var idx     = 0;
+  var done    = false;
+  var back    = document.getElementById('fn-back');
+  var count   = document.getElementById('fn-count');
+  var segs    = document.getElementById('fn-segs');
+  var eta     = document.getElementById('fn-eta');
+  var submit  = document.getElementById('fn-submit');
+  var submitT = document.getElementById('fn-submit-text');
+  var status  = document.getElementById('fn-status');
+  var resume  = document.getElementById('resume');
+  var resumeL = document.getElementById('resume-label');
+  var resumeB = document.getElementById('resume-bar');
+  var total   = path.length;
+
+  for (var i = 0; i < total; i++) segs.appendChild(document.createElement('i'));
+
+  // Auf dem Handy: neue Frage immer oben ins Bild holen
+  function keepInView(){
+    var r = card.getBoundingClientRect();
+    if (r.top < 60 || r.top > window.innerHeight * .45) {
+      window.scrollTo({ top: window.scrollY + r.top - 72, behavior: reduce ? 'auto' : 'smooth' });
+    }
+  }
+
+  function show(i, dir){
+    idx = i;
+    Object.keys(steps).forEach(function(k){ steps[k].classList.remove('is-on', 'back'); });
+    var cur = steps[path[idx]];
+    void cur.offsetWidth;
+    cur.classList.add('is-on');
+    if (dir === 'back') cur.classList.add('back');
+    back.classList.toggle('invisible', idx === 0);
+    var last = path[idx] === 'kontakt';
+    count.textContent = last ? 'Letzter Schritt' : 'Frage ' + (idx + 1) + ' von ' + (total - 1);
+    segs.querySelectorAll('i').forEach(function(s, n){
+      s.className = n < idx ? 'done' : (n === idx ? 'now' : '');
+    });
+    var secs = Math.max(10, (total - 1 - idx) * 6 + 15);
+    eta.textContent = last ? 'Nur noch deine Kontaktdaten' : 'Noch ca. ' + secs + ' Sekunden';
+    resumeL.textContent = idx === 0 ? 'Bewerbung starten · ca. 60 Sek.' : (last ? 'Letzter Schritt: Kontaktdaten' : 'Weiter bei Frage ' + (idx + 1) + ' von ' + (total - 1));
+    resumeB.style.width = Math.round(idx / (total - 1) * 100) + '%';
+    if (i > 0) keepInView();
+    if (i > 0 && !last && window.matchMedia('(hover:hover)').matches) {
+      var f = cur.querySelector('.opt[aria-pressed="true"]') || cur.querySelector('.opt');
+      if (f) f.focus({ preventScroll:true });
+    }
+  }
+
+  function choose(group, btn){
+    var q = group.dataset.q;
+    group.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', 'false'); });
+    btn.setAttribute('aria-pressed', 'true');
+    answers[q] = btn.dataset.v;
+    if (navigator.vibrate) { try { navigator.vibrate(8); } catch(e){} }
+    if (q === 'segment'){
+      path = FUNNEL.paths[answers.segment];
+      form.querySelectorAll('[data-only]').forEach(function(el){
+        el.classList.toggle('hidden', el.dataset.only !== answers.segment);
+      });
+    }
+    setTimeout(function(){ show(idx + 1); }, reduce ? 0 : 260);
+  }
+
+  var CHECK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg>';
+  form.querySelectorAll('[data-q]').forEach(function(group){
+    group.querySelectorAll('.opt').forEach(function(btn){
+      var dot = btn.querySelector('.dot');
+      if (dot) dot.innerHTML = CHECK;
+      btn.setAttribute('aria-pressed', 'false');
+      btn.addEventListener('click', function(){ choose(group, btn); });
+    });
+  });
+
+  // Tastatur: 1–5 wählt eine Antwort, Backspace geht zurück (nur außerhalb von Eingabefeldern)
+  document.addEventListener('keydown', function(e){
+    if (done || /INPUT|TEXTAREA/.test((e.target || {}).tagName || '')) return;
+    var cur = steps[path[idx]], group = cur && cur.querySelector('[data-q]');
+    if (group && /^[1-9]$/.test(e.key)) {
+      var opt = group.querySelectorAll('.opt')[+e.key - 1];
+      if (opt) { e.preventDefault(); choose(group, opt); }
+    } else if (e.key === 'Backspace' && idx > 0) {
+      e.preventDefault(); show(idx - 1, 'back');
+    }
+  });
+
+  back.addEventListener('click', function(){ if (idx > 0) show(idx - 1, 'back'); });
+
+  // Mobile-Leiste: zeigt sich, sobald das Formular aus dem Bild ist
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      var on = !entries[0].isIntersecting && !done;
+      resume.classList.toggle('show', on);
+      resume.setAttribute('aria-hidden', on ? 'false' : 'true');
+    }, { threshold:.08 }).observe(card);
+  }
+
+  function score(){
+    var s = 0;
+    path.forEach(function(q){
+      var t = FUNNEL.points[q];
+      if (t && answers[q] in t) s += t[answers[q]];
+    });
+    return s;
+  }
+
+  var LABELS = { umsatz:'Umsatz', team:'Team', follower:'Follower', ziel:'Ziel', engpass:'Engpass', kanal:'Kanal', budget:'Budget', start:'Start' };
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+
+    var s   = score();
+    var fit = s >= FUNNEL.threshold;
+    var seg = answers.segment === 'unternehmer' ? 'Unternehmer' : 'Coach';
+    form.querySelector('[name=subject]').value = 'Bewerbung ' + seg + ' · Score ' + s + ' · ' + (fit ? 'PASST' : 'PRÜFEN');
+
+    var data = new FormData(form);
+    if (answers.segment !== 'unternehmer') data.delete('firma');
+    data.append('segment', seg);
+    path.forEach(function(q){ if (q !== 'segment' && q !== 'kontakt') data.append(q, answers[q] || '—'); });
+    data.append('score', s + ' (Schwelle ' + FUNNEL.threshold + ')');
+    data.append('ergebnis', fit ? 'Kalender angezeigt' : 'persönliche Rückmeldung zugesagt (48 h)');
+
+    submit.disabled = true;
+    submitT.textContent = 'Wird gesendet …';
+    status.textContent = '';
+    fetch('https://api.web3forms.com/submit', { method:'POST', body:data })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j.success) throw new Error(j.message || 'fail');
+        done = true;
+        resume.classList.remove('show');
+        form.classList.add('hidden');
+        document.getElementById('fn-head').classList.add('hidden');
+        if (fit) {
+          var sum = document.getElementById('fn-summary');
+          ['budget','start', answers.segment === 'unternehmer' ? 'ziel' : 'engpass'].forEach(function(q){
+            if (!answers[q]) return;
+            var chip = document.createElement('span');
+            chip.className = 'rounded-full border border-line bg-white/[.03] px-3 py-1 text-[12px] text-mute';
+            chip.textContent = LABELS[q] + ': ' + answers[q];
+            sum.appendChild(chip);
+          });
+        }
+        document.getElementById(fit ? 'fn-fit' : 'fn-review').classList.remove('hidden');
+        if (!fit && answers.segment === 'coach' && answers.follower === 'unter 1.000'){
+          document.getElementById('fn-aufbau').classList.remove('hidden');
+        }
+        keepInView();
+      })
+      .catch(function(){
+        submit.disabled = false;
+        submitT.textContent = 'Bewerbung absenden';
+        status.textContent = 'Hat nicht geklappt. Schreib uns direkt an office@brand-scale.eu.';
+        status.style.color = '#f87171';
+      });
+  });
+
+  show(0);
+})();
+</script>
+</body>
+</html>

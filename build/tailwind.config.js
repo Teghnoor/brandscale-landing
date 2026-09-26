@@ -1,6 +1,6 @@
 /** Build-Config für die statische Auslieferung — spiegelt die frühere Inline-Config (Play-CDN). */
 module.exports = {
-  content: ['../index.html', '../impressum.html', '../datenschutz.html'],
+  content: ['../index.html', '../impressum.html', '../datenschutz.html', '../bewerben.html'],
   theme: {
     extend: {
       fontFamily: {
