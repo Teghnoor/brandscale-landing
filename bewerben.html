@@ -687,5 +687,104 @@ var FUNNEL = {
   show(0);
 })();
 </script>
+
+<div id="bs-pop" class="bs-pop" role="dialog" aria-modal="true" aria-labelledby="bs-pop-title" aria-hidden="true" hidden>
+  <div class="bs-pop-backdrop" data-pop-close></div>
+  <div class="bs-pop-box">
+    <button type="button" class="bs-pop-x" data-pop-close aria-label="Schließen">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <span class="bs-pop-live"><i></i><span class="bs-pop-slot"></span></span>
+    <h2 id="bs-pop-title" class="bs-pop-title">Jetzt bewerben</h2>
+    <p class="bs-pop-sub">Sichere dir jetzt deine Beratung.</p>
+    <ul class="bs-pop-list">
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Komplett kostenlos</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>15 Minuten</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Unverbindlich</li>
+    </ul>
+    <a href="#bewerbung" class="bs-pop-cta" data-pop-go>Jetzt bewerben
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button type="button" class="bs-pop-later" data-pop-close>Später</button>
+  </div>
+</div>
+<style>
+  .bs-pop { position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:16px; }
+  .bs-pop[hidden] { display:none; }
+  .bs-pop-backdrop { position:absolute; inset:0; background:rgba(5,4,10,.66); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
+  .bs-pop-box { position:relative; width:100%; max-width:400px; background:#141021; border:1px solid #2E2548; border-radius:24px; padding:28px 24px 20px; text-align:center; color:#F4F2FA;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.8), 0 0 90px -30px rgba(139,92,246,.7); transform:translateY(18px) scale(.97); opacity:0; transition:transform .4s cubic-bezier(.22,.61,.36,1), opacity .3s ease; }
+  .bs-pop.is-open .bs-pop-backdrop { opacity:1; }
+  .bs-pop.is-open .bs-pop-box { transform:none; opacity:1; }
+  .bs-pop-x { position:absolute; top:12px; right:12px; width:34px; height:34px; display:grid; place-items:center; border-radius:999px; color:#A29CB8; background:rgba(255,255,255,.04); border:1px solid #2E2548; }
+  .bs-pop-x:hover { color:#F4F2FA; }
+  .bs-pop-live { display:inline-flex; align-items:center; gap:8px; font-size:12px; border:1px solid #2E2548; background:#0E0B18; border-radius:999px; padding:4px 12px; }
+  .bs-pop-live i { position:relative; width:8px; height:8px; border-radius:999px; background:#22C55E; }
+  .bs-pop-live i::after { content:""; position:absolute; inset:0; border-radius:999px; background:#22C55E; animation:bsPopPing 1.8s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes bsPopPing { 75%,100% { transform:scale(2.4); opacity:0; } }
+  .bs-pop-title { font-family:'Bricolage Grotesque','Instrument Sans',sans-serif; font-weight:600; font-size:2rem; line-height:1.05; letter-spacing:-.02em; margin-top:16px;
+    background:linear-gradient(100deg,#F4F2FA 30%,#A78BFA 70%,#3B82F6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bs-pop-sub { color:#C9C4DA; margin-top:8px; font-size:1rem; }
+  .bs-pop-list { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:18px; }
+  .bs-pop-list li { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; border:1px solid #2E2548; background:rgba(139,92,246,.08); border-radius:999px; padding:6px 12px; }
+  .bs-pop-cta { margin-top:22px; display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:15px 20px; border-radius:16px; font-weight:600; color:#fff;
+    background:linear-gradient(100deg,#8B5CF6,#3B82F6); box-shadow:0 0 0 0 rgba(139,92,246,.55); animation:bsPopPulse 2.2s infinite; }
+  .bs-pop-cta:hover { filter:brightness(1.07); }
+  @keyframes bsPopPulse { 70% { box-shadow:0 0 0 14px rgba(139,92,246,0); } 100% { box-shadow:0 0 0 0 rgba(139,92,246,0); } }
+  .bs-pop-later { margin-top:10px; font-size:13px; color:#A29CB8; padding:6px 10px; }
+  .bs-pop-later:hover { color:#F4F2FA; }
+  @media (max-width:520px) {
+    .bs-pop { align-items:flex-end; padding:0; }
+    .bs-pop-box { max-width:none; border-radius:24px 24px 0 0; padding-bottom:max(20px, env(safe-area-inset-bottom)); transform:translateY(100%); }
+  }
+  @media (prefers-reduced-motion: reduce) { .bs-pop-box, .bs-pop-backdrop { transition:none; } .bs-pop-cta, .bs-pop-live i::after { animation:none; } }
+</style>
+<script>
+/* Bewerbungs-Popup: erscheint nach 10 Sekunden, einmal pro Sitzung. */
+(function(){
+  var DELAY = 10000, KEY = 'bsPopSeen';
+  var pop = document.getElementById('bs-pop');
+  if (!pop) return;
+  try { if (sessionStorage.getItem(KEY)) return; } catch(e) {}
+  var lastFocus = null;
+
+  function blocked(){
+    // Nicht stören, wenn jemand schon mitten in der Bewerbung oder auf der Warteliste ist
+    if (document.querySelector('#fn-form .opt[aria-pressed="true"]')) return true;
+    var a = document.activeElement;
+    if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName)) return true;
+    return false;
+  }
+  function open(){
+    if (blocked()) return;
+    var cohort = document.querySelector('[data-cohort]');
+    var left = document.querySelector('[data-slots-left]');
+    var n = left ? parseInt(left.textContent, 10) : NaN;
+    pop.querySelector('.bs-pop-slot').textContent = (cohort ? cohort.textContent + ': ' : '') +
+      (isFinite(n) ? 'noch ' + n + (n === 1 ? ' Platz frei' : ' Plätze frei') : 'Plätze begrenzt');
+    lastFocus = document.activeElement;
+    pop.hidden = false;
+    pop.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ pop.classList.add('is-open'); }); });
+    pop.querySelector('[data-pop-go]').focus({ preventScroll:true });
+    try { sessionStorage.setItem(KEY, '1'); } catch(e) {}
+    document.addEventListener('keydown', onKey);
+  }
+  function close(){
+    pop.classList.remove('is-open');
+    pop.setAttribute('aria-hidden', 'true');
+    document.removeEventListener('keydown', onKey);
+    setTimeout(function(){ pop.hidden = true; }, 350);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll:true });
+  }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+
+  pop.querySelectorAll('[data-pop-close]').forEach(function(el){ el.addEventListener('click', close); });
+  pop.querySelector('[data-pop-go]').addEventListener('click', function(e){
+    var href = this.getAttribute('href');
+    if (href.charAt(0) === '#') { e.preventDefault(); close(); var t = document.querySelector(href); if (t) t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  });
+  setTimeout(open, DELAY);
+})();
+</script>
 </body>
 </html>
