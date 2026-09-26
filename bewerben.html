@@ -119,6 +119,29 @@
   #resume { transform:translateY(120%); transition:transform .35s cubic-bezier(.22,.61,.36,1); padding-bottom:max(.75rem, env(safe-area-inset-bottom)); }
   #resume.show { transform:none; }
 
+
+  /* VSL */
+  .vsl-box { position:relative; width:100%; aspect-ratio:16/9; border-radius:18px; overflow:hidden; background:#000;
+    border:1px solid #2E2548; box-shadow:0 30px 80px -30px rgba(139,92,246,.55); }
+  @supports not (aspect-ratio: 16/9) { .vsl-box { height:0; padding-bottom:56.25%; } }
+  .vsl-box video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .vsl-box::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55)); transition:opacity .4s; }
+  .vsl-play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:68px; height:68px; border-radius:999px; display:grid; place-items:center; z-index:2;
+    background:linear-gradient(135deg,#8B5CF6,#3B82F6); box-shadow:0 10px 40px -8px rgba(139,92,246,.8); transition:transform .25s, opacity .3s; }
+  @media (min-width:640px){ .vsl-play { width:84px; height:84px; } }
+  .vsl-play:hover { transform:translate(-50%,-50%) scale(1.07); }
+  .vsl-play::before { content:""; position:absolute; inset:-7px; border-radius:999px; border:1.5px solid rgba(255,255,255,.55); animation:vslRing 2.4s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes vslRing { 0%{transform:scale(1);opacity:.75} 70%,100%{transform:scale(1.38);opacity:0} }
+  .vsl-tag { position:absolute; left:12px; bottom:12px; z-index:2; font-size:10.5px; text-transform:uppercase; color:#fff; background:rgba(10,8,18,.6); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:5px 10px; transition:opacity .3s; }
+  .vsl-box.is-playing::after, .vsl-box.is-playing .vsl-play, .vsl-box.is-playing .vsl-tag { opacity:0; pointer-events:none; }
+  .scroll-cue svg { animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(4px); } }
+
+  /* FAQ */
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq .faq-i { transition:transform .25s; }
+  .faq[open] .faq-i { transform:rotate(45deg); }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation:none !important; transition:none !important; }
     .rv { opacity:1; transform:none; }
@@ -145,29 +168,40 @@
 </header>
 
 <main class="pt-20 sm:pt-28 pb-16">
-  <div class="max-w-6xl mx-auto px-4 sm:px-5 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-x-14 gap-y-6 items-start">
+  <div class="max-w-3xl mx-auto px-4 sm:px-5">
 
-    <section class="min-w-0 lg:col-start-1 lg:row-start-1">
-      <span class="mono text-[10px] sm:text-[11px] uppercase text-accentDeep">Bewerbung · ca. 60 Sekunden</span>
-      <h1 class="text-[2rem] leading-[1.05] sm:text-5xl font-semibold tracking-tight mt-3">
+    <section id="vsl-hero" class="text-center">
+      <span class="mono text-[10px] sm:text-[11px] uppercase text-accentDeep">Kostenlos · unverbindlich</span>
+      <h1 class="text-[1.9rem] leading-[1.06] sm:text-5xl font-semibold tracking-tight mt-3">
         Sichtbar werden, <span class="grad-text">ohne selbst Content denken zu müssen.</span>
       </h1>
-      <p class="hidden sm:block text-mute mt-5 text-base max-w-lg">Personal Branding für Coaches, Berater und Unternehmer im DACH-Raum. Du bleibst das Gesicht, wir machen den Rest.</p>
+      <p class="text-mute mt-3 text-[15px] sm:text-base max-w-xl mx-auto">Schau dir das kurze Video an. Danach direkt darunter bewerben.</p>
 
-      <div class="card rounded-2xl mt-4 sm:mt-7">
+      <div class="vsl-box mt-5 sm:mt-7">
+        <video id="vsl" poster="images/vsl-poster.jpg" muted playsinline preload="metadata" aria-label="Video: Wie Brandscale arbeitet">
+          <source src="videos/vsl.mp4" type="video/mp4">
+        </video>
+        <button type="button" id="vslPlay" class="vsl-play" aria-label="Video mit Ton starten">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </button>
+        <span class="vsl-tag mono">▶ Mit Ton ansehen · <span id="vslDur">32 Sek</span></span>
+      </div>
+
+      <div class="card rounded-2xl mt-4 text-left">
         <div class="flex divide-x divide-line">
           <div class="stat"><b data-to="700" data-suffix=" Mio.+">700 Mio.+</b><span>Views</span></div>
           <div class="stat"><b data-to="1.1" data-dec="1" data-suffix=" Mio.+">1,1 Mio.+</b><span>aufgebaute Follower</span></div>
           <div class="stat"><b data-to="7.8" data-dec="1" data-prefix="€ " data-suffix=" Mio.+">€ 7,8 Mio.+</b><span>Kundenumsatz</span></div>
         </div>
-        <p class="px-4 py-2.5 border-t border-line text-[11.5px] text-mute flex items-center gap-2">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="3" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          Live belegbar: wir zeigen dir jede Zahl im Erstgespräch.
-        </p>
       </div>
+
+      <a href="#bewerbung" class="scroll-cue mt-6 inline-flex flex-col items-center gap-1 text-[12px] text-mute hover:text-ink transition">
+        Jetzt bewerben
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
     </section>
 
-    <section id="bewerbung" class="relative min-w-0 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1 lg:row-span-2 scroll-mt-20">
+    <section id="bewerbung" class="relative min-w-0 mt-8 sm:mt-10 scroll-mt-20">
       <div class="aura" aria-hidden="true"></div>
       <div class="card rounded-3xl p-5 sm:p-8" aria-live="polite">
         <div id="fn-head">
@@ -340,7 +374,19 @@
       </ul>
     </section>
 
-    <section class="lg:col-start-1 lg:row-start-2 min-w-0 mt-6 lg:mt-2">
+    <section class="mt-14 sm:mt-16">
+      <div class="rv text-center">
+        <span class="mono text-[10px] sm:text-[11px] uppercase text-accentDeep">So läuft es ab</span>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-2">Drei Schritte, keine Überraschungen.</h2>
+      </div>
+      <ol class="rv mt-6 grid sm:grid-cols-3 gap-3">
+        <li class="card rounded-2xl p-4 sm:p-5 flex gap-3.5 sm:block"><span class="mono text-[11px] text-accentDeep pt-0.5">01</span><div><p class="font-semibold sm:mt-2">Bewerbung</p><p class="text-[13.5px] text-mute mt-0.5 sm:mt-1">Ein paar Klicks, damit wir vorher wissen, wo du stehst.</p></div></li>
+        <li class="card rounded-2xl p-4 sm:p-5 flex gap-3.5 sm:block"><span class="mono text-[11px] text-accentDeep pt-0.5">02</span><div><p class="font-semibold sm:mt-2">Kostenloses Gespräch</p><p class="text-[13.5px] text-mute mt-0.5 sm:mt-1">Direkt mit dem Gründer. Analyse und Fit-Check, kein Pitch.</p></div></li>
+        <li class="card rounded-2xl p-4 sm:p-5 flex gap-3.5 sm:block"><span class="mono text-[11px] text-accentDeep pt-0.5">03</span><div><p class="font-semibold sm:mt-2">Angebot in 72 h</p><p class="text-[13.5px] text-mute mt-0.5 sm:mt-1">Schriftlich und ehrlich. Du entscheidest in Ruhe.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="mt-14 min-w-0">
       <div class="rv">
         <p class="mono text-[10px] sm:text-[11px] uppercase text-mute">Gearbeitet u. a. mit</p>
         <div class="marquee-wrap overflow-hidden mt-3 -mx-4 sm:mx-0">
@@ -365,12 +411,12 @@
 
       <div class="rv mt-8 flex items-end justify-between gap-4">
         <h2 class="text-2xl font-semibold tracking-tight">Beweise statt Versprechen.</h2>
-        <span class="lg:hidden mono text-[10px] uppercase text-mute whitespace-nowrap">Wischen →</span>
+        <span class="sm:hidden mono text-[10px] uppercase text-mute whitespace-nowrap">Wischen →</span>
       </div>
 
-      <div id="proof" class="rv mt-4 flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-4 px-4 pb-1 lg:mx-0 lg:px-0 lg:flex-col lg:gap-5 lg:overflow-visible">
+      <div id="proof" class="rv mt-4 flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-4 px-4 pb-1 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible">
 
-        <article class="card rounded-2xl p-5 shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center">
+        <article class="card rounded-2xl p-5 shrink-0 w-[86%] sm:w-auto snap-center">
           <div class="flex items-center justify-between gap-3">
             <span class="mono text-[10px] uppercase text-accentDeep">Case · freigegeben</span>
             <a href="https://www.instagram.com/ehssanmemarpuri/" target="_blank" rel="noopener" class="mono text-[10px] uppercase text-mute hover:text-ink transition">Profil ↗</a>
@@ -388,8 +434,8 @@
           </ul>
         </article>
 
-        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center flex flex-col lg:grid lg:grid-cols-[0.8fr_1fr]">
-          <img src="images/kunde-memarpuri-event.webp" alt="Aid Muric, Gründer von Brandscale.eu (links), mit den betreuten Marken Ehssan Memarpuri (Mitte) und Radin Zahedi (rechts) auf einem Branchen-Event." class="w-full h-52 lg:h-full object-cover object-[50%_12%]" loading="lazy" decoding="async" width="900" height="1037">
+        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-auto snap-center flex flex-col">
+          <img src="images/kunde-memarpuri-event.webp" alt="Aid Muric, Gründer von Brandscale.eu (links), mit den betreuten Marken Ehssan Memarpuri (Mitte) und Radin Zahedi (rechts) auf einem Branchen-Event." class="w-full h-52 object-cover object-[50%_12%]" loading="lazy" decoding="async" width="900" height="1037">
           <div class="p-5 flex flex-col justify-center">
             <span class="mono text-[10px] uppercase text-accentDeep">Vor Ort</span>
             <p class="font-semibold mt-2">Wir kennen die Leute, für die wir arbeiten.</p>
@@ -397,8 +443,8 @@
           </div>
         </article>
 
-        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-[60%] lg:w-auto snap-center flex flex-col lg:grid lg:grid-cols-[150px_1fr]">
-          <img src="images/aid-muric.webp" alt="Aid Muric, Gründer von Brandscale.eu" class="w-full h-52 lg:h-full object-cover object-top" loading="lazy" decoding="async" width="900" height="875">
+        <article class="card rounded-2xl overflow-hidden shrink-0 w-[86%] sm:w-auto snap-center flex flex-col">
+          <img src="images/aid-muric.webp" alt="Aid Muric, Gründer von Brandscale.eu" class="w-full h-52 object-cover object-top" loading="lazy" decoding="async" width="900" height="875">
           <div class="p-5 flex flex-col justify-center">
             <span class="mono text-[10px] uppercase text-accentDeep">Gründer</span>
             <p class="font-semibold mt-2">Aid Muric</p>
@@ -406,15 +452,44 @@
           </div>
         </article>
       </div>
-      <div class="proof-dots lg:hidden flex justify-center gap-1.5 mt-4" role="tablist" aria-label="Beweise durchblättern"></div>
+      <div class="proof-dots sm:hidden flex justify-center gap-1.5 mt-4" role="tablist" aria-label="Beweise durchblättern"></div>
+    </section>
 
-      <div class="rv card rounded-2xl p-6 mt-10 text-center lg:text-left relative overflow-hidden">
-        <p class="font-display text-xl font-semibold tracking-tight">Die erste Frage dauert fünf Sekunden.</p>
-        <p class="text-[13.5px] text-mute mt-1.5">Im <span data-cohort>Oktober</span> ist noch <span data-slots-left>1</span> <span data-slots-word>Platz</span> frei.</p>
-        <a href="#bewerbung" class="mt-4 inline-flex items-center gap-2 grad-btn font-semibold px-6 py-3 rounded-2xl transition">Bewerbung starten
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <section class="mt-14">
+      <div class="rv text-center">
+        <span class="mono text-[10px] sm:text-[11px] uppercase text-accentDeep">Häufige Fragen</span>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mt-2">Was du vorher wissen solltest.</h2>
+      </div>
+      <div class="rv mt-6 grid gap-2.5">
+        <details class="faq card rounded-2xl px-5 group" open>
+          <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-[15px]">Was kostet das Gespräch?<span class="faq-i shrink-0 grid place-items-center w-7 h-7 rounded-full border border-line text-accentDeep">+</span></summary>
+          <p class="pb-4 -mt-1 text-[14px] text-mute leading-relaxed">Nichts. Das Gespräch ist komplett kostenlos und unverbindlich. Es ist Analyse und Fit-Check, keine Verkaufsshow.</p>
+        </details>
+        <details class="faq card rounded-2xl px-5 group">
+          <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-[15px]">Muss ich mich im Gespräch entscheiden?<span class="faq-i shrink-0 grid place-items-center w-7 h-7 rounded-full border border-line text-accentDeep">+</span></summary>
+          <p class="pb-4 -mt-1 text-[14px] text-mute leading-relaxed">Nein. Danach bekommst du ein schriftliches Angebot und entscheidest in Ruhe. Nachgefasst wird einmal, nicht täglich.</p>
+        </details>
+        <details class="faq card rounded-2xl px-5 group">
+          <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-[15px]">Schon wieder eine Agentur, die viel verspricht?<span class="faq-i shrink-0 grid place-items-center w-7 h-7 rounded-full border border-line text-accentDeep">+</span></summary>
+          <p class="pb-4 -mt-1 text-[14px] text-mute leading-relaxed">Berechtigt. Deshalb arbeiten wir Beweis-First: keine Erfolgs-Garantien, sondern eine ehrliche Diagnose, klare Test-Setups und transparente Zahlen. Du siehst, was funktioniert, bevor wir skalieren.</p>
+        </details>
+        <details class="faq card rounded-2xl px-5 group">
+          <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-[15px]">Ich wurde schon mal verbrannt. Lange Verträge, Intransparenz.<span class="faq-i shrink-0 grid place-items-center w-7 h-7 rounded-full border border-line text-accentDeep">+</span></summary>
+          <p class="pb-4 -mt-1 text-[14px] text-mute leading-relaxed">Dir gehören Accounts, Daten und Content, auch ohne uns weiter nutzbar. Wir dokumentieren jeden Schritt schriftlich. Keine Jahresbindung, kein Lock-in.</p>
+        </details>
+        <details class="faq card rounded-2xl px-5 group">
+          <summary class="flex items-center justify-between gap-4 py-4 cursor-pointer list-none font-semibold text-[15px]">Was passiert nach der Bewerbung?<span class="faq-i shrink-0 grid place-items-center w-7 h-7 rounded-full border border-line text-accentDeep">+</span></summary>
+          <p class="pb-4 -mt-1 text-[14px] text-mute leading-relaxed">Passt es, wählst du direkt einen Termin. Wenn wir noch Fragen haben, melden wir uns innerhalb von 48 Stunden persönlich. Passt es nicht, sagen wir dir das ehrlich.</p>
+        </details>
       </div>
     </section>
+
+    <div class="rv card rounded-2xl p-6 mt-14 text-center">
+      <p class="font-display text-xl font-semibold tracking-tight">Die erste Frage dauert fünf Sekunden.</p>
+      <p class="text-[13.5px] text-mute mt-1.5">Im <span data-cohort>Oktober</span> ist noch <span data-slots-left>1</span> <span data-slots-word>Platz</span> frei.</p>
+      <a href="#bewerbung" class="mt-4 inline-flex items-center gap-2 grad-btn font-semibold px-6 py-3 rounded-2xl transition">Bewerbung starten
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </div>
 </main>
 
@@ -499,6 +574,32 @@ var FUNNEL = {
     document.querySelectorAll('.rv, [data-to]').forEach(function(el){ io.observe(el); });
   } else {
     document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+
+
+  // ----- VSL: Klick startet mit Ton, Ende oder Wegscrollen setzt zurück -----
+  var vsl = document.getElementById('vsl'), vbox = vsl && vsl.parentNode;
+  if (vsl) {
+    var vslDur = document.getElementById('vslDur');
+    vsl.addEventListener('loadedmetadata', function(){
+      if (!vslDur || !isFinite(vsl.duration) || vsl.duration < 1) return;
+      var m = Math.floor(vsl.duration / 60), sec = Math.round(vsl.duration % 60);
+      if (sec === 60) { m += 1; sec = 0; }
+      vslDur.textContent = m > 0 ? (m + ':' + (sec < 10 ? '0' : '') + sec + ' Min') : (sec + ' Sek');
+    });
+    var resetVsl = function(){ vbox.classList.remove('is-playing'); vsl.controls = false; vsl.muted = true; vsl.load(); };
+    document.getElementById('vslPlay').addEventListener('click', function(){
+      vbox.classList.add('is-playing'); vsl.muted = false; vsl.controls = true; vsl.currentTime = 0;
+      var pr = vsl.play(); if (pr && pr.catch) pr.catch(resetVsl);
+    });
+    vsl.addEventListener('ended', function(){
+      resetVsl();
+      var t = document.getElementById('bewerbung');
+      if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(en){ if (!en[0].isIntersecting && !vsl.paused) vsl.pause(); }, { threshold:.15 }).observe(vbox);
+    }
   }
 
   // ----- Beweis-Galerie: Punkte synchron zum Wischen -----
